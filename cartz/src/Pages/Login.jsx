@@ -12,8 +12,27 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { login, loginFailureAction, loginRequestAction, loginSuccessAction } from '../Redux/authReducer/action';
+import axios from "axios"
 
 export default function SimpleCard() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch()
+
+  const handleLogin = () => {
+    const userData = {email, password}
+    dispatch(loginRequestAction())
+    axios.post("https://reqres.in/api/login", userData).then((res) => {
+        dispatch(loginSuccessAction(res.data.token))
+        console.log(res.data.token)
+    }).catch((err) => {
+        dispatch(loginFailureAction(err.message))
+    })
+  }
+
   return (
     <Flex
       minH={'90vh'}
@@ -22,7 +41,7 @@ export default function SimpleCard() {
       bg={useColorModeValue('gray.50', 'gray.800')}>
       <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
         <Stack align={'center'}>
-          <Heading fontSize={'4xl'}>Sign in to your account</Heading>
+          <Heading fontSize={'4xl'}>Login in to your account</Heading>
           <Text fontSize={'lg'} color={'gray.600'}>
             to enjoy all of our cool <Link color={'pink.400'}>features</Link> ✌️
           </Text>
@@ -35,11 +54,19 @@ export default function SimpleCard() {
           <Stack spacing={4}>
             <FormControl id="email">
               <FormLabel>Email address</FormLabel>
-              <Input type="email" />
+              <Input 
+                type="email" 
+                value={email}
+                onChange={(e)=> setEmail(e.target.value)}
+                />
             </FormControl>
             <FormControl id="password">
               <FormLabel>Password</FormLabel>
-              <Input type="password" />
+              <Input 
+                type="password"
+                value={password}
+                onChange={(e)=> setPassword(e.target.value)}
+                />
             </FormControl>
             <Stack spacing={10}>
               <Stack
@@ -54,8 +81,10 @@ export default function SimpleCard() {
                 bgGradient="linear(to-r, pink.400, orange.400)"
                 _hover={{
                   bgGradient:"linear(to-r, pink.500, orange.500)"
-                }}>
-                Sign in
+                }}
+                onClick={handleLogin}
+                >
+                Login in
               </Button>
             </Stack>
           </Stack>
