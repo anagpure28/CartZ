@@ -14,8 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { login, loginFailureAction, loginRequestAction, loginSuccessAction } from '../Redux/authReducer/action';
-import axios from "axios"
+import { login } from '../Redux/authReducer/action';
 
 export default function SimpleCard() {
   const [email, setEmail] = useState("");
@@ -24,13 +23,7 @@ export default function SimpleCard() {
 
   const handleLogin = () => {
     const userData = {email, password}
-    dispatch(loginRequestAction())
-    axios.post("https://reqres.in/api/login", userData).then((res) => {
-        dispatch(loginSuccessAction(res.data.token))
-        console.log(res.data.token)
-    }).catch((err) => {
-        dispatch(loginFailureAction(err.message))
-    })
+    dispatch(login(userData))
   }
 
   return (
