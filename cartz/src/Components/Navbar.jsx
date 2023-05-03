@@ -1,10 +1,11 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 const links = [
   { path: "/", title: "Home" },
-  { path: "/about", title: "About" },
-  { path: "/contact", title: "Contact" },
+  // { path: "/about", title: "About" },
+  // { path: "/contact", title: "Contact" },
+  { path: "/all-products", title: "AllProducts"},
   { path: "/signup", title: "Register" },
 ];
 
@@ -34,7 +35,7 @@ const Navbar = () => {
       }}
     >
       <div style={{ width: "30%", fontSize: "30px", fontWeight: "bold" }}>
-        <p>CartZ</p>
+        <p><Link to={"/"}>CartZ</Link></p>
       </div>
       <div style={{ width: "30%" }}>
         <input

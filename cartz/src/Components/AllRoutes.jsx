@@ -8,6 +8,7 @@ import ProductPage from "../Pages/ProductPage";
 import SingleProductPage from "../Pages/SingleProductPage";
 import NotFound from "../Pages/NotFound";
 import SignupCard from '../Pages/Signup';
+import {AllProducts} from "..//Products/ProductPages/AllProducts"
 // import Payment from '../Pages/Payment';
 // import PrivateRoute from './PrivateRoute';
 
@@ -21,6 +22,7 @@ const AllRoutes = () => {
         <Route path="/product" element={<ProductPage />}></Route>
         <Route path="/product/:id" element={<SingleProductPage />}></Route>
         <Route path="/signup" element={<SignupCard />}></Route>
+        <Route path="/all-products" element={<AllProducts />}></Route>
         {/* <Route
         path="/payment"
         element={
