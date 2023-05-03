@@ -16,18 +16,18 @@ export const AllProducts = () => {
 }
 
 const DIV = styled.div`
-    width: 90%;
+    width: 95%;
     margin: auto;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     /* border: 1px solid black; */
     .sidebar{
         width: 20%;
-        margin-top: 10px;
+        margin-top: 40px;
     }
     .allProductList{
         width: 75%;
-        margin-top: 10px;
+        margin-top: 40px;
         /* border: 1px solid black; */
     }
 `
