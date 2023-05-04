@@ -27,11 +27,12 @@ const Navbar = () => {
         display: "flex",
         alignItems: "center",
         backgroundColor: "black",
-        padding: "14px",
         color: "white",
-        margin: "0",
-        position:"sticky",
-        zIndex: 1000
+        top:"0",
+        height:"70px",
+        position:"fixed",
+        width:"100%",
+        zIndex: 3
       }}
     >
       <div style={{ width: "30%", fontSize: "30px", fontWeight: "bold" }}>

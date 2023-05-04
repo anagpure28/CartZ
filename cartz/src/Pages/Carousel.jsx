@@ -48,7 +48,8 @@ export default function Carousel() {
       width={'100%'}
       // height={"40%"}
       m={"auto"}
-      overflow={'hidden'}>
+      overflow={'hidden'}
+      >
       {/* CSS files for react-slick */}
       <link
         rel="stylesheet"
@@ -64,8 +65,8 @@ export default function Carousel() {
       {/* Left Icon */}
       <IconButton
         aria-label="left-arrow"
-        colorScheme={"white"}
-        bgGradient="linear(to-r, pink.400, orange.400)"
+        color="rgb(255, 111, 97)"
+        backgroundColor="rgba(255, 255, 255, 0.350)"
         borderRadius="full"
         position="absolute"
         left={side}
@@ -78,8 +79,8 @@ export default function Carousel() {
       {/* Right Icon */}
       <IconButton
         aria-label="right-arrow"
-        colorScheme={"white"}
-        bgGradient="linear(to-r, pink.400, orange.400)"
+        color="rgb(255, 111, 97)"
+        backgroundColor="rgba(255, 255, 255, 0.350)"
         borderRadius="full"
         position="absolute"
         right={side}
@@ -94,7 +95,7 @@ export default function Carousel() {
         {cards.map((url, index) => (
           <Box
             key={index}
-            height={'100vh'}
+            height="50vh"
             position="relative"
             backgroundPosition="center"
             backgroundRepeat="no-repeat"
