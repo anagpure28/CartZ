@@ -45,6 +45,6 @@ export const AllProductList = () => {
 
 const DIV = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 20px;
 `;

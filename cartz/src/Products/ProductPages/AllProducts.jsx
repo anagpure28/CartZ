@@ -16,7 +16,7 @@ export const AllProducts = () => {
 }
 
 const DIV = styled.div`
-    width: 95%;
+    width: 98%;
     margin: auto;
     display: flex;
     justify-content: space-between;
@@ -24,9 +24,11 @@ const DIV = styled.div`
     .sidebar{
         width: 20%;
         margin-top: 40px;
+        padding-right: 12px;
+        border-right: 1px solid black;
     }
     .allProductList{
-        width: 75%;
+        width: 78%;
         margin-top: 40px;
         /* border: 1px solid black; */
     }

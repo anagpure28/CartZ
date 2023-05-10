@@ -16,7 +16,6 @@
 //   )
 // }
 
-
 // const DIV = styled.div`
 //     /* border: 1px solid black; */
 //     height: 380px;
@@ -38,61 +37,62 @@
 //     }
 // `
 
-import React from 'react';
-import {
-  Box,
-  Image,
-  Badge
-} from '@chakra-ui/react';
-import { StarIcon } from '@chakra-ui/icons';
+import React from "react";
+import { Box, Image, Badge } from "@chakra-ui/react";
+import { StarIcon } from "@chakra-ui/icons";
 
-export const AllProductCard = ({id, images, title, price, rating, brand}) => {
-
+export const AllProductCard = (
+  { id, 
+    img, 
+    product, 
+    price, 
+    ratingsContainer, 
+    separator,
+    ratingsCount,
+    brand 
+  }) => {
   return (
-    <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
-      <Image src={images["image1"]} alt={title} width="100%" />
+    <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
+      <Image src={img} alt={product} width="100%" />
 
-      <Box p='2'>
-        <Box display='flex' alignItems='baseline'>
+      <Box p="2">
+        <Box display="flex" alignItems="baseline">
           <Box
-            color='black'
-            fontWeight='650'
-            letterSpacing='wide'
+            color="black"
+            fontWeight="650"
+            letterSpacing="wide"
             fontSize={16}
-            textAlign={'left'}
-            textTransform='uppercase'
-            ml='1'
+            textAlign={"left"}
+            textTransform="uppercase"
+            ml="1"
           >
             {brand}
           </Box>
-          <Badge ml='2' borderRadius='full' px='2' colorScheme='teal'>
+          <Badge ml="2" borderRadius="full" px="2" colorScheme="teal">
             New
           </Badge>
         </Box>
 
         <Box
-          fontWeight='600'
+          fontWeight="600"
           fontSize={16}
-          lineHeight='tight'
+          lineHeight="tight"
           noOfLines={1}
-          textAlign={'left'}
+          textAlign={"left"}
           ml="1"
         >
-          {title}
+          {product}
         </Box>
 
-        <Box fontSize={16} fontWeight={600} ml="1" textAlign={'left'}>
+        <Box fontSize={16} fontWeight={600} ml="1" textAlign={"left"}>
           Rs: {price}
         </Box>
 
-        <Box display='flex' mt='1' alignItems='center'>
+        <Box display="flex" mt="1" alignItems="center">
           {Array(5)
-            .fill('')
+            .fill("")
             .map((_, i) => (
-              <StarIcon
-                key={i}
-                color={i < rating ? 'teal.500' : 'gray.300'}
-              />
+              <StarIcon key={i} color={i < ratingsContainer ? "teal.500" : "gray.300"} />
             ))}
           {/* <Box as='span' ml='2' color='gray.600' fontSize='sm'>
             {property.reviewCount} reviews
@@ -100,5 +100,5 @@ export const AllProductCard = ({id, images, title, price, rating, brand}) => {
         </Box>
       </Box>
     </Box>
-  )
-}
+  );
+};
