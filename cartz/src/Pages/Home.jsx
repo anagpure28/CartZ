@@ -12,3 +12,7 @@ const Home = () => {
 }
 
 export default Home
+
+
+// dark : #008b7d
+// light : #4fd1c5
