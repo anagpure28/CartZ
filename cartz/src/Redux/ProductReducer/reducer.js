@@ -1,8 +1,8 @@
 import { GET_PRODUCT_SUCCESS, POST_PRODUCT_SUCCESS, PRODUCT_FAILURE, PRODUCT_REQUEST } from "../actionType"
 
 const initialState = {
-    isLoading: "",
-    isError: "",
+    isLoading: false,
+    isError: false,
     products: []
 }
 
