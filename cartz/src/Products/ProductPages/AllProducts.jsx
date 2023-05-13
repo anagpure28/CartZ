@@ -16,7 +16,7 @@ export const AllProducts = () => {
 }
 
 const DIV = styled.div`
-    width: 98%;
+    width: 90%;
     margin: auto;
     display: flex;
     justify-content: space-between;

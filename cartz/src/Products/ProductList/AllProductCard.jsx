@@ -39,7 +39,8 @@
 
 import React from "react";
 import { Box, Image, Badge } from "@chakra-ui/react";
-import { StarIcon } from "@chakra-ui/icons";
+import { MdOutlineStarOutline,MdOutlineStar } from "react-icons/md";
+
 
 export const AllProductCard = (
   { id, 
@@ -52,10 +53,11 @@ export const AllProductCard = (
     brand 
   }) => {
   return (
-    <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
-      <Image src={img} alt={product} width="100%" />
+    <Box maxW="sm" borderWidth="1px" borderRadius="xl" overflow="hidden" h={350} style={{backgroundImage:`url(${img})`,backgroundPosition:"center",backgroundRepeat:"no-repeat",backgroundSize:"cover",display:"flex",justifyContent:"center",alignItems:"end"}}>
+      {/* <Image src={img} alt={product} width="100%" height="67%" /> */}
 
-      <Box p="2">
+      <Box px="2" py="3" style={{width:"100%",height:"50%",backgroundImage: "linear-gradient(to bottom, rgba(255,0,0,0), rgba(255,255,255,1))",display:"flex",alignItems:"end",cursor:"pointer"}}>
+        <Box>
         <Box display="flex" alignItems="baseline">
           <Box
             color="black"
@@ -88,15 +90,16 @@ export const AllProductCard = (
           Rs: {price}
         </Box>
 
-        <Box display="flex" mt="1" alignItems="center">
+        <Box display="flex" mt="1" alignItems="center" >
           {Array(5)
             .fill("")
             .map((_, i) => (
-              <StarIcon key={i} color={i < ratingsContainer ? "teal.500" : "gray.300"} />
+              i < ratingsContainer ? <MdOutlineStar key={i} style={{fontSize:"15px",margin:"0px 1px 0px 1px" }} color="rgb(0,208,180)"/> : <MdOutlineStarOutline key={i} style={{fontSize:"15px",margin:"0px 1px 0px 1px" }} color="rgb(0,208,180)"/>
             ))}
           {/* <Box as='span' ml='2' color='gray.600' fontSize='sm'>
             {property.reviewCount} reviews
           </Box> */}
+        </Box>
         </Box>
       </Box>
     </Box>
