@@ -4,7 +4,7 @@ import LimitedOffers from '../HomeComponents/LimitedOffers'
 
 const Home = () => {
   return (
-    <div style={{marginTop:"70px"}}>
+    <div style={{}}>
       <Carousel />
       <LimitedOffers/>
     </div>
