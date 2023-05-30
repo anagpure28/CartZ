@@ -60,9 +60,9 @@ export const AllProductList = () => {
       {loading ? <div className="grid">
         {products.length > 0 &&
           products.map((el,i) => {
-            return  <Box padding="4" boxShadow="lg" bg="white">
+            return  <Box padding="0" bg="white" borderRadius="5px">
             <SkeletonText mt="4" noOfLines={1} spacing="1" skeletonHeight="28" />
-            <SkeletonText mt="4" noOfLines={4} spacing="3" skeletonHeight="3" />
+            <SkeletonText mt="4" noOfLines={3} spacing="3" skeletonHeight="3" />
           </Box>;
           })}
       </div> :
