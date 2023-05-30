@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProduct } from "../../Redux/ProductReducer/action";
+import { mensProduct } from "../../Redux/ProductReducer/action";
 import { AllProductCard } from "./AllProductCard";
 import styled from "styled-components";
 import { Box, SkeletonCircle, SkeletonText } from '@chakra-ui/react'
@@ -24,7 +24,7 @@ export const AllProductList = () => {
 
   useEffect(() => {
     console.log("data", obj)
-    dispatch(getProduct(obj));
+    dispatch(mensProduct(obj));
   }, [location.search]);
 
   if(loading){
