@@ -58,7 +58,7 @@ export const AllProductList = () => {
       <div className="input">
         <input
           type="text"
-          id="search"
+          class="search"
           autoComplete="off"
           placeholder="Search"
           onChange={(e) => setQuery(e.target.value)}
@@ -83,7 +83,7 @@ const DIV = styled.div`
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
   }
-  #search {
+  .search {
     border: 3px solid #242424;
     border-radius: 10px;
     width: 30%;
@@ -94,6 +94,6 @@ const DIV = styled.div`
     margin: 10px 0;
   }
   .input{
-    margin: 20px 0;
+    margin: 0 0 15px 0;
   }
 `;
