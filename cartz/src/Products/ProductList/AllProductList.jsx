@@ -46,13 +46,6 @@ export const AllProductList = () => {
     }, 1000);
   }, [query]);
 
-  if(loading){
-    return <Box padding="6" boxShadow="lg" bg="white">
-    <SkeletonCircle size="16" />
-    <SkeletonText mt="4" noOfLines={4} spacing="4" skeletonHeight="8" />
-  </Box>;
-  }
-
   return (
     <DIV>
       <div className="input">
@@ -64,14 +57,21 @@ export const AllProductList = () => {
           onChange={(e) => setQuery(e.target.value)}
         />
       </div>
-      {/* {loading ? <span>Loading</span> : */}
+      {loading ? <div className="grid">
+        {products.length > 0 &&
+          products.map((el,i) => {
+            return  <Box padding="4" boxShadow="lg" bg="white">
+            <SkeletonText mt="4" noOfLines={1} spacing="1" skeletonHeight="28" />
+            <SkeletonText mt="4" noOfLines={4} spacing="3" skeletonHeight="3" />
+          </Box>;
+          })}
+      </div> :
       <div className="grid">
         {products.length > 0 &&
           products.map((el) => {
             return <AllProductCard key={el.id} {...el} />;
           })}
-      </div> 
-      {/* } */}
+      </div> }
     </DIV>
   );
 };
