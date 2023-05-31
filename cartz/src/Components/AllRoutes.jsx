@@ -11,8 +11,8 @@ import NotFound from "../Pages/NotFound";
 import SignupCard from '../Pages/Signup';
 import {AllProducts} from "../Products/ProductPages/AllProducts"
 import KidProducts from "../Products/ProductPages/KidProducts"
-import MenProducts from "../Products/ProductPages/MenProducts"
-import WomenProducts from "../Products/ProductPages/WomenProducts"
+import {MenProducts} from "../Products/ProductPages/MenProducts"
+import {WomenProducts} from "../Products/ProductPages/WomenProducts"
 // import Payment from '../Pages/Payment';
 // import PrivateRoute from './PrivateRoute';
 
