@@ -1,7 +1,7 @@
-import men from "./men.jpg"
-import women from "./women.jpg"
-import kids from "./kids.jpg"
-import accessories from "./accessories.jpg"
+import men from "./images/men.jpg"
+import women from "./images/women.jpg"
+import kids from "./images/kids.jpg"
+import accessories from "./images/accessories.jpg"
 
 function LimitedOffers(){
 
@@ -33,7 +33,7 @@ function LimitedOffers(){
         
     ]
 
-    return <div style={{width:"85%",margin:"50px auto"}}>
+    return <div style={{width:"85%",margin:"50px auto 100px auto"}}>
         <div 
             style={{
                 margin:"5px auto 40px auto",

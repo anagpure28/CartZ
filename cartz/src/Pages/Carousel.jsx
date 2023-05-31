@@ -49,6 +49,7 @@ export default function Carousel() {
       // height={"40%"}
       m={"auto"}
       overflow={'hidden'}
+      
       >
       {/* CSS files for react-slick */}
       <link

@@ -1,12 +1,16 @@
 import React from 'react'
 import Carousel from './Carousel'
 import LimitedOffers from '../HomeComponents/LimitedOffers'
+import style from "../HomeComponents/home.module.css"
+import NewCollection from "../HomeComponents/NewCollection"
+import { mobileData } from '../Data/data'
 
 const Home = () => {
   return (
-    <div style={{}}>
+    <div style={{}}> 
       <Carousel />
       <LimitedOffers/>
+      <NewCollection data={mobileData} />
     </div>
   )
 }
