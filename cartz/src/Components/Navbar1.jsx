@@ -151,7 +151,7 @@ import {
     );
   };
   
-  const DesktopSubNav = ({ label, href, subLabel }) => {
+  const DesktopSubNav = ({ label, href }) => {
     return (
       <Link
         href={href}
@@ -168,7 +168,6 @@ import {
               fontWeight={500}>
               {label}
             </Text>
-            <Text fontSize={'sm'}>{subLabel}</Text>
           </Box>
           <Flex
             transition={'all .3s ease'}
@@ -198,11 +197,11 @@ import {
     );
   };
   
-  const MobileNavItem = ({ label, children, href }: NavItem) => {
+  const MobileNavItem = ({label, href}) => {
     const { isOpen, onToggle } = useDisclosure();
   
     return (
-      <Stack spacing={4} onClick={children && onToggle}>
+      <Stack spacing={4}>
         <Flex
           py={2}
           as={Link}
@@ -217,15 +216,6 @@ import {
             color={useColorModeValue('gray.600', 'gray.200')}>
             {label}
           </Text>
-          {children && (
-            <Icon
-              as={ChevronDownIcon}
-              transition={'all .25s ease-in-out'}
-              transform={isOpen ? 'rotate(180deg)' : ''}
-              w={6}
-              h={6}
-            />
-          )}
         </Flex>
   
         <Collapse in={isOpen} animateOpacity style={{ marginTop: '0!important' }}>
@@ -236,55 +226,20 @@ import {
             borderStyle={'solid'}
             borderColor={useColorModeValue('gray.200', 'gray.700')}
             align={'start'}>
-            {children &&
-              children.map((child) => (
-                <Link key={child.label} py={2} href={child.href}>
-                  {child.label}
-                </Link>
-              ))}
           </Stack>
         </Collapse>
       </Stack>
     );
   };
   
-  interface NavItem {
-    label: string;
-    subLabel?: string;
-    children?: Array<NavItem>;
-    href?: string;
-  }
-  
-  const NAV_ITEMS: Array<NavItem> = [
+  const NAV_ITEMS = [
     {
       label: "MEN",
-      children: [
-        {
-          label: 'Explore Design Work',
-          subLabel: 'Trending Design to inspire you',
-          href: '/men',
-        },
-        {
-          label: 'New & Noteworthy',
-          subLabel: 'Up-and-coming Designers',
-          href: '/men',
-        },
-      ],
+      href: "/men"
     },
     {
       label: "WOMEN",
-      children: [
-        {
-          label: 'Job Board',
-          subLabel: 'Find your dream design job',
-          href: '/women',
-        },
-        {
-          label: 'Freelance Projects',
-          subLabel: 'An exclusive list for contract work',
-          href: '/women',
-        },
-      ],
+      href: "/women"
     },
     {
       label: "KIDS",
