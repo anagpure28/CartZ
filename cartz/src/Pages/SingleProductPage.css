@@ -1,77 +1,78 @@
 .loader {
-    transform: translateZ(1px);
+  transform: translateZ(1px);
+}
+.loader:after {
+  content: '$';
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  margin-left: 3px;
+  border-radius: 50%;
+  text-align: center;
+  line-height:30px;
+  font-size: 22px;
+  font-weight: bold;
+  background: #FFD700;
+  color: #DAA520;
+  border: 4px double ;
+  animation: coin-flip 6s cubic-bezier(0, 0.2, 0.8, 3) infinite;
+}
+@keyframes coin-flip {
+  0%, 100% {
+    animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
   }
-  .loader:after {
-    content: '$';
-    display: inline-block;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    text-align: center;
-    line-height:40px;
-    font-size: 32px;
-    font-weight: bold;
-    background: #FFD700;
-    color: #DAA520;
-    border: 4px double ;
-    animation: coin-flip 6s cubic-bezier(0, 0.2, 0.8, 3) infinite;
+  0% {
+    transform: rotateY(0deg);
   }
-  @keyframes coin-flip {
-    0%, 100% {
-      animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
-    }
-    0% {
-      transform: rotateY(0deg);
-    }
-    50% {
-      transform: rotateY(1800deg);
-      animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
-    }
-    100% {
-      transform: rotateY(3600deg);
-    }
+  50% {
+    transform: rotateY(1800deg);
+    animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
   }
+  100% {
+    transform: rotateY(3600deg);
+  }
+}
 
 .container {
-    /* max-width: 800px; */
-    height: auto;
-    margin: 15px auto;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
+  /* max-width: 800px; */
+  height: auto;
+  margin: 15px auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
 }
 .left {
-    display: flex;
-    height: 50vh;
+  display: flex;
+  height: 50vh;
 }
 .left_1 {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .img_wrap {
-    width: 100px;
-    height: 100px;
-    border: 1px solid #e5e5e5;
-    cursor: pointer;
+  width: 100px;
+  height: 100px;
+  border: 1px solid #e5e5e5;
+  cursor: pointer;
 }
 .img_wrap img {
-    width: 80%;
-    height: 100%;
-    margin: auto;
-    object-fit: cover;
+  width: 80%;
+  height: 100%;
+  margin: auto;
+  object-fit: cover;
 }
 .left_2 {
-    width: 450px;
-    height: 500px;
-    border: 1px solid #e5e5e5;
+  width: 450px;
+  height: 500px;
+  border: 1px solid #e5e5e5;
 }
 .left_2 img {
-    width: 100%;
-    height: 100%;
-    margin: auto;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  object-fit: cover;
 }
 .active {
-    border: 2px solid #e77600;
+  border: 2px solid #e77600;
 }
