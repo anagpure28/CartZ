@@ -13,7 +13,8 @@ import {AllProducts} from "../Products/ProductPages/AllProducts"
 import KidProducts from "../Products/ProductPages/KidProducts"
 import {MenProducts} from "../Products/ProductPages/MenProducts"
 import {WomenProducts} from "../Products/ProductPages/WomenProducts"
-// import Payment from '../Pages/Payment';
+import { CreditCard } from '../Payment/CreditCard';
+
 // import PrivateRoute from './PrivateRoute';
 
 const AllRoutes = () => {
@@ -34,11 +35,12 @@ const AllRoutes = () => {
           <Route path="/women" element={<WomenProducts />}></Route>
           <Route path="/studio" element={<Studio />}></Route>
           <Route path="/kids" element={<KidProducts/>}></Route>
+          <Route path="/creditcard" element={<CreditCard/>}></Route>
           {/* <Route
           path="/payment"
           element={
             <PrivateRoute>
-            <Payment />
+            <CreditCard />
             </PrivateRoute>
           }
         ></Route> */}
