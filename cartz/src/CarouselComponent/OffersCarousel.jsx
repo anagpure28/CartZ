@@ -9,13 +9,13 @@ import {
 } from "@chakra-ui/react";
 
 import Slider from 'react-slick';
-import pic1 from "../CarouselImages/HomePage/1.jpg";
-import pic2 from "../CarouselImages/HomePage/2.jpg";
-import pic3 from "../CarouselImages/HomePage/3.jpg";
-import pic4 from "../CarouselImages/HomePage/4.jpg";
-import pic5 from "../CarouselImages/HomePage/5.jpg";
-import pic6 from "../CarouselImages/HomePage/6.jpg";
-import pic7 from "../CarouselImages/HomePage/7.jpg";
+// import pic1 from "../CarouselImages/HomePage/1.jpg";
+// import pic2 from "../CarouselImages/HomePage/2.jpg";
+// import pic3 from "../CarouselImages/HomePage/3.jpg";
+// import pic4 from "../CarouselImages/HomePage/4.jpg";
+// import pic5 from "../CarouselImages/HomePage/5.jpg";
+// import pic6 from "../CarouselImages/HomePage/6.jpg";
+// import pic7 from "../CarouselImages/HomePage/7.jpg";
 
 // Settings for the slider
 const settings = {
@@ -39,13 +39,13 @@ export default function OffersCarousel() {
 
   // These are the images used in the slide
   const cards = [
-    pic1,
-    pic2,
-    pic3,
-    pic4,
-    pic5,
-    pic6,
-    pic7
+    // pic1,
+    // pic2,
+    // pic3,
+    // pic4,
+    // pic5,
+    // pic6,
+    // pic7
   ];
 
   const Card = ({ heading, description, icon, href }) => {
@@ -93,7 +93,7 @@ export default function OffersCarousel() {
         href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
       />
       <Slider {...settings} ref={(slider) => setSlider(slider)}>
-        {cards.map((url, index) => (
+        {[1,2].map((url, index) => (
           <Card
           key={index}
           backgroundPosition="center"

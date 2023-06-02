@@ -1,6 +1,20 @@
+import FredPerry from "../HomeComponents/images/FredPerry.png"
+import AllenSolly from "../HomeComponents/images/AllenSolly.png"
+import Zara from "../HomeComponents/images/Zara.png"
+import LuviViton from "../HomeComponents/images/LuviViton.png"
+import TommyHilfiger from "../HomeComponents/images/TommyHilfiger.png"
+import Nike from "../HomeComponents/images/Nike.png"
+import Gucci from "../HomeComponents/images/Gucci.png"
+import Puma from "../HomeComponents/images/Puma.png"
+import Buffalo from "../HomeComponents/images/Buffalo.png"
+import Levis from "../HomeComponents/images/Levis.png"
+import PeterEngland from "../HomeComponents/images/PeterEngland.png"
+import HnM from "../HomeComponents/images/HnM.png"
+import Adidas from "../HomeComponents/images/Adidas.png"
 
 
-export const mobileData = [
+
+export const newCollectionCaroselData = [
     {
         "ratingsContainer": "4",
         "ratingsCount": "1.7k",
@@ -118,4 +132,71 @@ export const mobileData = [
         "price": "2199",
         "discountPercentage": "(68% OFF)"
     },
+]
+
+export const BestSellerBrandsData = [
+    {
+        "image":FredPerry,
+        "name":"Fred Perry",
+        "bgColor":"teal"
+    },
+    {
+        "image":AllenSolly,
+        "name":"Allen Solly",
+        "bgColor":"pink"
+    },
+    {
+        "image":Zara,
+        "name":"Zara",
+        "bgColor":"gray"
+    },
+    {
+        "image":LuviViton,
+        "name":"Louis Vuitton",
+        "bgColor":"yellowGreen"
+    },
+    {
+        "image":TommyHilfiger,
+        "name":"Tommy Hilfiger",
+        "bgColor":"skyBlue"
+    },
+    {
+        "image":Nike,
+        "name":"Nike",
+        "bgColor":"coral"
+    },
+    {
+        "image":Gucci,
+        "name":"Gucci",
+        "bgColor":"lightsteelblue"
+    },
+    {
+        "image":Puma,
+        "name":"Puma",
+        "bgColor":"thistle"
+    },
+    {
+        "image":Buffalo,
+        "name":"Buffalo",
+        "bgColor":"darkseagreen"
+    },
+    {
+        "image":Levis,
+        "name":"Levis",
+        "bgColor":"lightgray"
+    },
+    {
+        "image":PeterEngland,
+        "name":"Peter England",
+        "bgColor":"slateblue"
+    },
+    {
+        "image":HnM,
+        "name":"H&M",
+        "bgColor":"lavender"
+    },
+    // {
+    //     "image":Adidas,
+    //     "name":"Adidas"
+    // }
 ]

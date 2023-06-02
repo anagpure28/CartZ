@@ -19,6 +19,25 @@ import {
   FaFacebook,
 } from "react-icons/fa";
 
+import { 
+  MdVerified,
+  MdOutlineDateRange,
+  MdOutlineWallet,
+  MdOutlinePayment,
+  MdOutlinePhoneInTalk,
+  MdOutlineEmail,
+  MdOutlineHome,
+  MdOutlineFavoriteBorder,
+  MdOutlineSettings,
+  MdPowerSettingsNew
+} from "react-icons/md";
+import { TbTruck } from "react-icons/tb";
+
+import {useNavigate} from "react-router-dom"
+import {  Drawer } from 'antd';
+import {useState}  from "react"
+import {UserAuth} from "../Context/AuthContext"
+
 const ListHeader = ({ children }) => {
   return (
     <Text fontWeight={"500"} fontSize={"lg"} mb={2}>
@@ -63,6 +82,27 @@ const SocialButton = ({ children, label, href }) => {
 };
 
 export default function LargeWithAppLinksAndSocial() {
+
+  const navigate = useNavigate()
+  const {user,logOut} = UserAuth();
+  const [open, setOpen] = useState(false);
+    
+
+  const showDrawer = () => {
+    setOpen(true);
+  };
+  const onClose = () => {
+    setOpen(false);
+  };
+  const handleLogOut = async ()=>{
+    try{
+      await logOut();
+    }
+    catch (err){
+      console.log(err)
+    }
+  }
+
   return (
     <div>
       <Box p={4} border={"1px solid gray"}>
@@ -169,9 +209,44 @@ export default function LargeWithAppLinksAndSocial() {
                 </Stack>
               </div>
               <Link href={"#"}>What daily dose of health?</Link>
-              <Button style={{ backgroundColor: "#ff6f61", color: "white" }}>
-                SIGN UP
-              </Button>
+              {
+                user?.displayName ? <div style={{width:"90%",display:"flex",alignItems:"center",gap:"10px"}}>
+                  <img style={{width:"35px",borderRadius:"50%",border:"3px solid rgb(255,111,97)",cursor:"pointer"}} src={user?.photoURL} onClick={showDrawer} />
+                  <p style={{fontWeight:"500",fontSize:"19px"}}>{user?.displayName}</p>
+                  <>
+                  <Drawer title="User Detials" placement="right" onClose={onClose} open={open}>
+                    <div style={{textAlign:"center"}}>
+                      <img src={user?.photoURL} style={{margin:"auto",border:"3px solid rgb(255,111,97)",borderRadius:"50%",width:"150px"}}/>
+                      <p style={{margin:"20px auto 0px 10px",fontWeight:"500",fontSize:"25px",display:"flex",alignItems:"center",justifyContent:"center",gap:"10px"}}>{user?.displayName} {user?.emailVerified ? <MdVerified style={{fontSize:"17px",marginTop:"6px",color:"green"}} /> : ""}</p>
+                      <p style={{fontWeight:"500",fontSize:"10px"}}>{user?.email}</p>
+                    </div>
+                    <div style={{width:"100%",border:"1px solid rgb(255, 111, 97)",margin:"10px auto"}}></div>
+                    <div style={{height:"200px",textAlign:"start",width:"95%",margin:"auto",paddingTop:"20px",lineHeight:"30px"}}>
+                      <p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><MdOutlineEmail style={{marginRight:"7px"}}/>Email : {user?.email}</p>
+                      <p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><MdOutlinePhoneInTalk style={{marginRight:"7px"}}/>Number : {user?.phoneNumber? "" : "Not Found"}</p>
+                      <p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><MdOutlineDateRange style={{marginRight:"7px"}}/>DOB : dd/mm/yy</p>
+                      <p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><MdOutlineHome style={{marginRight:"7px"}}/>Address : Not Found</p>
+                    </div>
+                    <div style={{width:"100%",border:"1px solid rgb(255, 111, 97)",margin:"10px auto"}}></div>
+                    <div style={{height:"221px",textAlign:"start",width:"95%",margin:"auto",lineHeight:"30px"}}>
+                      <Link style={{display:"flex",alignItems:"center",gap:"7px",fontSize:"16px",textDecoration:"none"}}><p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><TbTruck style={{marginRight:"7px"}}/>My Orders</p></Link>
+                      <Link colorScheme='orange' style={{display:"flex",alignItems:"center",gap:"7px",fontSize:"16px",textDecoration:"none"}}><p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><MdOutlineFavoriteBorder style={{marginRight:"7px"}}/>My Wishlist</p></Link>
+                      <Link style={{display:"flex",alignItems:"center",gap:"7px",fontSize:"16px",textDecoration:"none"}}><p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><MdOutlineWallet style={{marginRight:"7px"}}/>My Wallet</p></Link>
+                      <Link style={{display:"flex",alignItems:"center",gap:"7px",fontSize:"16px",textDecoration:"none"}}><p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><MdOutlinePayment style={{marginRight:"7px"}}/>My Payments</p></Link>
+                      <Link style={{display:"flex",alignItems:"center",gap:"7px",fontSize:"16px",textDecoration:"none"}}><p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><MdOutlineSettings style={{marginRight:"7px"}}/>Settings</p></Link>
+                      {/* <Link style={{display:"flex",alignItems:"center",gap:"7px",fontSize:"16px",textDecoration:"none"}}><p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><MdOutlineDeliveryDining style={{marginRight:"7px"}}/>My Orders</p></Link> */}
+                      <div style={{display:"flex",justifyContent:'center',alignItems:"flex-end",height:"30%"}}>
+                          <Button   colorScheme='orange' variant='outline' style={{height:"35px",gap:"5px"}} onClick={handleLogOut}><MdPowerSettingsNew style={{marginTop:"2px",decoration:"none"}}/>Logout</Button>
+                      </div>
+                    </div>
+                  </Drawer>
+                </>
+                </div> :
+
+                <Button onClick={()=>navigate("/signup")}  style={{ backgroundColor: "#ff6f61", color: "white" }}>
+                  SIGN UP
+                </Button>
+              }
             </Stack>
 
             <Stack align={"flex-start"}>
@@ -180,11 +255,13 @@ export default function LargeWithAppLinksAndSocial() {
                 src="https://onemg.gumlet.io/search_widget/google-badge_3x.png?format=auto"
                 alt=""
                 width={"120px"}
+                style={{cursor:"pointer"}}
               />
               <img
                 src="https://onemg.gumlet.io/search_widget/appstore-badge_3x.png?format=auto"
                 alt=""
                 width={"120px"}
+                style={{cursor:"pointer"}}
               />
             </Stack>
           </SimpleGrid>
@@ -213,11 +290,11 @@ export default function LargeWithAppLinksAndSocial() {
               </Box>
             </Stack>
           </Container>
-          <Text>Available in</Text>
+          <Text>Available in 15+ Countries</Text>
           <Text>
-            Australia Brazil Canada China France Germany Italy Japan Mexico
-            Netherlands Poland Singapore Spain Turkey United Arab Emirates
-            United Kingdom United States
+            India | Australia | Brazil |  Canada |  China |  France |  Germany |  Italy |  Japan |  Mexico | 
+            Netherlands | Poland | Singapore | Spain | Turkey | United Arab Emirates |
+            United Kingdom | United States 
           </Text>
         </Box>
 
@@ -234,6 +311,7 @@ export default function LargeWithAppLinksAndSocial() {
             spacing={2}
             justify={{ md: "initial" }}
             align={{ md: "center" }}
+            style={{display:"flex",justifyContent:"center",alignItem:"center"}}
           >
             <Text>
               © 2023 CartZ. All rights reserved. In compliance with selling

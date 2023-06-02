@@ -1,24 +1,38 @@
 import {
-    Flex,
-    Box,
-    FormControl,
-    FormLabel,
-    Input,
-    InputGroup,
-    HStack,
-    InputRightElement,
-    Stack,
-    Button,
-    Heading,
-    Text,
-    useColorModeValue,
-  } from '@chakra-ui/react';
-  import { useState } from 'react';
-  import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
-  import { Link } from 'react-router-dom';
+  Flex,
+  Box,
+  FormControl,
+  FormLabel,
+  Input,
+  InputGroup,
+  HStack,
+  InputRightElement,
+  Stack,
+  Button,
+  Heading,
+  Text,
+  useColorModeValue,
+} from '@chakra-ui/react';
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+import { Link } from 'react-router-dom';
+import GoogleButton from 'react-google-button';
+import { UserAuth } from '../Context/AuthContext';
+import { useState } from 'react';
   
   export default function SignupCard() {
     const [showPassword, setShowPassword] = useState(false);
+    const {googleSignIn,logOut} = UserAuth();
+    
+
+    const handleGoogleSignIn = async ()=>{
+      try {
+          await googleSignIn();
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    
 
     return (
       <Flex
@@ -39,7 +53,9 @@ import {
             rounded={'lg'}
             bg={useColorModeValue('white', 'gray.700')}
             boxShadow={'lg'}
-            p={8}>
+            p={8}
+            h={540}
+            >
             <Stack spacing={4}>
               <HStack>
                 <Box>
@@ -86,9 +102,13 @@ import {
                   Sign up
                 </Button>
               </Stack>
+              <Stack>
+                <p style={{marginBottom:"10px"}}>OR</p>
+                <GoogleButton onClick={handleGoogleSignIn} style={{width:"60%",margin:"auto",backgroundColor:"white",color:"gray",fontWeight:"600",padding:"0px 15px",borderRadius:"10px"}}/>
+              </Stack>
               <Stack pt={2}>
                 <Text align={'center'}>
-                  Already a user? <Link to="/login" style={{color: "blue", textDecoration:"underline"}}>Login</Link>
+                  Already a user ?  <Link to="/login" style={{color: "rgb(255,111,97)"}}>Login</Link>
                 </Text>
               </Stack>
             </Stack>

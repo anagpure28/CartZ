@@ -12,19 +12,40 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from '../Redux/authReducer/action';
+import GoogleButton from 'react-google-button';
+import { UserAuth } from '../Context/AuthContext';
+import {Link as Link1,useNavigate} from "react-router-dom";
 
-export default function SimpleCard() {
+export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch()
+  const {googleSignIn,user} = UserAuth();
 
   const handleLogin = () => {
     const userData = {email, password}
     dispatch(login(userData))
   }
+
+  const navigate = useNavigate();
+
+  const handleGoogleSignIn = async ()=>{
+    try {
+        await googleSignIn();
+    } catch (error) {
+      console.log(error)
+    }
+    
+  }
+
+  useEffect (()=>{
+    if(user?.displayName){
+      navigate("/")
+    }
+  },[user])
 
   return (
     <Flex
@@ -44,7 +65,7 @@ export default function SimpleCard() {
           bg={useColorModeValue('white', 'gray.700')}
           boxShadow={'lg'}
           p={8}>
-          <Stack spacing={4}>
+          <Stack spacing={4} h={400}>
             <FormControl id="email">
               <FormLabel>Email address</FormLabel>
               <Input 
@@ -79,6 +100,9 @@ export default function SimpleCard() {
                 >
                 Login in
               </Button>
+              <p style={{margin:"10px"}}>OR</p>
+              <GoogleButton onClick={handleGoogleSignIn} style={{width:"90%",margin:"auto",backgroundColor:"white",color:"gray",fontWeight:"600",padding:"0px 55px",borderRadius:"10px"}}/>
+              <p style={{margin:"15px"}}>Don't Have an Account ?  <Link1 to="/signup" style={{color:"rgb(255,111,97)"}}> Register</Link1></p>
             </Stack>
           </Stack>
         </Box>

@@ -8,6 +8,7 @@ import {
     Collapse,
     Icon,
     Link,
+    Spinner,
     Popover,
     PopoverTrigger,
     PopoverContent,
@@ -23,11 +24,56 @@ import {
     ChevronRightIcon,
   } from '@chakra-ui/icons';
   import { CiShoppingCart,CiShop,CiUser } from "react-icons/ci";
+import { UserAuth } from '../Context/AuthContext';
+import React, { useState } from 'react';
+import '../index.css';
+import {  Drawer } from 'antd';
+import { 
+  MdVerified,
+  MdOutlineDateRange,
+  MdOutlineWallet,
+  MdOutlinePayment,
+  MdOutlinePhoneInTalk,
+  MdOutlineEmail,
+  MdOutlineHome,
+  MdOutlineFavoriteBorder,
+  MdOutlineSettings,
+  MdPowerSettingsNew
+} from "react-icons/md";
+import {Link as Link1,NavLink} from "react-router-dom"
+import { color } from 'framer-motion';
+import {useLocation} from "react-router-dom"
+import { useLocale } from 'antd/es/locale';
+import { TbTruck } from "react-icons/tb";
 
 
 
   export default function Navbar1() {
     const { isOpen, onToggle } = useDisclosure();
+    const {user,logOut} = UserAuth()
+    const [open, setOpen] = useState(false);
+    console.log(user)
+
+  const showDrawer = () => {
+    setOpen(true);
+  };
+
+  const onClose = () => {
+    setOpen(false);
+  };
+  // console.log(user)
+  // console.log(useLocation())
+
+  const handleLogOut = async ()=>{
+    try{
+      await logOut();
+    }
+    catch (err){
+      console.log(err)
+    }
+  }
+
+
   
     return (
       <Box style={{position:"fixed",top:"0px",width:"100%",zIndex:"3"}}>
@@ -74,7 +120,7 @@ import {
             <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
               <DesktopNav />
             </Flex>
-            <Input placeholder={"Search"} type={"search"} w={350} ml={150} h={8} border={"1px solid gray"}/>
+            <Input placeholder={"Search"} type={"search"} w={350} ml={100} h={8} border={"1px solid gray"}/>
           </Flex>
   
           <Stack
@@ -90,9 +136,49 @@ import {
             >
             <CiShop  style={{fontSize:"22px",cursor:"pointer"}} _hover={{color:"rgb(255,111,97)"}}/>
             <CiShoppingCart  style={{fontSize:"22px",cursor:"pointer"}} _hover={{color:"rgb(255,111,97)"}}/>
-            <CiUser  style={{fontSize:"22px",cursor:"pointer"}} _hover={{textDecoration: 'none', color: "rgb(255,111,97)",}}/>
-            <Text style={{fontSize:"15px",width:"100px",textAlign:"start",marginLeft:"10px"}}>Hi Aniket</Text>
-            
+            {
+              user?.displayName ? <div style={{
+                display:"flex",
+                alignItems:"center",
+                color:"white"
+              }}>
+                {/* <CiUser  style={{fontSize:"22px",cursor:"pointer"}} _hover={{textDecoration: 'none', color: "rgb(255,111,97)",}}/> */}
+                <img src={user?.photoURL} width={"35px"}  style={{borderRadius:"50px",border:"2px solid rgb(255,111,97)",cursor:"pointer"}} onClick={showDrawer}/>
+                <Text style={{fontSize:"15px",width:"180px",textAlign:"start",marginLeft:"20px"}}>👋 Hi {user?.displayName.split(" ")[0]}</Text>
+                <>
+                  <Drawer title="User Detials" placement="right" onClose={onClose} open={open}>
+                    <div style={{textAlign:"center"}}>
+                      <img src={user?.photoURL} style={{margin:"auto",border:"3px solid rgb(255,111,97)",borderRadius:"50%",width:"150px"}}/>
+                      <p style={{margin:"20px auto 0px 10px",fontWeight:"500",fontSize:"25px",display:"flex",alignItems:"center",justifyContent:"center",gap:"10px"}}>{user?.displayName} {user?.emailVerified ? <MdVerified style={{fontSize:"17px",marginTop:"6px",color:"green"}} /> : ""}</p>
+                      <p style={{fontWeight:"500",fontSize:"10px"}}>{user?.email}</p>
+                    </div>
+                    <div style={{width:"100%",border:"1px solid rgb(255, 111, 97)",margin:"10px auto"}}></div>
+                    <div style={{height:"200px",textAlign:"start",width:"95%",margin:"auto",paddingTop:"20px",lineHeight:"30px"}}>
+                      <p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><MdOutlineEmail style={{marginRight:"7px"}}/>Email : {user?.email}</p>
+                      <p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><MdOutlinePhoneInTalk style={{marginRight:"7px"}}/>Number : {user?.phoneNumber? "" : "Not Found"}</p>
+                      <p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><MdOutlineDateRange style={{marginRight:"7px"}}/>DOB : dd/mm/yy</p>
+                      <p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><MdOutlineHome style={{marginRight:"7px"}}/>Address : Not Found</p>
+                    </div>
+                    <div style={{width:"100%",border:"1px solid rgb(255, 111, 97)",margin:"10px auto"}}></div>
+                    <div style={{height:"221px",textAlign:"start",width:"95%",margin:"auto",lineHeight:"30px"}}>
+                      <Link style={{display:"flex",alignItems:"center",gap:"7px",fontSize:"16px",textDecoration:"none"}}><p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><TbTruck style={{marginRight:"7px"}}/>My Orders</p></Link>
+                      <Link colorScheme='orange' style={{display:"flex",alignItems:"center",gap:"7px",fontSize:"16px",textDecoration:"none"}}><p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><MdOutlineFavoriteBorder style={{marginRight:"7px"}}/>My Wishlist</p></Link>
+                      <Link style={{display:"flex",alignItems:"center",gap:"7px",fontSize:"16px",textDecoration:"none"}}><p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><MdOutlineWallet style={{marginRight:"7px"}}/>My Wallet</p></Link>
+                      <Link style={{display:"flex",alignItems:"center",gap:"7px",fontSize:"16px",textDecoration:"none"}}><p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><MdOutlinePayment style={{marginRight:"7px"}}/>My Payments</p></Link>
+                      <Link style={{display:"flex",alignItems:"center",gap:"7px",fontSize:"16px",textDecoration:"none"}}><p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><MdOutlineSettings style={{marginRight:"7px"}}/>Settings</p></Link>
+                      {/* <Link style={{display:"flex",alignItems:"center",gap:"7px",fontSize:"16px",textDecoration:"none"}}><p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><MdOutlineDeliveryDining style={{marginRight:"7px"}}/>My Orders</p></Link> */}
+                      <div style={{display:"flex",justifyContent:'center',alignItems:"flex-end",height:"30%"}}>
+                          <Button   colorScheme='orange' variant='outline' style={{height:"35px",gap:"5px"}} onClick={handleLogOut}><MdPowerSettingsNew style={{marginTop:"2px",decoration:"none"}}/>Logout</Button>
+                      </div>
+                    </div>
+                  </Drawer>
+                </>
+              </div>
+
+              : 
+
+              <Link1 to="/login" ><Button color={"black"} h={"35px"} w={"70px"}>Login</Button></Link1>
+            }
           </Stack>
         </Flex>
   
@@ -153,13 +239,15 @@ import {
   
   const DesktopSubNav = ({ label, href }) => {
     return (
-      <Link
+      <NavLink
         href={href}
         role={'group'}
         display={'block'}
         p={2}
         rounded={'md'}
-        _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}>
+        color={'white'}
+        _hover={{ bg: useColorModeValue('pink.50', 'gray.900') 
+        }}>
         <Stack direction={'row'} align={'center'}>
           <Box>
             <Text
@@ -180,7 +268,7 @@ import {
             <Icon color={'pink.400'} w={5} h={5} as={ChevronRightIcon} />
           </Flex>
         </Stack>
-      </Link>
+      </NavLink>
     );
   };
   

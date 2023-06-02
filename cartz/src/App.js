@@ -3,14 +3,18 @@ import AllRoutes from './Components/AllRoutes';
 import Navbar from './Components/Navbar';
 import Navbar1 from './Components/Navbar1';
 import Footer from "../src/Footer/Footer";
+import { AuthContextProvider } from './Context/AuthContext';
 
 function App() {
   return (
     <div className="App">
-      {/* <Navbar /> */}
-      <Navbar1 />
+      <AuthContextProvider>
+        {/* <Navbar /> */}
+        <Navbar1 />
         <AllRoutes/>
-      <Footer />
+        {/* <SingleProductPage /> */}
+        <Footer />
+      </AuthContextProvider>
     </div>
   );
 }
