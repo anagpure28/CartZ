@@ -7,22 +7,28 @@ import { useLocation, useSearchParams } from "react-router-dom";
 import { WarningTwoIcon } from '@chakra-ui/icons';
 import { Box, Heading, SkeletonText } from "@chakra-ui/react";
 import { Scrollbars } from 'react-custom-scrollbars-2';
+import { Pagination } from "../../Pages/Pagination";
 
 export const MenProductList = () => {
   const [query, setQuery] = useState("");
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const products = useSelector((store) => store.ProductReducer.products);
-  const skeleton = [1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 1, 1];
+  const skeleton = [1,1,1,1,1,1,1,1,1,1,1,1];
   const loading = useSelector((store) => store.ProductReducer.isLoading);
+  const initialPage = searchParams.get("page");
+  const [page, setPage] = useState(+initialPage || 1);
   const location = useLocation();
   const dispatch = useDispatch();
   let ref = useRef();
 
   let obj = {
     params: {
-      gender: searchParams.getAll("gender"),
       brand: searchParams.getAll("brand"),
       category: searchParams.getAll("category"),
+      _sort: searchParams.get("order") && "price",
+      _order: searchParams.get("order"),
+      _page: searchParams.get("page"),
+      _limit: 12
     },
   };
 
@@ -31,6 +37,13 @@ export const MenProductList = () => {
       q: query && query,
     },
   };
+
+  useEffect(()=> {
+    let param = {
+      page
+    }
+    setSearchParams(param)
+  },[page])
 
   //Fetching Data
   useEffect(() => {
@@ -54,7 +67,7 @@ export const MenProductList = () => {
       <div className="input">
         <input
           type="text"
-          class="search"
+          className="search"
           autoComplete="off"
           placeholder="Search"
           onChange={(e) => setQuery(e.target.value)}
@@ -100,6 +113,9 @@ export const MenProductList = () => {
           </Heading>
         </Box>
       )}
+      <Box>
+        <Pagination page={page} setPage={setPage}/>
+      </Box>
     </DIV>
   );
 };
@@ -107,7 +123,7 @@ export const MenProductList = () => {
 const DIV = styled.div`
   text-align: left;
   .main {
-    height: 1100px;
+    height: 1000px;
     border-radius: 10px;
   }
   .grid {

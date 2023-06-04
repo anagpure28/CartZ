@@ -30,7 +30,7 @@ export const WomenSideBar = () => {
 
     order && (params.order = order);
     setSearchParams(params);
-  }, [brand, category]);
+  }, [brand, category, order]);
 
   const handleBrand = (e) => {
     const { value } = e.target;
@@ -57,6 +57,7 @@ export const WomenSideBar = () => {
   const handleSort = (e) => {
     const { value } = e.target;
     setOrder(value);
+    // setOrder(e.target.value)
   };
 
   return (

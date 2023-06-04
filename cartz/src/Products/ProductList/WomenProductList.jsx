@@ -7,13 +7,16 @@ import { WarningTwoIcon } from "@chakra-ui/icons";
 import { Box, Heading, SkeletonText } from "@chakra-ui/react";
 import { useLocation, useSearchParams } from "react-router-dom";
 import { Scrollbars } from 'react-custom-scrollbars-2';
+import { Pagination } from "../../Pages/Pagination";
 
 export const WomenProductList = () => {
   const [query, setQuery] = useState("");
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const products = useSelector((store) => store.ProductReducer.products);
-  const skeleton = [1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 1, 1];
+  const skeleton = [1,1,1,1,1,1,1,1,1,1,1,1];
   const loading = useSelector((store) => store.ProductReducer.isLoading);
+  const initialPage = searchParams.get("page");
+  const [page, setPage] = useState(+initialPage || 1);
   const location = useLocation();
   const dispatch = useDispatch();
   let ref = useRef();
@@ -24,6 +27,8 @@ export const WomenProductList = () => {
       category: searchParams.getAll("category"),
       _sort: searchParams.get("order") && "price",
       _order: searchParams.get("order"),
+      _page: searchParams.get("page"),
+      _limit: 12
     },
   };
 
@@ -32,6 +37,13 @@ export const WomenProductList = () => {
       q: query && query,
     },
   };
+
+  useEffect(()=> {
+    let param = {
+      page
+    }
+    setSearchParams(param)
+  },[page])
 
   //Fetching Data
   useEffect(() => {
@@ -102,6 +114,9 @@ export const WomenProductList = () => {
           </Heading>
         </Box>
       )}
+      <Box>
+        <Pagination page={page} setPage={setPage}/>
+      </Box>
     </DIV>
   );
 };

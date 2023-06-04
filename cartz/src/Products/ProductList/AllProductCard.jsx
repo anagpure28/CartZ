@@ -6,7 +6,7 @@ import { MdOutlineStarOutline, MdOutlineStar } from "react-icons/md";
 export const AllProductCard = ({
   id,
   img,
-  product,
+  title,
   price,
   ratingsContainer,
   separator,
@@ -77,11 +77,11 @@ export const AllProductCard = ({
             textAlign={"left"}
             ml="1"
           >
-            {product}
+            {title}
           </Box>
 
           <Box fontSize={16} fontWeight={600} ml="1" textAlign={"left"}>
-            Rs: {+price}
+            Rs: {price}
           </Box>
 
           <Box display="flex" mt="1" alignItems="center">

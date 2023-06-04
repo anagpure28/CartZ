@@ -12,7 +12,7 @@ export const AllProductList = () => {
   const [query, setQuery] = useState("");
   const [searchParams] = useSearchParams();
   const products = useSelector((store) => store.ProductReducer.products);
-  const skeleton = [1,2,3,4,5,6,7,8,9,1,1,1];
+  const skeleton = [1,1,1,1,1,1,1,1,1,1,1,1];
   const loading = useSelector((store) => store.ProductReducer.isLoading);
   console.log("loading", loading);
 

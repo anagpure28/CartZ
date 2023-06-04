@@ -19,14 +19,17 @@ export const MenSideBar = () => {
   const [brand, setBrand] = useState(initialBrand || []);
   const initialCategory = searchParams.getAll("category");
   const [category, setCategory] = useState(initialCategory || []);
+  const initialOrder = searchParams.get("order");
+  const [order, setOrder] = useState(initialOrder || "");
 
   useEffect(() => {
     let params = {
       brand,
       category,
     };
+    order && (params.order = order);
     setSearchParams(params);
-  }, [brand, category]);
+  }, [brand, category, order]);
 
   const handleBrand = (e) => {
     const { value } = e.target;
@@ -48,6 +51,12 @@ export const MenSideBar = () => {
       newCategory.push(value);
     }
     setCategory(newCategory);
+  };
+
+  const handleSort = (e) => {
+    const { value } = e.target;
+    setOrder(value);
+    // setOrder(e.target.value)
   };
 
   return (
@@ -188,6 +197,47 @@ export const MenSideBar = () => {
                 checked={category.includes("sweaters")}
               />
               <label>Sweaters</label>
+            </Container>
+          </AccordionPanel>
+        </AccordionItem>
+      </Accordion>
+      <Accordion defaultIndex={[0]} allowMultiple>
+        <AccordionItem
+          bg={"#f1f4f6"}
+          borderRadius={"5px"}
+          color={"black"}
+          mb={3}
+        >
+          <AccordionButton>
+            <Box as="span" flex="1" textAlign="left">
+              <Text fontWeight={"bold"} pl={"2"}>
+                SORT
+              </Text>
+            </Box>
+            <AccordionIcon />
+          </AccordionButton>
+          <AccordionPanel pb={4} textAlign={"left"} fontWeight={100}>
+            <Container>
+              <div onChange={handleSort}>
+                <div>
+                  <input
+                    type="radio"
+                    name="order"
+                    value={"asc"}
+                    defaultChecked={order === "asc"}
+                  />
+                  <label>Ascending</label>
+                </div>
+                <div>
+                  <input
+                    type="radio"
+                    name="order"
+                    value={"desc"}
+                    defaultChecked={order === "desc"}
+                  />
+                  <label>Descending</label>
+                </div>
+              </div>
             </Container>
           </AccordionPanel>
         </AccordionItem>
