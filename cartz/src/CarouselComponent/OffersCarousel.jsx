@@ -93,7 +93,7 @@ export default function OffersCarousel() {
         href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
       />
       <Slider {...settings} ref={(slider) => setSlider(slider)}>
-        {[1,2].map((url, index) => (
+        {[1,2,3,4].map((url, index) => (
           <Card
           key={index}
           backgroundPosition="center"

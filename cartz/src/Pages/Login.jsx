@@ -5,7 +5,9 @@ import {
   FormLabel,
   Input,
   Checkbox,
+  InputGroup,
   Stack,
+  InputRightElement,
   Link,
   Button,
   Heading,
@@ -18,12 +20,14 @@ import { login } from '../Redux/authReducer/action';
 import GoogleButton from 'react-google-button';
 import { UserAuth } from '../Context/AuthContext';
 import {Link as Link1,useNavigate} from "react-router-dom";
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch()
   const {googleSignIn,user} = UserAuth();
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = () => {
     const userData = {email, password}
@@ -66,21 +70,29 @@ export default function Login() {
           boxShadow={'lg'}
           p={8}>
           <Stack spacing={4} h={400}>
-            <FormControl id="email">
+            <FormControl id="email" >
               <FormLabel>Email address</FormLabel>
               <Input 
                 type="email" 
                 value={email}
                 onChange={(e)=> setEmail(e.target.value)}
+                style={{textAlign:"start"}}
                 />
             </FormControl>
             <FormControl id="password">
               <FormLabel>Password</FormLabel>
-              <Input 
-                type="password"
-                value={password}
-                onChange={(e)=> setPassword(e.target.value)}
-                />
+              <InputGroup>
+                  <Input type={showPassword ? 'text' : 'password'} textAlign={"start"} />
+                  <InputRightElement h={'full'}>
+                    <Button
+                      variant={'ghost'}
+                      onClick={() =>
+                        setShowPassword((showPassword) => !showPassword)
+                      }>
+                      {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                    </Button>
+                  </InputRightElement>
+                </InputGroup>
             </FormControl>
             <Stack spacing={10}>
               <Stack

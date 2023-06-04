@@ -61,24 +61,24 @@ import { useState } from 'react';
                 <Box>
                   <FormControl id="firstName" isRequired>
                     <FormLabel>First Name</FormLabel>
-                    <Input type="text" />
+                    <Input type="text" textAlign={"start"}/>
                   </FormControl>
                 </Box>
                 <Box>
                   <FormControl id="lastName">
                     <FormLabel>Last Name</FormLabel>
-                    <Input type="text" />
+                    <Input type="text" textAlign={"start"}/>
                   </FormControl>
                 </Box>
               </HStack>
               <FormControl id="email" isRequired>
                 <FormLabel>Email address</FormLabel>
-                <Input type="email" />
+                <Input type="email" textAlign={"start"}/>
               </FormControl>
               <FormControl id="password" isRequired>
                 <FormLabel>Password</FormLabel>
                 <InputGroup>
-                  <Input type={showPassword ? 'text' : 'password'} />
+                  <Input type={showPassword ? 'text' : 'password'} textAlign={"start"} />
                   <InputRightElement h={'full'}>
                     <Button
                       variant={'ghost'}

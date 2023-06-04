@@ -21,7 +21,7 @@ export const AllProducts = () => {
 
 const DIV = styled.div`
     .flex{
-        width: 90%;
+        width: 95%;
         margin: auto;
         display: flex;
         justify-content: space-between;

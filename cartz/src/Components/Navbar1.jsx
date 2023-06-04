@@ -45,14 +45,14 @@ import { color } from 'framer-motion';
 import {useLocation} from "react-router-dom"
 import { useLocale } from 'antd/es/locale';
 import { TbTruck } from "react-icons/tb";
-
-
+import style from "./navbar.module.css"
 
   export default function Navbar1() {
     const { isOpen, onToggle } = useDisclosure();
     const {user,logOut} = UserAuth()
     const [open, setOpen] = useState(false);
-    console.log(user)
+    
+   
 
   const showDrawer = () => {
     setOpen(true);
@@ -78,9 +78,9 @@ import { TbTruck } from "react-icons/tb";
     return (
       <Box style={{position:"fixed",top:"0px",width:"100%",zIndex:"3"}}>
         <Flex
-          bg={useColorModeValue('rgb(49,49,49)', 'gray.800')}
+          bg={useColorModeValue('rgb(29,29,29)', 'gray.800')}
           color={useColorModeValue('gray', 'red')}
-          minH={'60px'}
+          minH={'70px'}
           py={{ base: 2 }}
           px={{ base: 100 }}
           pr={{base:5}}
@@ -120,7 +120,6 @@ import { TbTruck } from "react-icons/tb";
             <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
               <DesktopNav />
             </Flex>
-            <Input placeholder={"Search"} type={"search"} w={350} ml={100} h={8} border={"1px solid gray"}/>
           </Flex>
   
           <Stack
@@ -190,28 +189,42 @@ import { TbTruck } from "react-icons/tb";
   }
   
   const DesktopNav = () => {
-    const linkColor = useColorModeValue('gray.600', 'gray.200');
-    const linkHoverColor = useColorModeValue('gray.800', 'white');
+    // const linkColor = useColorModeValue('gray.600', 'gray.200');
+    // const linkHoverColor = useColorModeValue('gray.800', 'white');
     const popoverContentBgColor = useColorModeValue('white', 'gray.800');
-  
+    const defaultLinkStyle = {
+      textDecoration: "none",
+      color: "white",
+      border:"0px",
+      fontSize:"14px",
+      letterSpacing:"1px",
+    };
+    const activeLinkStyle = {
+      textDecoration: "none",
+      color: "rgb(255,111,97)",
+      border:"0px",
+      fontSize:"14px",
+      letterSpacing:"1px",
+      fontWeight:"800"
+    };
     return (
-      <Stack direction={'row'} spacing={4} pl={20}>
+      <Stack direction={'row'} spacing={8} pl={20} >
         {NAV_ITEMS.map((navItem) => (
           <Box key={navItem.label}>
             <Popover trigger={'hover'} placement={'bottom-start'}>
-              <PopoverTrigger>
-                <Link
+              <PopoverTrigger >
+                <NavLink
+                  className={style.menuNav}
                   p={2}
-                  href={navItem.href ?? '#'}
+                  to={navItem.href ?? '#'}
                   fontSize={'sm'}
                   fontWeight={500}
-                  color={"white"}
-                  _hover={{
-                    textDecoration: 'none',
-                    color: "rgb(255,111,97)",
-                  }}>
+                  style={({ isActive }) => {
+                    return isActive ?  activeLinkStyle : defaultLinkStyle ;
+                  }}
+                  >
                   {navItem.label}
-                </Link>
+                </NavLink>
                 {/* <Input placeholder='Basic usage' /> */}
               </PopoverTrigger>
   
@@ -236,8 +249,11 @@ import { TbTruck } from "react-icons/tb";
       </Stack>
     );
   };
+
+  
   
   const DesktopSubNav = ({ label, href }) => {
+    
     return (
       <NavLink
         href={href}
@@ -245,15 +261,17 @@ import { TbTruck } from "react-icons/tb";
         display={'block'}
         p={2}
         rounded={'md'}
-        color={'white'}
         _hover={{ bg: useColorModeValue('pink.50', 'gray.900') 
-        }}>
+        }}
+        
+        >
         <Stack direction={'row'} align={'center'}>
           <Box>
             <Text
               transition={'all .3s ease'}
               _groupHover={{ color: 'pink.400' }}
-              fontWeight={500}>
+              fontWeight={500}
+              >
               {label}
             </Text>
           </Box>
