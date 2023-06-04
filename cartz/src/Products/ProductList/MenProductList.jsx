@@ -4,7 +4,7 @@ import { mensProduct } from "../../Redux/ProductReducer/action";
 import { AllProductCard } from "./AllProductCard";
 import styled from "styled-components";
 import { useLocation, useSearchParams } from "react-router-dom";
-import ProductCart from "../../Components/ProductCart";
+import ProductCard from "../../Components/ProductCard";
 import { WarningTwoIcon } from '@chakra-ui/icons';
 import { Box, Heading, SkeletonText } from "@chakra-ui/react";
 import { Scrollbars } from 'react-custom-scrollbars-2';
@@ -102,7 +102,7 @@ export const MenProductList = () => {
           <div className="grid">
             {products.length > 0 &&
               products.map((el, i) => {
-                return <AllProductCard key={i} {...el} />;
+                return <ProductCard key={el.id} {...el} />;
               })}
           </div>
           </Scrollbars>

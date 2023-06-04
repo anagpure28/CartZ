@@ -1,11 +1,22 @@
 import { MdOutlineStar,MdOutlineStarHalf,MdOutlineStarOutline } from "react-icons/md";
 import { CiShoppingTag } from "react-icons/ci";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate  } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { getCartData, postCartData } from "../Redux/CartReducer/action";
+import { color } from "framer-motion";
 
-const ProductCart = ({ratingsContainer,ratingsCount,img,brand,product,discountedPrice,price,discountPercentage})=>{
+    const ProductCard = ({ratingsContainer,ratingsCount,img,brand,title,discountedPrice,price,discountPercentage,id,category})=>{
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const path = window.location.pathname;
+
+
+    const handleAddToCart = ()=>{
+        dispatch(postCartData(id,path));
+        dispatch(getCartData());
+    }
 
     return <div 
         style={{
@@ -13,6 +24,7 @@ const ProductCart = ({ratingsContainer,ratingsCount,img,brand,product,discounted
             borderRadius:"10px",
             boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"
         }}
+        key={id}
         
     >
         <div 
@@ -42,21 +54,36 @@ const ProductCart = ({ratingsContainer,ratingsCount,img,brand,product,discounted
                     backgroundColor:"rgba(255,255,255,0.8)",
                     margin:"0px auto",
                     padding:"5px 10px",
-                    color:"rgb(75,75,75)"
+                    color:"rgb(75,75,75)",
+                    
                 }}
             >
-                <p 
-                    style={{
-                        fontWeight:"600",
-                        fontSize:'12px',
-                        color:"rgb(255,111,97)",
-                        display:"flex",
-                        alignItems:"center",
-                        gap:'5px'
-                    }}
-                >
-                    <CiShoppingTag/> {brand}
-                </p>
+                <div style={{
+                    display:"flex",
+                    justifyContent:"space-between",
+                    alignItems:"center"
+                }}>
+                    <p 
+                        style={{
+                            fontWeight:"600",
+                            fontSize:'12px',
+                            color:"rgb(255,111,97)",
+                            display:"flex",
+                            alignItems:"center",
+                            gap:'5px'
+                        }}
+                    >
+                        <CiShoppingTag/> {brand}
+                    </p>
+                    <p style={{
+                            fontWeight:"600",
+                            fontSize:'12px',
+                            color:"gray"
+                        }}
+                    >
+                        {category}
+                    </p>
+                </div>
                 <hr style={{border:"1px dashed rgb(255,111,97)",margin:"3px auto"}}/>
                 <p 
                     style={{
@@ -64,8 +91,9 @@ const ProductCart = ({ratingsContainer,ratingsCount,img,brand,product,discounted
                         fontSize:'14px',
                     }}
                 >
-                    {product.substring(0,32)}{product.length>32 ? "..." : ""}
+                    {title.substring(0,30)}{title.length>30 ? "..." : ""}
                 </p>
+                
                 {
                     ratingsContainer!=="" && ratingsCount!=="" ? 
 
@@ -166,7 +194,7 @@ const ProductCart = ({ratingsContainer,ratingsCount,img,brand,product,discounted
                             
                         </div>
                     }
-                    <button style={{fontSize:"12px",fontWeight:"600",backgroundColor:"rgb(255,111,97)",color:"white",borderRadius:"10px",padding:"5px 8px",cursor:"pointer"}} >Add To Cart</button>
+                    <button id={id} style={{fontSize:"12px",fontWeight:"600",backgroundColor:"rgb(255,111,97)",color:"white",borderRadius:"10px",padding:"5px 8px",cursor:"pointer"}} onClick={handleAddToCart}>Add To Cart</button>
                 </div>
                 
             </div>
@@ -176,4 +204,4 @@ const ProductCart = ({ratingsContainer,ratingsCount,img,brand,product,discounted
     </div>
 }
 
-export default ProductCart;
+export default ProductCard;

@@ -7,7 +7,7 @@ import { WarningTwoIcon } from '@chakra-ui/icons';
 import { Box, Heading, SkeletonText } from "@chakra-ui/react";
 import { useLocation, useSearchParams } from "react-router-dom";
 import { Scrollbars } from 'react-custom-scrollbars-2';
-import ProductCart from "../../Components/ProductCart";
+import ProductCard from "../../Components/ProductCard";
 
 export const AllProductList = () => {
   const [query, setQuery] = useState("");
@@ -91,7 +91,7 @@ export const AllProductList = () => {
           <div className="grid">
             {products.length > 0 &&
               products.map((el, i) => {
-                return <AllProductCard key={i} {...el} />;
+                return <ProductCard key={el.id} {...el} />;
               })}
           </div>
           </Scrollbars>
