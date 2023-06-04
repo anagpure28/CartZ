@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import { Box, Badge } from "@chakra-ui/react";
 import { MdOutlineStarOutline, MdOutlineStar } from "react-icons/md";
-import { Image } from "antd";
+// import { Image } from "antd";
 
 export const AllProductCard = ({
   id,
   img,
-  product,
+  title,
   price,
   ratingsContainer,
   separator,
   ratingsCount,
   brand,
 }) => {
-  const [visible, setVisible] = useState(false);
+  // const [visible, setVisible] = useState(false);
 
   return (
     <Box
@@ -22,7 +22,7 @@ export const AllProductCard = ({
       borderRadius="xl"
       overflow="hidden"
       h={350}
-      onClick={() => setVisible(true)}
+      // onClick={() => setVisible(true)}
       style={{
         backgroundImage: `url(${img})`,
         backgroundPosition: "center",
@@ -33,11 +33,11 @@ export const AllProductCard = ({
         alignItems: "end",
       }}
     >
-      <div style={{ display: 'none' }}>
+      {/* <div style={{ display: 'none' }}>
         <Image.PreviewGroup preview={{ visible, onVisibleChange: (vis) => setVisible(vis) }}>
           <Image src={img}/>
         </Image.PreviewGroup>
-      </div>
+      </div> */}
       <Box
         px="2"
         py="3"
@@ -76,7 +76,7 @@ export const AllProductCard = ({
             textAlign={"left"}
             ml="1"
           >
-            {product}
+            {title}
           </Box>
 
           <Box fontSize={16} fontWeight={600} ml="1" textAlign={"left"}>

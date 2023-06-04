@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { SideBar } from "../../Components/SideBar";
+import { MenSideBar } from "../../Components/MenSideBar";
 import { AllProductList } from "../ProductList/AllProductList";
 
 export const AllProducts = () => {
@@ -8,10 +8,10 @@ export const AllProducts = () => {
       <div className="banner">
       </div>
       <div className="flex">
-        <div className="sidebar">
-          <SideBar />
+        <div className="sidebar" data-aos="zoom-out-right">
+          <MenSideBar />
         </div>
-        <div className="allProductList">
+        <div className="allProductList" data-aos="zoom-out-left">
           <AllProductList />
         </div>
       </div>

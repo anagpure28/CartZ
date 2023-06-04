@@ -6,13 +6,14 @@ import styled from "styled-components";
 import { WarningTwoIcon } from '@chakra-ui/icons';
 import { Box, Heading, SkeletonText } from "@chakra-ui/react";
 import { useLocation, useSearchParams } from "react-router-dom";
+import { Scrollbars } from 'react-custom-scrollbars-2';
 import ProductCart from "../../Components/ProductCart";
 
 export const AllProductList = () => {
   const [query, setQuery] = useState("");
   const [searchParams] = useSearchParams();
   const products = useSelector((store) => store.ProductReducer.products);
-  const skeleton = [1,2,3,4,5,6,7,8,9,1,1,1];
+  const skeleton = [1,1,1,1,1,1,1,1,1,1,1,1];
   const loading = useSelector((store) => store.ProductReducer.isLoading);
   console.log("loading", loading);
 
@@ -85,6 +86,15 @@ export const AllProductList = () => {
           })}
         </div>
       ) : (!loading && products.length) ? (
+        <div className="main">
+        <Scrollbars>
+        <div className="grid">
+          {products.length > 0 &&
+            products.map((el, i) => {
+              return <AllProductCard key={i} {...el} />;
+            })}
+        </div>
+        </Scrollbars>
       <div className="grid">
         {products.length > 0 &&
           products.map((el) => {
@@ -105,6 +115,10 @@ export const AllProductList = () => {
 
 const DIV = styled.div`
   text-align: left;
+  .main {
+    height: 1100px;
+    border-radius: 10px;
+  }
   .grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
