@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { womensProduct } from "../../Redux/ProductReducer/action";
 import { AllProductCard } from "./AllProductCard";
 import styled from "styled-components";
-import { Box, SkeletonCircle, SkeletonText } from '@chakra-ui/react'
+import { WarningTwoIcon } from '@chakra-ui/icons';
+import { Box, Heading, SkeletonText } from "@chakra-ui/react";
 import { useLocation, useSearchParams } from "react-router-dom";
 import ProductCart from "../../Components/ProductCart";
 
@@ -11,6 +12,7 @@ export const WomenProductList = () => {
   const [query, setQuery] = useState("");
   const [searchParams] = useSearchParams();
   const products = useSelector((store) => store.ProductReducer.products);
+  const skeleton = [1,2,3,4,5,6,7,8,9,1,1,1];
   const loading = useSelector((store) => store.ProductReducer.isLoading);
   const location = useLocation();
   const dispatch = useDispatch();
@@ -58,21 +60,42 @@ export const WomenProductList = () => {
           onChange={(e) => setQuery(e.target.value)}
         />
       </div>
-      {loading ? <div className="grid">
-        {products.length > 0 &&
-          products.map((el,i) => {
-            return  <Box padding="0" bg="white" borderRadius="5px">
-            <SkeletonText mt="4" noOfLines={1} spacing="1" skeletonHeight="28" />
-            <SkeletonText mt="4" noOfLines={3} spacing="3" skeletonHeight="3" />
-          </Box>;
+      {loading ? (
+        <div className="grid">
+          {skeleton.map((el, i) => {
+            return (
+              <Box padding="0" bg="white" borderRadius="5px">
+                <SkeletonText
+                  mt="4"
+                  noOfLines={1}
+                  spacing="1"
+                  skeletonHeight="28"
+                />
+                <SkeletonText
+                  mt="4"
+                  noOfLines={3}
+                  spacing="3"
+                  skeletonHeight="3"
+                />
+              </Box>
+            );
           })}
-      </div> :
+        </div>
+      ) : (!loading && products.length) ? (
       <div className="grid">
         {products.length > 0 &&
           products.map((el) => {
             return <ProductCart key={el.id} {...el} />;
           })}
-      </div> }
+      </div>
+      ) : (
+        <Box textAlign="center" py={10} px={6}>
+          <WarningTwoIcon boxSize={"50px"} color={"orange.300"} />
+          <Heading as="h2" size="xl" mt={6} mb={2}>
+            Sorry No Data Found
+          </Heading>
+        </Box>
+      )}
     </DIV>
   );
 };
