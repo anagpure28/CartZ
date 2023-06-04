@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { WarningTwoIcon } from '@chakra-ui/icons';
 import { Box, Heading, SkeletonText } from "@chakra-ui/react";
 import { useLocation, useSearchParams } from "react-router-dom";
+import ProductCart from "../../Components/ProductCart";
 
 export const AllProductList = () => {
   const [query, setQuery] = useState("");
@@ -58,8 +59,10 @@ export const AllProductList = () => {
           autoComplete="off"
           placeholder="Search"
           onChange={(e) => setQuery(e.target.value)}
+          style={{textAlign:"start"}}
         />
       </div>
+
       {loading ? (
         <div className="grid">
           {skeleton.map((el, i) => {
@@ -85,7 +88,7 @@ export const AllProductList = () => {
       <div className="grid">
         {products.length > 0 &&
           products.map((el) => {
-            return <AllProductCard key={el.id} {...el} />;
+            return <ProductCart key={el.id} {...el} />
           })}
       </div>
       ) : (
@@ -105,7 +108,7 @@ const DIV = styled.div`
   .grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    gap: 15px;
   }
   .search {
     border: 3px solid #242424;

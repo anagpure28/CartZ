@@ -24,6 +24,8 @@ import { RiSecurePaymentLine } from "react-icons/ri";
 import "./SingleProductPage.css";
 import { Link } from "react-router-dom";
 import OffersCarousel from "../CarouselComponent/OffersCarousel";
+import vectorImage from "./Images/vectorOnSingleProductPage.png"
+
 
 const images = [
   "https://res.cloudinary.com/eastern/image/upload/w_1000,q_auto,f_auto/2062313_002_main.jpg",
@@ -314,20 +316,21 @@ export default function Simple() {
             </Stack>
 
             <Button
-              rounded={"none"}
+              
               w={"sm"}
               margin={"auto"}
               mt={2}
               mb={2}
               size={"lg"}
               py={"3"}
-              bg={useColorModeValue("gray.900", "gray.50")}
+              bg={"rgb(255,111,97)"}
               color={useColorModeValue("white", "gray.900")}
               textTransform={"uppercase"}
               _hover={{
                 transform: "translateY(2px)",
                 boxShadow: "lg",
               }}
+              style={{borderRadius:"12px"}}
             >
               Add to cart
             </Button>
@@ -346,7 +349,7 @@ export default function Simple() {
 
       <Box w={"100%"} mt={2}>
         <Image
-          src="https://cdn.w600.comps.canstockphoto.com/discount-for-flat-people-vector-image_csp91298978.jpg"
+          src={vectorImage}
           alt=""
         />
       </Box>
