@@ -20,7 +20,7 @@ import { CreditCard } from '../Payment/CreditCard';
 const AllRoutes = () => {
   return (
     <div style={{
-      marginTop:"59px"
+      marginTop:"69px"
     }}>
         <Routes>
           <Route path="/" element={<Home />}></Route>

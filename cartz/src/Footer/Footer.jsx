@@ -104,17 +104,17 @@ export default function LargeWithAppLinksAndSocial() {
   }
 
   return (
-    <div>
-      <Box p={4} border={"1px solid gray"}>
+    <div >
+      <Box p={4} border={"1px solid gray"} style={{backgroundColor:"rgb(29,29,29)",color:"white"}}>
         <Text
           style={{ marginTop: "4px", fontSize: "25px", marginBottom: "10px" }}
         >
           INDIA’S LARGEST SHOPPING PLATFORM
         </Text>
-        <SimpleGrid columns={{ base: 1, md: 3 }} marginBottom={"25px"}>
+        <SimpleGrid columns={{ base: 1, md: 3 }} marginBottom={"25px"} >
           <Feature title={"260m+"} text={"Visitors"} />
           <Feature title={"31m+"} text={"Orders Delivered"} />
-          <Feature title={"180m+"} text={"Cities"} />
+          <Feature title={"180m+"} text={"Cities"}/>
         </SimpleGrid>
         <hr
           style={{
@@ -135,6 +135,7 @@ export default function LargeWithAppLinksAndSocial() {
               backgroundColor: "#f1f4f6",
               padding: "5px 10px",
               borderRadius: "5px",
+              textAlign:"start"
             }}
           />
           <Button
@@ -152,6 +153,7 @@ export default function LargeWithAppLinksAndSocial() {
       <Box
         bg={useColorModeValue("gray.50", "gray.900")}
         color={useColorModeValue("gray.700", "gray.200")}
+        style={{backgroundColor:"rgb(29,29,29)",color:"white"}}
       >
         <Container as={Stack} maxW={"7xl"} py={10}>
           <SimpleGrid columns={{ base: 1, sm: 2, md: 5 }} spacing={8}>

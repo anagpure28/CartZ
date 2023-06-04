@@ -44,8 +44,7 @@ export const AllProductCard = ({
         style={{
           width: "100%",
           height: "50%",
-          backgroundImage:
-            "linear-gradient(to bottom, rgba(255,0,0,0), rgba(255,255,255,1))",
+          backgroundImage:"linear-gradient(to bottom, rgba(255,0,0,0), rgba(255,255,255,1))",
           display: "flex",
           alignItems: "end",
           cursor: "pointer",
@@ -111,3 +110,5 @@ export const AllProductCard = ({
     </Box>
   );
 };
+
+

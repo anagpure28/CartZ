@@ -8,6 +8,7 @@ import { Box, Heading, SkeletonText } from "@chakra-ui/react";
 import { useLocation, useSearchParams } from "react-router-dom";
 import { Scrollbars } from 'react-custom-scrollbars-2';
 import { Pagination } from "../../Pages/Pagination";
+import ProductCart from "../../Components/ProductCart";
 
 export const WomenProductList = () => {
   const [query, setQuery] = useState("");
@@ -105,6 +106,13 @@ export const WomenProductList = () => {
           </div>
           </Scrollbars>
         </div>
+      ) : (!loading && products.length) ? (
+      <div className="grid">
+        {products.length > 0 &&
+          products.map((el) => {
+            return <ProductCart key={el.id} {...el} />;
+          })}
+      </div>
       ) : (
         // </div>
         <Box textAlign="center" py={10} px={6}>
@@ -130,8 +138,7 @@ const DIV = styled.div`
   .grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    padding: 5px;
-    gap: 20px;
+    gap: 15px;
   }
   .search {
     border: 3px solid #242424;

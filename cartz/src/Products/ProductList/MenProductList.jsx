@@ -4,6 +4,7 @@ import { mensProduct } from "../../Redux/ProductReducer/action";
 import { AllProductCard } from "./AllProductCard";
 import styled from "styled-components";
 import { useLocation, useSearchParams } from "react-router-dom";
+import ProductCart from "../../Components/ProductCart";
 import { WarningTwoIcon } from '@chakra-ui/icons';
 import { Box, Heading, SkeletonText } from "@chakra-ui/react";
 import { Scrollbars } from 'react-custom-scrollbars-2';
@@ -73,6 +74,7 @@ export const MenProductList = () => {
           onChange={(e) => setQuery(e.target.value)}
         />
       </div>
+
       {loading ? (
         <div className="grid">
           {skeleton.map((el, i) => {
@@ -129,7 +131,7 @@ const DIV = styled.div`
   .grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    gap: 15px;
   }
   .search {
     border: 3px solid #242424;
