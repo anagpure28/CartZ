@@ -13,11 +13,11 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
-export const SideBar = () => {
+export const MenSideBar = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const initialBrand = searchParams.getAll("brand");
   const [brand, setBrand] = useState(initialBrand || []);
-  const initialCategory = searchParams.getAll("brand");
+  const initialCategory = searchParams.getAll("category");
   const [category, setCategory] = useState(initialCategory || []);
 
   useEffect(() => {
@@ -61,7 +61,7 @@ export const SideBar = () => {
         >
             <AccordionButton>
               <Box as="span" flex="1" textAlign="left">
-                <Text fontWeight={"bold"} pl={"2"}>Brand</Text>
+                <Text fontWeight={"bold"} pl={"2"}>BRAND</Text>
               </Box>
               <AccordionIcon />
             </AccordionButton>
@@ -69,19 +69,19 @@ export const SideBar = () => {
             <Container>
               <input
                 type="checkbox"
+                value={"Roadster"}
+                onChange={handleBrand}
+                checked={brand.includes("Roadster")}
+              />
+              <label>Roadster</label>
+              <br />
+              <input
+                type="checkbox"
                 value={"Allen Solly"}
                 onChange={handleBrand}
                 checked={brand.includes("Allen Solly")}
               />
               <label>Allen Solly</label>
-              <br />
-              <input
-                type="checkbox"
-                value={"Clovia"}
-                onChange={handleBrand}
-                checked={brand.includes("Clovia")}
-              />
-              <label>Colvia</label>
               <br />
               <input
                 type="checkbox"
@@ -93,48 +93,105 @@ export const SideBar = () => {
               <br />
               <input
                 type="checkbox"
-                value={"HRX"}
+                value={"Polo"}
                 onChange={handleBrand}
-                checked={brand.includes("HRX")}
+                checked={brand.includes("Polo")}
               />
-              <label>HRX</label>
+              <label>Polo</label>
               <br />
               <input
                 type="checkbox"
-                value={"Pantaloons"}
+                value={"HIGHLANDER"}
                 onChange={handleBrand}
-                checked={brand.includes("Pantaloons")}
+                checked={brand.includes("HIGHLANDER")}
               />
-              <label>Pantaloons</label>
+              <label>Highlander</label>
               <br />
               <input
                 type="checkbox"
-                value={"Puma"}
+                value={"HERE&NOW"}
                 onChange={handleBrand}
-                checked={brand.includes("Puma")}
+                checked={brand.includes("HERE&NOW")}
               />
-              <label>Puma</label>
+              <label>Here&Now</label>
               <br />
               <input
                 type="checkbox"
-                value={"Roadster"}
+                value={"HIGHSTAR"}
                 onChange={handleBrand}
-                checked={brand.includes("Roadster")}
+                checked={brand.includes("HIGHSTAR")}
               />
-              <label>RoadStar</label>
+              <label>High Star</label>
               <br />
               <input
                 type="checkbox"
-                value={"Parx"}
+                value={"KETCH"}
                 onChange={handleBrand}
-                checked={brand.includes("Parx")}
+                checked={brand.includes("Ketch")}
               />
-              <label>Parx</label>
-              <br />
+              <label>Ketch</label>
             </Container>
           </AccordionPanel>
         </AccordionItem>
-        </Accordion>
+      </Accordion>
+      <Accordion defaultIndex={[0]} allowMultiple>
+        <AccordionItem
+          bg={"#f1f4f6"}
+          borderRadius={"5px"}
+          color={"black"}
+          mb={3}
+        >
+            <AccordionButton>
+              <Box as="span" flex="1" textAlign="left">
+                <Text fontWeight={"bold"} pl={"2"}>CATEGORY</Text>
+              </Box>
+              <AccordionIcon />
+            </AccordionButton>
+          <AccordionPanel pb={4} textAlign={"left"} fontWeight={100}>
+            <Container>
+              <input
+                type="checkbox"
+                value={"jackets"}
+                onChange={handleCategory}
+                checked={category.includes("jackets")}
+              />
+              <label>Jackets</label>
+              <br />
+              <input
+                type="checkbox"
+                value={"tshirts"}
+                onChange={handleCategory}
+                checked={category.includes("tshirts")}
+              />
+              <label>T-shirts</label>
+              <br />
+              <input
+                type="checkbox"
+                value={"shirts"}
+                onChange={handleCategory}
+                checked={category.includes("shirts")}
+              />
+              <label>Shirts</label>
+              <br />
+              <input
+                type="checkbox"
+                value={"sweatshirt"}
+                onChange={handleCategory}
+                checked={category.includes("sweatshirt")}
+              />
+              <label>SweatShirts</label>
+              <br />
+              <input
+                type="checkbox"
+                value={"sweaters"}
+                onChange={handleCategory}
+                checked={category.includes("sweaters")}
+              />
+              <label>Sweaters</label>
+            </Container>
+          </AccordionPanel>
+        </AccordionItem>
+      </Accordion>
     </DIV>
   );
 };

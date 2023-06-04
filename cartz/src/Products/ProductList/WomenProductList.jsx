@@ -3,15 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { womensProduct } from "../../Redux/ProductReducer/action";
 import { AllProductCard } from "./AllProductCard";
 import styled from "styled-components";
-import { WarningTwoIcon } from '@chakra-ui/icons';
+import { WarningTwoIcon } from "@chakra-ui/icons";
 import { Box, Heading, SkeletonText } from "@chakra-ui/react";
 import { useLocation, useSearchParams } from "react-router-dom";
+import { Scrollbars } from 'react-custom-scrollbars-2';
 
 export const WomenProductList = () => {
   const [query, setQuery] = useState("");
   const [searchParams] = useSearchParams();
   const products = useSelector((store) => store.ProductReducer.products);
-  const skeleton = [1,2,3,4,5,6,7,8,9,1,1,1];
+  const skeleton = [1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 1, 1];
   const loading = useSelector((store) => store.ProductReducer.isLoading);
   const location = useLocation();
   const dispatch = useDispatch();
@@ -19,11 +20,12 @@ export const WomenProductList = () => {
 
   let obj = {
     params: {
-      gender: searchParams.getAll("gender"),
       brand: searchParams.getAll("brand"),
-      category: searchParams.getAll("category")
-    }
-  }
+      category: searchParams.getAll("category"),
+      _sort: searchParams.get("order") && "price",
+      _order: searchParams.get("order"),
+    },
+  };
 
   const paramObj = {
     params: {
@@ -33,7 +35,7 @@ export const WomenProductList = () => {
 
   //Fetching Data
   useEffect(() => {
-    console.log("data", obj)
+    console.log("data", obj);
     dispatch(womensProduct(obj));
   }, [location.search]);
 
@@ -53,7 +55,7 @@ export const WomenProductList = () => {
       <div className="input">
         <input
           type="text"
-          class="search"
+          className="search"
           autoComplete="off"
           placeholder="Search"
           onChange={(e) => setQuery(e.target.value)}
@@ -80,14 +82,19 @@ export const WomenProductList = () => {
             );
           })}
         </div>
-      ) : (!loading && products.length) ? (
-      <div className="grid">
-        {products.length > 0 &&
-          products.map((el) => {
-            return <AllProductCard key={el.id} {...el} />;
-          })}
-      </div>
+      ) : !loading && products.length ? (
+        <div className="main">
+          <Scrollbars>
+          <div className="grid">
+            {products.length > 0 &&
+              products.map((el, i) => {
+                return <AllProductCard key={i} {...el} />;
+              })}
+          </div>
+          </Scrollbars>
+        </div>
       ) : (
+        // </div>
         <Box textAlign="center" py={10} px={6}>
           <WarningTwoIcon boxSize={"50px"} color={"orange.300"} />
           <Heading as="h2" size="xl" mt={6} mb={2}>
@@ -101,9 +108,14 @@ export const WomenProductList = () => {
 
 const DIV = styled.div`
   text-align: left;
+  .main {
+    height: 1100px;
+    border-radius: 10px;
+  }
   .grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    padding: 5px;
     gap: 20px;
   }
   .search {
@@ -116,7 +128,7 @@ const DIV = styled.div`
   img {
     margin: 10px 0;
   }
-  .input{
+  .input {
     margin: 0 0 15px 0;
   }
 `;

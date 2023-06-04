@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { SideBar } from "../../Components/SideBar";
+import { MenSideBar } from "../../Components/MenSideBar";
 import { MenProductList } from "../ProductList/MenProductList";
 
 export const MenProducts = () => {
@@ -8,10 +8,10 @@ export const MenProducts = () => {
       <div className="banner">
       </div>
       <div className="flex">
-        <div className="sidebar">
-          <SideBar />
+        <div className="sidebar" data-aos="zoom-out-right">
+          <MenSideBar />
         </div>
-        <div className="allProductList">
+        <div className="allProductList" data-aos="zoom-out-left">
           <MenProductList />
         </div>
       </div>
@@ -21,15 +21,15 @@ export const MenProducts = () => {
 
 const DIV = styled.div`
     .flex{
-        width: 90%;
+        width: 95%;
         margin: auto;
         display: flex;
         justify-content: space-between;
     }
     .sidebar{
         width: 20%;
-        margin-top: 40px;
-        padding-right: 12px;
+        margin: 40px 0px 0 0;
+        padding-right: 30px;
         border-right: 1px solid black;
     }
     .allProductList{
