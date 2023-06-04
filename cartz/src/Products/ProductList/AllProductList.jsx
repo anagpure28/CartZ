@@ -85,22 +85,17 @@ export const AllProductList = () => {
             );
           })}
         </div>
-      ) : (!loading && products.length) ? (
+      ) : !loading && products.length ? (
         <div className="main">
-        <Scrollbars>
-        <div className="grid">
-          {products.length > 0 &&
-            products.map((el, i) => {
-              return <AllProductCard key={i} {...el} />;
-            })}
+          <Scrollbars>
+          <div className="grid">
+            {products.length > 0 &&
+              products.map((el, i) => {
+                return <AllProductCard key={i} {...el} />;
+              })}
+          </div>
+          </Scrollbars>
         </div>
-        </Scrollbars>
-      <div className="grid">
-        {products.length > 0 &&
-          products.map((el) => {
-            return <ProductCart key={el.id} {...el} />
-          })}
-      </div>
       ) : (
         <Box textAlign="center" py={10} px={6}>
           <WarningTwoIcon boxSize={"50px"} color={"orange.300"} />
