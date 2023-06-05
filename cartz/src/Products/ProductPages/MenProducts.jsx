@@ -47,4 +47,30 @@ const DIV = styled.div`
         background-size: 100% 100%;
         position: relative;
     }
+    @media screen and (min-width: 795px) and (max-width: 1075px) {
+    .sidebar{
+      width: 30%;
+    }
+    .allProductList{
+      width: 70%;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+  }
+  @media screen and (max-width: 795px) {
+    .sidebar{
+      width: 30%;
+    }
+    .allProductList{
+      width: 70%;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 15px;
+    }
+  }
 `;

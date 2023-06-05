@@ -194,7 +194,7 @@ import { color } from "framer-motion";
                             
                         </div>
                     }
-                    <button id={id} style={{fontSize:"12px",fontWeight:"600",backgroundColor:"rgb(255,111,97)",color:"white",borderRadius:"10px",padding:"5px 8px",cursor:"pointer"}} onClick={handleAddToCart}>Add To Cart</button>
+                    <button id={id} style={{fontSize:"12px",fontWeight:"600",backgroundColor:"rgb(255,111,97)",color:"white",borderRadius:"6px",padding:"5px 8px",cursor:"pointer"}} onClick={handleAddToCart}>Add To Cart</button>
                 </div>
                 
             </div>

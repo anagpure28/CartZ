@@ -90,8 +90,8 @@ export const AllProductList = () => {
           <Scrollbars>
           <div className="grid">
             {products.length > 0 &&
-              products.map((el, i) => {
-                return <ProductCard key={el.id} {...el} />;
+              products.splice(0,12).map((el, i) => {
+                return <ProductCard key={i} {...el} />;
               })}
           </div>
           </Scrollbars>
@@ -111,7 +111,7 @@ export const AllProductList = () => {
 const DIV = styled.div`
   text-align: left;
   .main {
-    height: 1100px;
+    height: 1000px;
     border-radius: 10px;
   }
   .grid {
@@ -131,6 +131,27 @@ const DIV = styled.div`
   }
   .input {
     margin: 0 0 15px 0;
+  }
+  @media screen and (min-width: 901px) and (max-width: 1450px) {
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+  }
+  @media screen and (min-width: 710px) and (max-width: 1075px) {
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+  }
+  @media screen and (max-width: 710px) {
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 15px;
+    }
   }
 `;
 

@@ -50,10 +50,10 @@ function NewCollection ({data}){
                 className={style.splide}
             >
              {
-                data.map((e)=>
+                data.map((e,i)=>
                 <SplideSlide style={{display:"flex",justifyContent:"center",alignItems:"center",borderRadius:"15px",border:"1px solid rgba(200,200,200,0.9)",cursor:"pointer"}}>
                     {/* <img width="70%" src={e.img} alt="Image 1"/> */}
-                    <div style={{height:'400px',width:"100%"}}>
+                    <div key={i} style={{height:'400px',width:"100%"}}>
                         <div style={{backgroundImage:`url(${e.img})`,width:"100%",height:"70%",backgroundSize:"cover",backgroundRepeat:"no-repeat",borderTopLeftRadius:"14px",borderTopRightRadius:"14px"}}>
                         </div>
                         <div >

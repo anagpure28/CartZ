@@ -5,16 +5,16 @@ import { AllProductCard } from "./AllProductCard";
 import styled from "styled-components";
 import { useLocation, useSearchParams } from "react-router-dom";
 import ProductCard from "../../Components/ProductCard";
-import { WarningTwoIcon } from '@chakra-ui/icons';
+import { WarningTwoIcon } from "@chakra-ui/icons";
 import { Box, Heading, SkeletonText } from "@chakra-ui/react";
-import { Scrollbars } from 'react-custom-scrollbars-2';
+import { Scrollbars } from "react-custom-scrollbars-2";
 import { Pagination } from "../../Pages/Pagination";
 
 export const MenProductList = () => {
   const [query, setQuery] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
   const products = useSelector((store) => store.ProductReducer.products);
-  const skeleton = [1,1,1,1,1,1,1,1,1,1,1,1];
+  const skeleton = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
   const loading = useSelector((store) => store.ProductReducer.isLoading);
   const initialPage = searchParams.get("page");
   const [page, setPage] = useState(+initialPage || 1);
@@ -29,7 +29,7 @@ export const MenProductList = () => {
       _sort: searchParams.get("order") && "price",
       _order: searchParams.get("order"),
       _page: searchParams.get("page"),
-      _limit: 12
+      _limit: 12,
     },
   };
 
@@ -39,12 +39,12 @@ export const MenProductList = () => {
     },
   };
 
-  useEffect(()=> {
+  useEffect(() => {
     let param = {
-      page
-    }
-    setSearchParams(param)
-  },[page])
+      page,
+    };
+    setSearchParams(param);
+  }, [page]);
 
   //Fetching Data
   useEffect(() => {
@@ -99,12 +99,12 @@ export const MenProductList = () => {
       ) : !loading && products.length ? (
         <div className="main">
           <Scrollbars>
-          <div className="grid">
-            {products.length > 0 &&
-              products.map((el, i) => {
-                return <ProductCard key={el.id} {...el} />;
-              })}
-          </div>
+            <div className="grid">
+              {products.length > 0 &&
+                products.splice(0, 12).map((el, i) => {
+                  return <ProductCard key={i} {...el} />;
+                })}
+            </div>
           </Scrollbars>
         </div>
       ) : (
@@ -116,7 +116,7 @@ export const MenProductList = () => {
         </Box>
       )}
       <Box>
-        <Pagination page={page} setPage={setPage}/>
+        <Pagination page={page} setPage={setPage} />
       </Box>
     </DIV>
   );
@@ -145,5 +145,26 @@ const DIV = styled.div`
   }
   .input {
     margin: 0 0 15px 0;
+  }
+  @media screen and (min-width: 901px) and (max-width: 1450px) {
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+  }
+  @media screen and (min-width: 710px) and (max-width: 1075px) {
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+  }
+  @media screen and (max-width: 710px) {
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 15px;
+    }
   }
 `;
