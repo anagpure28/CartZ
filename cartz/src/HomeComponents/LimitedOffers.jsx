@@ -53,10 +53,10 @@ function LimitedOffers(){
             <div style={{width:"50px",border:"1px solid rgb(255, 111, 97)",margin:"20px"}}></div>
         </div>
         <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:"50px"}}>
-            {data.map((e)=>
+            {data.map((e,i)=>
                 <Link to={e.path}>
                      <div 
-                        key={e.id}
+                        key={i}
                         style={{
                             // border:"1px solid red",
                             height:"350px",
