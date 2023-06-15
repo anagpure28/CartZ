@@ -136,7 +136,7 @@ export const MenSideBar = () => {
                 type="checkbox"
                 value={"KETCH"}
                 onChange={handleBrand}
-                checked={brand.includes("Ketch")}
+                checked={brand.includes("KETCH")}
               />
               <label>Ketch</label>
             </Container>

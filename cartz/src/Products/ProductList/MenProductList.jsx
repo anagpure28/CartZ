@@ -1,13 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { mensProduct } from "../../Redux/ProductReducer/action";
-import { AllProductCard } from "./AllProductCard";
 import styled from "styled-components";
 import { useLocation, useSearchParams } from "react-router-dom";
 import ProductCard from "../../Components/ProductCard";
 import { WarningTwoIcon } from "@chakra-ui/icons";
 import { Box, Heading, SkeletonText } from "@chakra-ui/react";
-import { Scrollbars } from "react-custom-scrollbars-2";
 import { Pagination } from "../../Pages/Pagination";
 
 export const MenProductList = () => {
@@ -33,6 +31,7 @@ export const MenProductList = () => {
     },
   };
 
+  //Search query
   const paramObj = {
     params: {
       q: query && query,
@@ -98,14 +97,12 @@ export const MenProductList = () => {
         </div>
       ) : !loading && products.length ? (
         <div className="main">
-          <Scrollbars>
             <div className="grid">
               {products.length > 0 &&
                 products.splice(0, 12).map((el, i) => {
                   return <ProductCard key={i} {...el} />;
                 })}
             </div>
-          </Scrollbars>
         </div>
       ) : (
         <Box textAlign="center" py={10} px={6}>
@@ -125,7 +122,7 @@ export const MenProductList = () => {
 const DIV = styled.div`
   text-align: left;
   .main {
-    height: 1000px;
+    height: 1150px;
     border-radius: 10px;
   }
   .grid {
