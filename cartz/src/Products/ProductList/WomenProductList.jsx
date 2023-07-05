@@ -121,7 +121,7 @@ export const WomenProductList = () => {
 const DIV = styled.div`
   text-align: left;
   .main {
-    height: 1000px;
+    height: auto;
     border-radius: 10px;
   }
   .grid {

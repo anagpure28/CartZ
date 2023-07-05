@@ -24,8 +24,13 @@ import { RiSecurePaymentLine } from "react-icons/ri";
 import "./SingleProductPage.css";
 import { Link } from "react-router-dom";
 import OffersCarousel from "../CarouselComponent/OffersCarousel";
-import vectorImage from "./Images/vectorOnSingleProductPage.png"
-
+import vectorImage from "./Images/vectorOnSingleProductPage.png";
+import Ethinic from "./Images/Ethinic.gif";
+import sale from "./Images/sale.jpg";
+import flatsale from "./Images/flatsale.jpg";
+import { GridContainer } from "./GridContainer";
+import { grid } from "../Data/grid";
+import BestSellerBrands from "../HomeComponents/BestSellerBrands";
 
 const images = [
   "https://res.cloudinary.com/eastern/image/upload/w_1000,q_auto,f_auto/2062313_002_main.jpg",
@@ -316,7 +321,6 @@ export default function Simple() {
             </Stack>
 
             <Button
-              
               w={"sm"}
               margin={"auto"}
               mt={2}
@@ -330,7 +334,7 @@ export default function Simple() {
                 transform: "translateY(2px)",
                 boxShadow: "lg",
               }}
-              style={{borderRadius:"12px"}}
+              style={{ borderRadius: "12px" }}
             >
               Add to cart
             </Button>
@@ -347,12 +351,28 @@ export default function Simple() {
         </SimpleGrid>
       </Container>
 
-      <Box w={"100%"} mt={2}>
-        <Image
-          src={vectorImage}
-          alt=""
-        />
+      <Box
+        w={"100%"}
+        mt={2}
+        style={{
+          display: "flex",
+          justifyContent: "space-evenly",
+          alignItems: "center",
+        }}
+      >
+        <Image src={vectorImage} alt="" />
+        <Image src={sale} width={"45%"} alt="" />
       </Box>
+      <div>
+        <img src={flatsale} />
+        <Image src={Ethinic} style={{margin: "auto", marginBottom: "10px"}}/>
+      </div>
+      <Container mt={"10"} maxW={"8xl"}>
+        <GridContainer data={grid} title={"Featured Clothings"} />
+      </Container>
+      <br />
+      <BestSellerBrands />
+      <br />
     </div>
   );
 }

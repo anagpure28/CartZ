@@ -122,7 +122,7 @@ export const MenProductList = () => {
 const DIV = styled.div`
   text-align: left;
   .main {
-    height: 1150px;
+    height: auto;
     border-radius: 10px;
   }
   .grid {
