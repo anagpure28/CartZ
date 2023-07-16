@@ -38,6 +38,7 @@ export const MenProductList = () => {
     },
   };
 
+  //Pagination
   useEffect(() => {
     let param = {
       page,

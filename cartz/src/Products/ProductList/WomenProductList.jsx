@@ -76,7 +76,7 @@ export const WomenProductList = () => {
         <div className="grid">
           {skeleton.map((el, i) => {
             return (
-              <Box padding="0" bg="white" borderRadius="5px" key={i}>
+              <Box key={i} padding="0" bg="white" borderRadius="5px">
                 <SkeletonText
                   mt="4"
                   noOfLines={1}
