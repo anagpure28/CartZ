@@ -38,7 +38,6 @@ export const MenProductList = () => {
     },
   };
 
-  //Pagination
   useEffect(() => {
     let param = {
       page,
@@ -79,7 +78,7 @@ export const MenProductList = () => {
         <div className="grid">
           {skeleton.map((el, i) => {
             return (
-              <Box padding="0" bg="white" borderRadius="5px" key={i}>
+              <Box key={i} padding="0" bg="white" borderRadius="5px">
                 <SkeletonText
                   mt="4"
                   noOfLines={1}
@@ -104,18 +103,18 @@ export const MenProductList = () => {
                 return <ProductCard key={i} {...el} />;
               })}
           </div>
+          <Box>
+        <Pagination page={page} setPage={setPage} />
+      </Box>
         </div>
       ) : (
-        <Box textAlign="center" py={10} px={6}>
+        <Box textAlign="center" py={35} px={6}>
           <WarningTwoIcon boxSize={"50px"} color={"orange.300"} />
           <Heading as="h2" size="xl" mt={6} mb={2}>
             Sorry No Data Found
           </Heading>
         </Box>
       )}
-      <Box>
-        <Pagination page={page} setPage={setPage} />
-      </Box>
     </DIV>
   );
 };
