@@ -81,11 +81,11 @@ export const WomenProductList = () => {
                   mt="4"
                   noOfLines={1}
                   spacing="1"
-                  skeletonHeight="28"
+                  skeletonHeight="52"
                 />
                 <SkeletonText
                   mt="4"
-                  noOfLines={3}
+                  noOfLines={4}
                   spacing="3"
                   skeletonHeight="3"
                 />
@@ -121,7 +121,7 @@ export const WomenProductList = () => {
 const DIV = styled.div`
   text-align: left;
   .main {
-    height: 1000px;
+    height: auto;
     border-radius: 10px;
   }
   .grid {

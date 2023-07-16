@@ -79,16 +79,16 @@ export const MenProductList = () => {
         <div className="grid">
           {skeleton.map((el, i) => {
             return (
-              <Box padding="0" bg="white" borderRadius="5px">
+              <Box padding="0" bg="white" borderRadius="5px" key={i}>
                 <SkeletonText
                   mt="4"
                   noOfLines={1}
                   spacing="1"
-                  skeletonHeight="28"
+                  skeletonHeight="52"
                 />
                 <SkeletonText
                   mt="4"
-                  noOfLines={3}
+                  noOfLines={4}
                   spacing="3"
                   skeletonHeight="3"
                 />
@@ -98,12 +98,12 @@ export const MenProductList = () => {
         </div>
       ) : !loading && products.length ? (
         <div className="main">
-            <div className="grid">
-              {products.length > 0 &&
-                products.splice(0, 12).map((el, i) => {
-                  return <ProductCard key={i} {...el} />;
-                })}
-            </div>
+          <div className="grid">
+            {products.length > 0 &&
+              products.splice(0, 12).map((el, i) => {
+                return <ProductCard key={i} {...el} />;
+              })}
+          </div>
         </div>
       ) : (
         <Box textAlign="center" py={10} px={6}>
@@ -123,7 +123,7 @@ export const MenProductList = () => {
 const DIV = styled.div`
   text-align: left;
   .main {
-    height: 1150px;
+    height: auto;
     border-radius: 10px;
   }
   .grid {

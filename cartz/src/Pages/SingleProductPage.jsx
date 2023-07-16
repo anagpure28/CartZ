@@ -4,7 +4,7 @@ import {
   Container,
   Stack,
   Text,
-  Image,
+  // Image,
   Flex,
   VStack,
   Button,
@@ -16,26 +16,40 @@ import {
   List,
   ListItem,
 } from "@chakra-ui/react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MdLocalShipping } from "react-icons/md";
 import { TbReplace, TbTruckDelivery } from "react-icons/tb";
 import { ImPriceTags } from "react-icons/im";
 import { RiSecurePaymentLine } from "react-icons/ri";
 import "./SingleProductPage.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import OffersCarousel from "../CarouselComponent/OffersCarousel";
-import vectorImage from "./Images/vectorOnSingleProductPage.png"
+import vectorImage from "./Images/vectorOnSingleProductPage.png";
+import Ethinic from "./Images/Ethinic.gif";
+import sale from "./Images/sale.jpg";
+import flatsale from "./Images/flatsale.jpg";
+import { GridContainer } from "./GridContainer";
+import { grid } from "../Data/grid";
+import { AiFillStar } from "react-icons/ai";       
+import {Image} from "antd"
+import BestSellerBrands from "../HomeComponents/BestSellerBrands";
+import axios from "axios";
 
+let url = "https://845wro.sse.codesandbox.io";
 
 const images = [
-  "https://res.cloudinary.com/eastern/image/upload/w_1000,q_auto,f_auto/2062313_002_main.jpg",
-  "https://res.cloudinary.com/eastern/image/upload/w_1000,q_auto,f_auto/2062313_002_alt1.jpg",
-  "https://res.cloudinary.com/eastern/image/upload/w_1000,q_auto,f_auto/2062313_002_alt2.jpg",
-  "https://res.cloudinary.com/eastern/image/upload/w_1000,q_auto,f_auto/2062313_002_alt3.jpg",
+  "https://img.faballey.com/images/Product/DRS03635Z/d3.jpg",
+  "https://img.faballey.com/images/Product/DRS03635Z/d4.jpg",
+  "https://img.faballey.com/images/Product/DRS03635Z/d5.jpg",
+  "https://img.faballey.com/Images/Product/DRS03635Z/d3.jpg",
+  "https://img.faballey.com/images/Product/DRS03635Z/d8.jpg",
 ];
 
 export default function Simple() {
+  const { category, id } = useParams();
   const [img, setImg] = useState(images[0]);
+  const [singleProduct, setSingleProduct] = useState([]);
+
   const hoverHandler = (image, i) => {
     setImg(image);
     refs.current[i].classList.add("active");
@@ -53,8 +67,22 @@ export default function Simple() {
     }
   };
 
+  const main = useRef(null);
+
+  useEffect(() => {
+    axios
+      .get(`${url}/${category}/${id}`)
+      .then((res) => {
+        setSingleProduct(res.data);
+        console.log(res.data);
+      })
+      .catch((error) => console.log(error));
+    main.current.scrollTop = -100;
+    // console.log(main)
+  }, []);
+
   return (
-    <div>
+    <div ref={main}>
       <Container maxW={"7xl"}>
         <SimpleGrid
           columns={{ base: 1, lg: 2 }}
@@ -65,7 +93,7 @@ export default function Simple() {
           <div style={{ display: "inline-block" }}>
             <div className="container">
               <div className="left">
-                <div className="left_1">
+                 {/*<div className="left_1">
                   {images.map((image, i) => (
                     <div
                       className={i == 0 ? "img_wrap active" : "img_wrap"}
@@ -76,13 +104,13 @@ export default function Simple() {
                       <img src={image} alt="" />
                     </div>
                   ))}
-                </div>
+                  </div> */}
                 <div className="left_2">
-                  <img src={img} alt="" />
+                  <Image src={singleProduct?.img} alt="" />
                 </div>
               </div>
             </div>
-            <div style={{ width: "90%", margin: "auto", marginTop: "160px" }}>
+            <div style={{ width: "90%", margin: "auto", marginTop: "35%" }}>
               <img
                 src="https://static.vecteezy.com/system/resources/previews/002/461/553/original/buy-1-get-1-free-sale-banner-template-illustration-free-vector.jpg"
                 alt=""
@@ -101,33 +129,58 @@ export default function Simple() {
           >
             <Box as={"header"} textAlign={"left"}>
               <Heading
+                marginLeft={"-1"}
                 lineHeight={1}
                 fontWeight={600}
+                mb={1}
                 fontSize={{ base: "1xl", sm: "2xl", lg: "3xl" }}
+                textAlign={{ base: "center", sm: "center", lg: "left" }}
               >
-                Automatic Watch
+                {singleProduct?.title}
               </Heading>
               <Link
                 style={{ color: "blue", textDecoration: "underline" }}
                 to={"#"}
               >
-                Visit the Store
+                <Text textAlign={{ base: "center", sm: "center", lg: "left" }}>Visit the Store</Text>
               </Link>
               <Text
                 color={useColorModeValue("gray.900", "gray.400")}
                 fontWeight={400}
                 fontSize={"md"}
+                mt={1}
                 lineHeight={1.5}
+                textAlign={{ base: "center", sm: "center", lg: "left" }}
               >
-                Rating | <Link to={"#"}>246 answered questions</Link>
+                <span
+                  style={{
+                    color: "green",
+                    fontSize: "1rem",
+                    fontWeight: "bold",
+                  }}
+                >
+                  {singleProduct?.ratingsContainer}
+                </span>
+                <div
+                  style={{
+                    display: "inline-block",
+                    color: "gold",
+                    fontSize: "1rem",
+                    marginBottom: "-2px"
+                  }}
+                >
+                  <AiFillStar />
+                </div>{" "}
+                Rating | {singleProduct?.ratingsCount} reviews
               </Text>
               <Text
                 color={useColorModeValue("gray.900", "gray.400")}
                 fontWeight={400}
                 fontSize={"md"}
                 lineHeight={1.5}
+                textAlign={{ base: "center", sm: "center", lg: "left" }}
               >
-                #1 Best Seller in Men's Collection
+                #1 Best Seller in {category}'s Collection
               </Text>
             </Box>
 
@@ -142,21 +195,31 @@ export default function Simple() {
             >
               <Box spacing={{ base: 2, sm: 4 }}>
                 <Text
-                  textAlign={"left"}
                   color={useColorModeValue("gray.900", "gray.400")}
                   fontWeight={400}
                   fontSize={"2xl"}
+                  textAlign={{ base: "center", sm: "center", lg: "left" }}
                 >
-                  Price: <span class="loader">350.00</span>
+                  Price: <span className="loader">{singleProduct?.price}</span>
                 </Text>
-                <Text textAlign={"left"} mt={-2} fontWeight={600}>
+                <Text textAlign={{ base: "center", sm: "center", lg: "left" }} mt={-1} fontWeight={600} mb={2}>
                   Including all Taxes
                 </Text>
+                <hr />
+                <Text
+                  fontSize={{ base: 16, lg: 21 }}
+                  color={useColorModeValue("#ff4d05")}
+                  fontWeight={"500"}
+                  mt={3}
+                  mb={"1"}
+                >
+                  PRODUCT DESCRIPTION
+                </Text>
                 <Text fontSize={"md"} mt={3} textAlign={"left"}>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
-                  aliquid amet at delectus doloribus dolorum expedita hic, ipsum
-                  maxime modi nam officiis porro, quae, quisquam quos
-                  reprehenderit velit? Natus, totam.
+                Step into the world of {category}'s fashion and explore our exceptional collection of clothing designed exclusively for the modern gentleman. From sophisticated suits to casual everyday essentials, our range of men's clothing encompasses style, comfort, and versatility.
+                <br />
+                For colder days, indulge in our selection of cozy sweaters, jackets, and coats that combine warmth with fashion-forward design. From classic pea coats to trendy leather jackets, we have you covered for all seasons and occasions.
+                <br />
                 </Text>
               </Box>
               <Box>
@@ -276,18 +339,6 @@ export default function Simple() {
                   <List spacing={2}>
                     <ListItem>
                       <Text as={"span"} fontWeight={"bold"}>
-                        Product Dimensions :
-                      </Text>{" "}
-                      8 x 5 x 10 cm; 300 Grams
-                    </ListItem>
-                    <ListItem>
-                      <Text as={"span"} fontWeight={"bold"}>
-                        Manufacturer:
-                      </Text>{" "}
-                      SILICA TEXTILE PVT LTD
-                    </ListItem>
-                    <ListItem>
-                      <Text as={"span"} fontWeight={"bold"}>
                         Pack Of:
                       </Text>{" "}
                       1
@@ -297,6 +348,18 @@ export default function Simple() {
                         Pattern:
                       </Text>{" "}
                       Solid
+                    </ListItem>
+                    <ListItem>
+                      <Text as={"span"} fontWeight={"bold"}>
+                        Size of product:
+                      </Text>{" "}
+                      {singleProduct?.sizeInventoryPresent}
+                    </ListItem>
+                    <ListItem>
+                      <Text as={"span"} fontWeight={"bold"}>
+                        Brand:
+                      </Text>{" "}
+                      {singleProduct?.brand}
                     </ListItem>
                     <ListItem>
                       <Text as={"span"} fontWeight={"bold"}>
@@ -310,13 +373,24 @@ export default function Simple() {
                       </Text>{" "}
                       India
                     </ListItem>
+                    <ListItem>
+                      <Text as={"span"} fontWeight={"bold"}>
+                        Product Dimensions :
+                      </Text>{" "}
+                      8 x 5 x 10 cm; 300 Grams
+                    </ListItem>
+                    <ListItem>
+                      <Text as={"span"} fontWeight={"bold"}>
+                        Manufacturer:
+                      </Text>{" "}
+                      SILICA TEXTILE PVT LTD
+                    </ListItem>
                   </List>
                 </Box>
               </Box>
             </Stack>
 
             <Button
-              
               w={"sm"}
               margin={"auto"}
               mt={2}
@@ -330,7 +404,7 @@ export default function Simple() {
                 transform: "translateY(2px)",
                 boxShadow: "lg",
               }}
-              style={{borderRadius:"12px"}}
+              style={{ borderRadius: "12px" }}
             >
               Add to cart
             </Button>
@@ -347,12 +421,28 @@ export default function Simple() {
         </SimpleGrid>
       </Container>
 
-      <Box w={"100%"} mt={2}>
-        <Image
-          src={vectorImage}
-          alt=""
-        />
+      <Box
+        w={"100%"}
+        mt={2}
+        style={{
+          display: "flex",
+          justifyContent: "space-evenly",
+          alignItems: "center",
+        }}
+      >
+        <img src={vectorImage} alt="" />
+        <img src={sale} width={"45%"} alt="" />
       </Box>
+      <div>
+        <img src={flatsale} />
+        <img src={Ethinic} style={{ margin: "auto", marginBottom: "10px" }} />
+      </div>
+      <Container mt={"10"} maxW={"8xl"}>
+        <GridContainer data={grid} title={"Featured Clothings"} />
+      </Container>
+      <br />
+      <BestSellerBrands />
+      <br />
     </div>
   );
 }
