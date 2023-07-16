@@ -76,16 +76,16 @@ export const WomenProductList = () => {
         <div className="grid">
           {skeleton.map((el, i) => {
             return (
-              <Box padding="0" bg="white" borderRadius="5px">
+              <Box padding="0" bg="white" borderRadius="5px" key={i}>
                 <SkeletonText
                   mt="4"
                   noOfLines={1}
                   spacing="1"
-                  skeletonHeight="28"
+                  skeletonHeight="52"
                 />
                 <SkeletonText
                   mt="4"
-                  noOfLines={3}
+                  noOfLines={4}
                   spacing="3"
                   skeletonHeight="3"
                 />
