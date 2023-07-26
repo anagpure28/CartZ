@@ -31,7 +31,7 @@ export default function Login() {
 
   const handleLogin = () => {
     const userData = {email, password}
-    dispatch(login(userData))
+    dispatch(login(userData,user,googleSignIn))
   }
 
   const navigate = useNavigate();
@@ -82,7 +82,7 @@ export default function Login() {
             <FormControl id="password">
               <FormLabel>Password</FormLabel>
               <InputGroup>
-                  <Input type={showPassword ? 'text' : 'password'} textAlign={"start"} />
+                  <Input type={showPassword ? 'text' : 'password'} textAlign={"start"} value={password}  onChange={(e)=>setPassword(e.target.value)}/>
                   <InputRightElement h={'full'}>
                     <Button
                       variant={'ghost'}
