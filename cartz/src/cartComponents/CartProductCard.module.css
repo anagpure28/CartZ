@@ -1,0 +1,129 @@
+/* rgb(0, 128, 83) */
+
+#card{
+    width: 95%;
+    margin: auto;
+    /* height: 100px; */
+    border: 1px solid rgb(181, 181, 181);
+    background-color: rgba(202, 202, 202, 0.378);
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin: 10px 0px;
+}
+#image{
+    width: 10%;
+    height: 100px;
+    /* background-color: red; */
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+#description{
+    width: 35%;
+    height: 95%;
+    /* background-color: green; */
+    text-align: start;
+}
+#size{
+    width: 5%;
+    height: 100%;
+    /* background-color: rgb(255, 242, 0); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+}
+#pricing{
+    width: 25%;
+    height: 100%;
+    /* background-color: rgb(255, 0, 234);    */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+#quantity{
+    width: 15%;
+    height: 100%;
+    /* background-color: rgb(0, 221, 255);  */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+#remove{
+    width: 5%;
+    height: 100%;
+    /* background-color: rgb(255, 0, 0);  */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#brand{
+    font-size: 10px;
+    font-weight: 800;
+}
+#title{
+    font-size: 18px;
+    font-weight: 600;
+    color: rgb(82, 82, 82);
+}
+#category{
+    font-size: 10px;
+    font-weight: 800;
+    margin: 5px 0px;
+}
+
+#subhead{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    color: rgb(132, 132, 132);
+    /* background-color: pink; */
+    height: 30%;
+    width: 90%;
+    border-top: 2px solid rgb(0, 175, 96);
+    padding-top: 5px;
+}
+#pricing>:nth-child(1){
+    color: rgb(255, 74, 74);
+    font-size: 12px;
+    font-weight: 600;
+}
+#pricing>:nth-child(2){
+    color: rgb(0, 141, 52);
+    font-size: 16px;
+    font-weight: 600;
+}
+#pricing>:nth-child(3){
+    color: rgb(0, 141, 52);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#quantity>button{
+    width: 30px;
+    height: 30px;
+    background-color: rgba(166, 166, 166, 0.423);
+    /* border: 1px solid rgb(120, 120, 120); */
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+#quantity>input{
+    width: 40px;
+    height: 30px;
+    border: 0px;
+    background-color: transparent;
+    outline: 0px;
+    /* -moz-appearance: textfield; */
+    text-align: center;
+    font-weight: 600;
+}

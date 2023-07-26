@@ -51,7 +51,7 @@ import style from "./navbar.module.css"
     const { isOpen, onToggle } = useDisclosure();
     const {user,logOut} = UserAuth()
     const [open, setOpen] = useState(false);
-    
+    console.log(user)
    
 
   const showDrawer = () => {
@@ -134,7 +134,7 @@ import style from "./navbar.module.css"
               }}
             >
             <CiShop  style={{fontSize:"22px",cursor:"pointer"}} _hover={{color:"rgb(255,111,97)"}}/>
-            <CiShoppingCart  style={{fontSize:"22px",cursor:"pointer"}} _hover={{color:"rgb(255,111,97)"}}/>
+              <Link href={"/carts"}><CiShoppingCart  style={{fontSize:"22px",cursor:"pointer"}} _hover={{color:"rgb(255,111,97)"}}/></Link>
             {
               user?.displayName ? <div style={{
                 display:"flex",
@@ -142,18 +142,18 @@ import style from "./navbar.module.css"
                 color:"white"
               }}>
                 {/* <CiUser  style={{fontSize:"22px",cursor:"pointer"}} _hover={{textDecoration: 'none', color: "rgb(255,111,97)",}}/> */}
-                <img src={user?.photoURL} width={"35px"}  style={{borderRadius:"50px",border:"2px solid rgb(255,111,97)",cursor:"pointer"}} onClick={showDrawer}/>
+                <img src={user?.photoURL} width={"35px"}  style={{borderRadius:"50px",border:"2px solid rgb(255,111,97)",cursor:"pointer",padding:"1px"}} onClick={showDrawer}/>
                 <Text style={{fontSize:"15px",width:"180px",textAlign:"start",marginLeft:"20px"}}>👋 Hi {user?.displayName.split(" ")[0]}</Text>
                 <>
                   <Drawer title="User Detials" placement="right" onClose={onClose} open={open}>
                     <div style={{textAlign:"center"}}>
-                      <img src={user?.photoURL} style={{margin:"auto",border:"3px solid rgb(255,111,97)",borderRadius:"50%",width:"150px"}}/>
+                      <img src={user?.photoURL} style={{margin:"auto",border:"3px solid rgb(255,111,97)",borderRadius:"50%",width:"150px",padding:"2px"}}/>
                       <p style={{margin:"20px auto 0px 10px",fontWeight:"500",fontSize:"25px",display:"flex",alignItems:"center",justifyContent:"center",gap:"10px"}}>{user?.displayName} {user?.emailVerified ? <MdVerified style={{fontSize:"17px",marginTop:"6px",color:"green"}} /> : ""}</p>
                       <p style={{fontWeight:"500",fontSize:"10px"}}>{user?.email}</p>
                     </div>
                     <div style={{width:"100%",border:"1px solid rgb(255, 111, 97)",margin:"10px auto"}}></div>
                     <div style={{height:"200px",textAlign:"start",width:"95%",margin:"auto",paddingTop:"20px",lineHeight:"30px"}}>
-                      <p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><MdOutlineEmail style={{marginRight:"7px"}}/>Email : {user?.email}</p>
+                      <p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><MdOutlineEmail style={{marginRight:"7px"}}/>Email : {(user?.email).substring(0,30)}{user?.email.length>30 ? "..." : ""}</p>
                       <p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><MdOutlinePhoneInTalk style={{marginRight:"7px"}}/>Number : {user?.phoneNumber? "" : "Not Found"}</p>
                       <p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><MdOutlineDateRange style={{marginRight:"7px"}}/>DOB : dd/mm/yy</p>
                       <p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><MdOutlineHome style={{marginRight:"7px"}}/>Address : Not Found</p>

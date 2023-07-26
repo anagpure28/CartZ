@@ -14,6 +14,7 @@ import KidProducts from "../Products/ProductPages/KidProducts"
 import {MenProducts} from "../Products/ProductPages/MenProducts"
 import {WomenProducts} from "../Products/ProductPages/WomenProducts"
 import { CreditCard } from '../Payment/CreditCard';
+import Cart from '../Pages/Cart';
 
 // import PrivateRoute from './PrivateRoute';
 
@@ -24,6 +25,7 @@ const AllRoutes = () => {
     }}>
         <Routes>
           <Route path="/" element={<Home />}></Route>
+          <Route path="/carts" element={<Cart />}></Route>
           <Route path="/about" element={<About />}></Route>
           <Route path="/contact" element={<Contact />}></Route>
           <Route path="/login" element={<Login />}></Route>
