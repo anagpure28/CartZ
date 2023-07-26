@@ -1,12 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { womensProduct } from "../../Redux/ProductReducer/action";
-import { AllProductCard } from "./AllProductCard";
 import styled from "styled-components";
 import { WarningTwoIcon } from "@chakra-ui/icons";
 import { Box, Heading, SkeletonText } from "@chakra-ui/react";
 import { useLocation, useSearchParams } from "react-router-dom";
-import { Scrollbars } from 'react-custom-scrollbars-2';
 import { Pagination } from "../../Pages/Pagination";
 import ProductCard from "../../Components/ProductCard";
 
@@ -78,16 +76,16 @@ export const WomenProductList = () => {
         <div className="grid">
           {skeleton.map((el, i) => {
             return (
-              <Box padding="0" bg="white" borderRadius="5px">
+              <Box key={i} padding="0" bg="white" borderRadius="5px">
                 <SkeletonText
                   mt="4"
                   noOfLines={1}
                   spacing="1"
-                  skeletonHeight="28"
+                  skeletonHeight="52"
                 />
                 <SkeletonText
                   mt="4"
-                  noOfLines={3}
+                  noOfLines={4}
                   spacing="3"
                   skeletonHeight="3"
                 />
@@ -97,27 +95,24 @@ export const WomenProductList = () => {
         </div>
       ) : !loading && products.length ? (
         <div className="main">
-          <Scrollbars>
           <div className="grid">
             {products.length > 0 &&
-              products.splice(0,12).map((el, i) => {
+              products.splice(0, 12).map((el, i) => {
                 return <ProductCard key={i} {...el} />;
               })}
           </div>
-          </Scrollbars>
+          <Box>
+        <Pagination page={page} setPage={setPage} />
+      </Box>
         </div>
       ) : (
-        // </div>
-        <Box textAlign="center" py={10} px={6}>
+        <Box textAlign="center" py={35} px={6}>
           <WarningTwoIcon boxSize={"50px"} color={"orange.300"} />
           <Heading as="h2" size="xl" mt={6} mb={2}>
             Sorry No Data Found
           </Heading>
         </Box>
       )}
-      <Box>
-        <Pagination page={page} setPage={setPage}/>
-      </Box>
     </DIV>
   );
 };
@@ -125,7 +120,7 @@ export const WomenProductList = () => {
 const DIV = styled.div`
   text-align: left;
   .main {
-    height: 1000px;
+    height: auto;
     border-radius: 10px;
   }
   .grid {

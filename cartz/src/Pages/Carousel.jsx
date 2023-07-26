@@ -1,12 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 
-
-
 export default function Carousel({data,name}) {
-
-
   return <div>
     <Splide 
       aria-label="My Favorite Images" 
