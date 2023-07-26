@@ -34,6 +34,7 @@ import { AiFillStar } from "react-icons/ai";
 import {Image} from "antd"
 import BestSellerBrands from "../HomeComponents/BestSellerBrands";
 import axios from "axios";
+import { message } from 'antd';
 
 let url = "https://845wro.sse.codesandbox.io";
 
@@ -49,6 +50,7 @@ export default function Simple() {
   const { category, id } = useParams();
   const [img, setImg] = useState(images[0]);
   const [singleProduct, setSingleProduct] = useState([]);
+  const [messageApi, contextHolder] = message.useMessage();
 
   const hoverHandler = (image, i) => {
     setImg(image);
@@ -68,6 +70,29 @@ export default function Simple() {
   };
 
   const main = useRef(null);
+
+  const addToCart = () => {
+    let cartData = JSON.parse(localStorage.getItem("CartZ-cart")) || [];
+    let duplicateData = false;
+    cartData.forEach((el,i)=> {
+      if(el.id === singleProduct.id && el.category === singleProduct.category){
+        duplicateData = true;
+      }
+    })
+    if(duplicateData){
+      messageApi.info('Product is already present in the Cart');
+      return;
+    }
+    let newCard = [...cartData, {...singleProduct, quantity: 1}];
+    localStorage.setItem("CartZ-cart", JSON.stringify(newCard))
+    messageApi
+      .open({
+        type: 'loading',
+        content: 'Action in progress..',
+        duration: 1.5,
+      })
+      .then(() => message.success('Product Added to Cart', 2.5))
+  }
 
   useEffect(() => {
     axios
@@ -389,7 +414,7 @@ export default function Simple() {
                 </Box>
               </Box>
             </Stack>
-
+            {contextHolder}
             <Button
               w={"sm"}
               margin={"auto"}
@@ -405,6 +430,7 @@ export default function Simple() {
                 boxShadow: "lg",
               }}
               style={{ borderRadius: "12px" }}
+              onClick={addToCart}
             >
               Add to cart
             </Button>
