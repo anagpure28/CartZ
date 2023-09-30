@@ -25,7 +25,7 @@ import {
   } from '@chakra-ui/icons';
   import { CiShoppingCart,CiShop,CiUser } from "react-icons/ci";
 import { UserAuth } from '../Context/AuthContext';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ClockCircleOutlined } from '@ant-design/icons';
 import { Avatar, Badge, Space } from 'antd';
 import '../index.css';
@@ -75,6 +75,7 @@ import style from "./navbar.module.css"
     }
   }
 
+  
   let cartData = JSON.parse(localStorage.getItem("CartZ-cart")) || [];
   
     return (
