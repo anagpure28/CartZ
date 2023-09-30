@@ -350,16 +350,24 @@ import style from "./navbar.module.css"
       label: "WOMEN",
       href: "/women"
     },
-    {
-      label: "KIDS",
-      href: '/kids',
-    },
-    {
-        label: "ALL-PRODUCTS",
-        href: '/all-products',
-    },
+    // {
+    //   label: "KIDS",
+    //   href: '/kids',
+    // },
+    // {
+    //     label: "ALL-PRODUCTS",
+    //     href: '/all-products',
+    // },
     {
       label: 'STUDIO',
       href: '/studio',
+    },
+    {
+      label: 'ABOUT',
+      href: '/about',
+    },
+    {
+      label: 'CONTACT',
+      href: '/contact',
     },
   ];
