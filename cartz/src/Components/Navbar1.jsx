@@ -26,6 +26,8 @@ import {
   import { CiShoppingCart,CiShop,CiUser } from "react-icons/ci";
 import { UserAuth } from '../Context/AuthContext';
 import React, { useState } from 'react';
+import { ClockCircleOutlined } from '@ant-design/icons';
+import { Avatar, Badge, Space } from 'antd';
 import '../index.css';
 import {  Drawer } from 'antd';
 import { 
@@ -73,7 +75,7 @@ import style from "./navbar.module.css"
     }
   }
 
-
+  let cartData = JSON.parse(localStorage.getItem("CartZ-cart")) || [];
   
     return (
       <Box style={{position:"fixed",top:"0px",width:"100%",zIndex:"3"}}>
@@ -134,7 +136,7 @@ import style from "./navbar.module.css"
               }}
             >
             <CiShop  style={{fontSize:"22px",cursor:"pointer"}} _hover={{color:"rgb(255,111,97)"}}/>
-              <Link href={"/carts"}><CiShoppingCart  style={{fontSize:"22px",cursor:"pointer"}} _hover={{color:"rgb(255,111,97)"}}/></Link>
+            <Badge count={cartData.length}><Link href={"/carts"}><CiShoppingCart  style={{fontSize:"22px", color: 'white', cursor:"pointer"}} _hover={{color:"rgb(255,111,97)"}}/></Link></Badge>
             {
               user?.displayName ? <div style={{
                 display:"flex",

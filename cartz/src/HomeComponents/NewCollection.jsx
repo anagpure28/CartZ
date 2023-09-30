@@ -49,8 +49,8 @@ function NewCollection ({data}){
                   } }
                 className={style.splide}
             >
-             {
-                data.map((e,i)=>
+             { data.length > 0 ?
+                data?.map((e,i)=>
                 <SplideSlide style={{display:"flex",justifyContent:"center",alignItems:"center",borderRadius:"15px",border:"1px solid rgba(200,200,200,0.9)",cursor:"pointer"}}>
                     {/* <img width="70%" src={e.img} alt="Image 1"/> */}
                     <div key={i} style={{height:'400px',width:"100%"}}>
@@ -71,7 +71,7 @@ function NewCollection ({data}){
                         </div>
                     </div>
                 </SplideSlide>
-            )
+            ) : null
              }   
             </Splide>
         </div>

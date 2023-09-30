@@ -4,11 +4,11 @@ import {
   MdOutlineStarOutline,
 } from "react-icons/md";
 import { CiShoppingTag } from "react-icons/ci";
-
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { getCartData, postCartData } from "../Redux/CartReducer/action";
-import { color } from "framer-motion";
+import { message } from "antd";
+import { Link, useNavigate, useParams } from "react-router-dom";
+// import { useDispatch, useSelector } from "react-redux";
+// import { getCartData, postCartData } from "../Redux/CartReducer/action";
+// import { color } from "framer-motion";
 
 const ProductCard = ({
   ratingsContainer,
@@ -21,18 +21,31 @@ const ProductCard = ({
   discountPercentage,
   id,
   category,
+  detail
 }) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-//   const path = window.location.pathname;
+  const [messageApi, contextHolder] = message.useMessage();
 
-  const handleAddToCart = () => {
-    // dispatch(postCartData(id, path));
-    dispatch(getCartData());
-  };
-
+  const cartButton = () => {
+    // let cartData = JSON.parse(localStorage.getItem("CartZ-cart")) || [];
+    // let duplicateData = false;
+    // cartData.forEach((el,i)=> {
+    //   if(el.id === id && el.category === category){
+    //     duplicateData = true;
+    //   }
+    // })
+    // let newCard = [...cartData, {...detail, quantity: 1}];
+    // localStorage.setItem("CartZ-cart", JSON.stringify(newCard))
+    // messageApi
+    //   .open({
+    //     type: 'loading',
+    //     content: 'Action in progress..',
+    //     duration: 1.5,
+    //   })
+    //   .then(() => message.success('Product Added to Cart', 2.5))
+  }
+ 
   return (
-    // <Link to={`/product/${id}`}>
     <div
       style={{
         height: "370px",
@@ -41,6 +54,7 @@ const ProductCard = ({
       }}
       key={id}
     >
+      {contextHolder}
       <div
         style={{
           // border:"1px solid red",
@@ -304,7 +318,7 @@ const ProductCard = ({
                 padding: "5px 8px",
                 cursor: "pointer",
               }}
-              onClick={handleAddToCart}
+              onClick={cartButton(id)}
             >
               Add To Cart
             </button>
@@ -312,7 +326,6 @@ const ProductCard = ({
         </div>
       </div>
     </div>
-    // </Link>
   );
 };
 

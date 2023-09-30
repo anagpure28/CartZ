@@ -18,7 +18,7 @@ export const MenProductList = () => {
   const [page, setPage] = useState(+initialPage || 1);
   const location = useLocation();
   const dispatch = useDispatch();
-  let ref = useRef();
+  const inputRef = useRef(null);
 
   let obj = {
     params: {
@@ -53,11 +53,11 @@ export const MenProductList = () => {
 
   //Search functionality
   useEffect(() => {
-    if (ref.current) {
-      clearTimeout(ref.current);
+    if (inputRef.current) {
+      clearTimeout(inputRef.current);
     }
 
-    ref.current = setTimeout(() => {
+    inputRef.current = setTimeout(() => {
       dispatch(mensProduct(paramObj));
     }, 1000);
   }, [query]);
@@ -100,7 +100,7 @@ export const MenProductList = () => {
           <div className="grid">
             {products.length > 0 &&
               products.splice(0, 12).map((el, i) => {
-                return <ProductCard key={i} {...el} />;
+                return <ProductCard key={i} detail={el} {...el} />;
               })}
           </div>
           <Box>

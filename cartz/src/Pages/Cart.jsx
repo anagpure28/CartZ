@@ -3,31 +3,27 @@ import style from "../CSS/Cart.module.css"
 import CartProductCard from '../cartComponents/CartProductCard';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 
+let cartData = JSON.parse(localStorage.getItem("CartZ-cart")) || [];
 const Cart = () => {
+  // const { category, id } = useParams();
+  const [data, setData] = useState(cartData);
+  // const dispatch = useDispatch()
 
-  const [data,setData] = useState([])
+  const product = useSelector((store) => store.ProductReducer.products);
   // console.log(data)
 
-  const fetchData = () => {
-    axios.get("https://845wro.sse.codesandbox.io/Men")
-    .then((data1)=>{
-      setData(data1.data)
-      console.log(data1)
-    })
-    .catch((err)=>console.log(err))
-  }
-
   useEffect(()=>{
-    fetchData()
+    // fetchData()
   },[])
 
   return (
   <div id={style.cart}>
     <div id={style.items}>
       {
-        data.map((e) => <CartProductCard {...e}/>)
+        data?.map((el,i) => <CartProductCard key={i} {...el}/>)
       }
     </div>
     <div id={style.invoice}>
