@@ -1,8 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import style from "../cartComponents/CartProductCard.module.css"
 import Remove from "./Remove";
-
-
 
 // {
 //   "id": 2,
@@ -22,9 +20,50 @@ import Remove from "./Remove";
 //   },
 
 
-const CartProductCard = ({img,title,price,discountPercentage,discountedPrice,sizeInventoryPresent,brand,category})=>{
+let cart = JSON.parse(localStorage.getItem("CartZ-cart")) || [];
 
-    const [quantity,setQuantity] = useState(1)
+const CartProductCard = ({id,img,title,price,discountPercentage,discountedPrice,sizeInventoryPresent,brand,category})=>{
+
+    const [quantity,setQuantity] = useState(1);
+    const [cart, setCart] = useState([])
+
+    useEffect(()=>{
+        let cart = JSON.parse(localStorage.getItem("CartZ-cart")) || [];
+        setCart(cart)
+      },[])
+
+    // function removeItem(id,title){
+    //     let newArr = cart.filter((el,i)=>{
+    //       return(el.id!==id && el.title!==title)
+    //     })
+    //     setCart(newArr);
+    //   }
+    
+    //   function decrement(id,title,quantity){
+    //     if(quantity===1){
+    //       return;
+    //     }
+    //     let newArr = cart.map((el,i)=>{
+    //       if(el.id==id&&el.title==title){
+    //         return {...el,quantity:el.quantity-1}
+    //       }else{
+    //         return el;
+    //       }
+    //     })
+    //     setCart(newArr);
+    //   }
+    
+    //   function increment(id,title){
+    //     let newArr = cart.map((el,i)=>{
+    //       if(el.id==id&&el.title==title){
+    //         return {...el,quantity:el.quantity+1}
+    //       }else{
+    //         return el;
+    //       }
+    //     })
+    //     setCart(newArr);
+    //   }
+    
 
     return <div id={style.card}>
         <div 
@@ -52,15 +91,15 @@ const CartProductCard = ({img,title,price,discountPercentage,discountedPrice,siz
             <p>{discountPercentage}</p>
         </div>
         <div id={style.quantity}>
-            <button onClick={()=>setQuantity(quantity-1)}>
+            <button onClick={(quantity)=> setQuantity(quantity-1)}>
                 -
             </button>
             <input type="number" value={quantity} onChange={(e)=>setQuantity(+e.target.value)}/>
-            <button onClick={()=>setQuantity(quantity+1)}>
+            <button onClick={(quantity)=> setQuantity(quantity+1)}>
                 +
             </button>
         </div>
-        <div id={style.remove}>
+        <div id={style.remove} >
             <Remove/>
         </div>
     </div>
