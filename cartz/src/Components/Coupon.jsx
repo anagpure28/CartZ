@@ -1,7 +1,10 @@
 import { useEffect } from "react";
 import "./Coupon.css"
+import { useNavigate } from "react-router-dom";
 
 function Coupon() {
+  const navigate = useNavigate();
+
   useEffect(() => {
     const newCoupon = () => {
       const card = document.querySelector(".card");
@@ -18,6 +21,10 @@ function Coupon() {
       leftSide.removeEventListener("click", newCoupon);
     };
   }, []);
+
+  const HandlePress = () => {
+    navigate("/signup");
+  }
 
   return (
     <div className="container">
@@ -44,7 +51,7 @@ function Coupon() {
                 <p>CARTZ40</p>
                 <p>Applicable on your first order</p>
               </div>
-              <button>Sign up now</button>
+              <button onClick={HandlePress}>Sign up now</button>
             </div>
             <hr />
             <div className="last">

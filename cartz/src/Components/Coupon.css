@@ -20,6 +20,7 @@
   font-family: "Poppins", sans-serif;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
   transition: all 0.5s;
+  z-index: 100;
 }
 .widen {
   right: 0 !important;
