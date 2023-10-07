@@ -3,11 +3,13 @@ import style from "../CSS/Cart.module.css";
 import CartProductCard from "../cartComponents/CartProductCard";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 let cartData = JSON.parse(localStorage.getItem("CartZ-cart")) || [];
+
 const Cart = () => {
   const [data, setData] = useState(cartData);
+  const navigate = useNavigate()
 
   function totalMRP() {
     let total = 0;
@@ -56,6 +58,10 @@ const Cart = () => {
       }
     });
     setData(newArr);
+  }
+
+  const HandleProceed = () => {
+    navigate("/creditcard")
   }
 
   function increment(id, title) {
@@ -141,7 +147,7 @@ const Cart = () => {
           </div>
         </div>
         <div id={style.buttonSection}>
-          <button>Place Order</button>
+          <button onClick={HandleProceed}>Place Order</button>
         </div>
       </div>
     </div>

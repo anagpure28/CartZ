@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { WomenSideBar } from "../../Components/WomenSideBar";
 import { WomenProductList } from "../ProductList/WomenProductList";
 
-export const WomenProducts = () => {
+const WomenProducts = () => {
   return (
     <DIV>
       <div className="banner"></div>
@@ -17,6 +17,8 @@ export const WomenProducts = () => {
     </DIV>
   );
 };
+
+export default WomenProducts;
 
 const DIV = styled.div`
   .flex {

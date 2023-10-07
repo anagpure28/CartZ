@@ -8,26 +8,22 @@ import {
     Collapse,
     Icon,
     Link,
-    Spinner,
     Popover,
     PopoverTrigger,
     PopoverContent,
     useColorModeValue,
     useBreakpointValue,
     useDisclosure,
-    Input,
   } from '@chakra-ui/react';
   import {
     HamburgerIcon,
     CloseIcon,
-    ChevronDownIcon,
     ChevronRightIcon,
   } from '@chakra-ui/icons';
-  import { CiShoppingCart,CiShop,CiUser } from "react-icons/ci";
+  import { CiShoppingCart,CiShop } from "react-icons/ci";
 import { UserAuth } from '../Context/AuthContext';
 import React, { useState, useEffect } from 'react';
-import { ClockCircleOutlined } from '@ant-design/icons';
-import { Avatar, Badge, Space } from 'antd';
+import { Badge } from 'antd';
 import '../index.css';
 import {  Drawer } from 'antd';
 import { 
@@ -43,9 +39,6 @@ import {
   MdPowerSettingsNew
 } from "react-icons/md";
 import {Link as Link1,NavLink} from "react-router-dom"
-import { color } from 'framer-motion';
-import {useLocation} from "react-router-dom"
-import { useLocale } from 'antd/es/locale';
 import { TbTruck } from "react-icons/tb";
 import style from "./navbar.module.css"
 
@@ -63,8 +56,6 @@ import style from "./navbar.module.css"
   const onClose = () => {
     setOpen(false);
   };
-  // console.log(user)
-  // console.log(useLocation())
 
   const handleLogOut = async ()=>{
     try{

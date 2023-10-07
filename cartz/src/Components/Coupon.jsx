@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import "./Coupon.css"
 
 function Coupon() {
   useEffect(() => {
@@ -40,7 +41,7 @@ function Coupon() {
             <div className="middle-content">
               <div className="coupon">
                 <h4>Coupon code :</h4>
-                <h3>CARTZ $40</h3>
+                <p>CARTZ40</p>
                 <p>Applicable on your first order</p>
               </div>
               <button>Sign up now</button>
