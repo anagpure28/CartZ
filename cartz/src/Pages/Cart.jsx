@@ -1,34 +1,41 @@
 import React, { useEffect, useState } from "react";
 import style from "../CSS/Cart.module.css";
 import CartProductCard from "../cartComponents/CartProductCard";
-import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useCart } from "../cartComponents/CartProvider";
 
-let cartData = JSON.parse(localStorage.getItem("CartZ-cart")) || [];
 const Cart = () => {
-  const [data, setData] = useState(cartData);
+  const [cartData, setCartData] = useState([]);
+  const { removeItemFromCart } = useCart();
+
+  useEffect(() => {
+    // Load cart data from localStorage when the component mounts
+    const storedCartData = JSON.parse(localStorage.getItem('CartZ-cart')) || [];
+    setCartData(storedCartData);
+  }, []);
+
+  const navigate = useNavigate();
 
   function totalMRP() {
     let total = 0;
-    for (let i = 0; i <= data.length - 1; i++) {
-      total += data[i].price * data[i].quantity;
+    for (let i = 0; i <= cartData.length - 1; i++) {
+      total += cartData[i].price * cartData[i].quantity;
     }
     return total;
   }
 
   function totalPrice() {
     let total = 0;
-    for (let i = 0; i <= data.length - 1; i++) {
-      total += data[i].discountedPrice * data[i].quantity;
+    for (let i = 0; i <= cartData.length - 1; i++) {
+      total += cartData[i].discountedPrice * cartData[i].quantity;
     }
     return total;
   }
 
   function totalItems() {
     let total = 0;
-    for (let i = 0; i <= data.length - 1; i++) {
-      total += data[i].quantity;
+    for (let i = 0; i <= cartData.length - 1; i++) {
+      total += cartData[i].quantity;
     }
     return total;
   }
@@ -37,50 +44,57 @@ const Cart = () => {
     return (totalPrice() * 5) / 100;
   }
 
-  function removeItem(id, title) {
-    let newArr = data.filter((el, i) => {
-      return el.id !== id && el.title !== title;
-    });
-    setData(newArr);
-  }
+  const HandleProceed = () => {
+    navigate("/creditcard");
+  };
 
-  function decrement(id, title, quantity) {
+  const Increment = (id, title) => {
+    const updatedCartData = cartData.map((item) => {
+      if (item.id === id && item.title === title) {
+        return { ...item, quantity: item.quantity + 1 };
+      }
+      return item;
+    });
+    setCartData(updatedCartData);
+    updateLocalStorage(updatedCartData);
+  };
+
+  const Decrement = (id, title, quantity) => {
     if (quantity === 1) {
       return;
     }
-    let newArr = data.map((el, i) => {
-      if (el.id == id && el.title == title) {
-        return { ...el, quantity: el.quantity - 1 };
-      } else {
-        return el;
+    const updatedCartData = cartData.map((item) => {
+      if (item.id === id && item.title === title) {
+        return { ...item, quantity: item.quantity - 1 };
       }
+      return item;
     });
-    setData(newArr);
-  }
+    setCartData(updatedCartData);
+    updateLocalStorage(updatedCartData);
+  };
 
-  function increment(id, title) {
-    let newArr = data.map((el, i) => {
-      if (el.id == id && el.title == title) {
-        return { ...el, quantity: el.quantity + 1 };
-      } else {
-        return el;
-      }
-    });
-    setData(newArr);
-  }
+  const RemoveItem = (id, title) => {
+    const updatedCartData = cartData.filter((item) => item.id !== id || item.title !== title);
+    removeItemFromCart(id)
+    setCartData(updatedCartData);
+    updateLocalStorage(updatedCartData);
+  };
+
+  const updateLocalStorage = (data) => {
+    localStorage.setItem('CartZ-cart', JSON.stringify(data));
+  };
 
   return (
     <div id={style.cart}>
       <div id={style.items}>
-        {data.length > 0 ? (
-          data?.map((el, i) => (
+        {cartData.length > 0 ? (
+          cartData.map((el) => (
             <CartProductCard
-              key={i}
+              key={el.id} // Assuming el.id is a unique identifier
               {...el}
-              // increment={increment()}
-              // decrement={decrement()}
-              // removeItem={removeItem()}
-              // quantity={quantity}
+              increment={Increment}
+              decrement={Decrement}
+              remove={RemoveItem}
             />
           ))
         ) : (
@@ -114,7 +128,11 @@ const Cart = () => {
               <p>₹{totalPrice()}</p>
               <p>₹{totalMRP()}</p>
               <p>{totalItems()}</p>
-              {totalPrice() > 5000 ? <p>-₹{percentage()} (5% OFF)</p> : <p>Above ₹5000</p>}
+              {totalPrice() > 5000 ? (
+                <p>-₹{percentage()} (5% OFF)</p>
+              ) : (
+                <p>Above ₹5000</p>
+              )}
               {totalPrice() > 5000 ? <p>-₹0</p> : <p>-₹49</p>}
             </div>
           </div>
@@ -141,7 +159,7 @@ const Cart = () => {
           </div>
         </div>
         <div id={style.buttonSection}>
-          <button>Place Order</button>
+          <button onClick={HandleProceed}>Place Order</button>
         </div>
       </div>
     </div>

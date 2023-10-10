@@ -5,10 +5,8 @@ import {
 } from "react-icons/md";
 import { CiShoppingTag } from "react-icons/ci";
 import { message } from "antd";
-import { Link, useNavigate, useParams } from "react-router-dom";
-// import { useDispatch, useSelector } from "react-redux";
-// import { getCartData, postCartData } from "../Redux/CartReducer/action";
-// import { color } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { useCart } from "../cartComponents/CartProvider";
 
 const ProductCard = ({
   ratingsContainer,
@@ -21,30 +19,36 @@ const ProductCard = ({
   discountPercentage,
   id,
   category,
-  detail
+  detail,
 }) => {
   const navigate = useNavigate();
   const [messageApi, contextHolder] = message.useMessage();
+  const { addItemToCart } = useCart()
 
   const cartButton = () => {
-    // let cartData = JSON.parse(localStorage.getItem("CartZ-cart")) || [];
-    // let duplicateData = false;
-    // cartData.forEach((el,i)=> {
-    //   if(el.id === id && el.category === category){
-    //     duplicateData = true;
-    //   }
-    // })
-    // let newCard = [...cartData, {...detail, quantity: 1}];
-    // localStorage.setItem("CartZ-cart", JSON.stringify(newCard))
-    // messageApi
-    //   .open({
-    //     type: 'loading',
-    //     content: 'Action in progress..',
-    //     duration: 1.5,
-    //   })
-    //   .then(() => message.success('Product Added to Cart', 2.5))
-  }
- 
+    let cartData = JSON.parse(localStorage.getItem("CartZ-cart")) || [];
+    let duplicateData = false;
+    cartData.forEach((el,i)=> {
+      if(el.id === id && el.category === category){
+        duplicateData = true;
+      }
+    })
+    if(duplicateData){
+      messageApi.info('Product is already present in the Cart');
+      return;
+    }
+    let newCard = [...cartData, {...detail, quantity: 1}];
+    addItemToCart(newCard)
+    localStorage.setItem("CartZ-cart", JSON.stringify(newCard))
+    messageApi
+      .open({
+        type: 'loading',
+        content: 'Action in progress..',
+        duration: 1.5,
+      })
+      .then(() => message.success('Product Added to Cart', 2.5))
+  };
+
   return (
     <div
       style={{
@@ -307,21 +311,54 @@ const ProductCard = ({
                 <p style={{ marginTop: "3px", fontSize: "15px" }}>₹{price}</p>
               </div>
             )}
+            {/* {isAdded ? (
+              <button
+                id={id}
+                style={{
+                  fontSize: "12px",
+                  fontWeight: "600",
+                  backgroundColor: "rgb(255,111,97)",
+                  color: "white",
+                  borderRadius: "6px",
+                  padding: "5px 8px",
+                  cursor: "pointer",
+                }}
+                onClick={()=> handleRemoveFromCart(detail)}
+              >
+                Remove
+              </button>
+            ) : (
+              <button
+                id={id}
+                style={{
+                  fontSize: "12px",
+                  fontWeight: "600",
+                  backgroundColor: "rgb(255,111,97)",
+                  color: "white",
+                  borderRadius: "6px",
+                  padding: "5px 8px",
+                  cursor: "pointer",
+                }}
+                onClick={()=> handleAddToCart(detail)}
+              >
+                Add To Cart
+              </button>
+            )} */}
             <button
-              id={id}
-              style={{
-                fontSize: "12px",
-                fontWeight: "600",
-                backgroundColor: "rgb(255,111,97)",
-                color: "white",
-                borderRadius: "6px",
-                padding: "5px 8px",
-                cursor: "pointer",
-              }}
-              onClick={cartButton(id)}
-            >
-              Add To Cart
-            </button>
+                id={id}
+                style={{
+                  fontSize: "12px",
+                  fontWeight: "600",
+                  backgroundColor: "rgb(255,111,97)",
+                  color: "white",
+                  borderRadius: "6px",
+                  padding: "5px 8px",
+                  cursor: "pointer",
+                }}
+                onClick={cartButton}
+              >
+                Add To Cart
+              </button>
           </div>
         </div>
       </div>

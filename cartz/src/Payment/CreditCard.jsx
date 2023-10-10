@@ -3,7 +3,7 @@ import { useState } from "react";
 import "../Payment/CreditCard.css"
 import { message } from 'antd';
 
-export const CreditCard = () => {
+const CreditCard = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const [data, setData] = useState({
     cardNumber: "",
@@ -292,3 +292,5 @@ export const CreditCard = () => {
     </>
   );
 };
+
+export default CreditCard;

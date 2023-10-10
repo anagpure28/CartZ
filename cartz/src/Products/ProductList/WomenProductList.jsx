@@ -98,7 +98,7 @@ export const WomenProductList = () => {
           <div className="grid">
             {products.length > 0 &&
               products.splice(0, 12).map((el, i) => {
-                return <ProductCard key={i} {...el} />;
+                return <ProductCard key={i} detail={el} {...el} />;
               })}
           </div>
           <Box>

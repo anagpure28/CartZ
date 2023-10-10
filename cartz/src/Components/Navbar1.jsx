@@ -8,26 +8,22 @@ import {
     Collapse,
     Icon,
     Link,
-    Spinner,
     Popover,
     PopoverTrigger,
     PopoverContent,
     useColorModeValue,
     useBreakpointValue,
     useDisclosure,
-    Input,
   } from '@chakra-ui/react';
   import {
     HamburgerIcon,
     CloseIcon,
-    ChevronDownIcon,
     ChevronRightIcon,
   } from '@chakra-ui/icons';
-  import { CiShoppingCart,CiShop,CiUser } from "react-icons/ci";
+  import { CiShoppingCart,CiShop } from "react-icons/ci";
 import { UserAuth } from '../Context/AuthContext';
-import React, { useState, useEffect } from 'react';
-import { ClockCircleOutlined } from '@ant-design/icons';
-import { Avatar, Badge, Space } from 'antd';
+import React, { useState } from 'react';
+import { Badge } from 'antd';
 import '../index.css';
 import {  Drawer } from 'antd';
 import { 
@@ -43,18 +39,15 @@ import {
   MdPowerSettingsNew
 } from "react-icons/md";
 import {Link as Link1,NavLink} from "react-router-dom"
-import { color } from 'framer-motion';
-import {useLocation} from "react-router-dom"
-import { useLocale } from 'antd/es/locale';
 import { TbTruck } from "react-icons/tb";
 import style from "./navbar.module.css"
+import { useCart } from '../cartComponents/CartProvider';
 
   export default function Navbar1() {
     const { isOpen, onToggle } = useDisclosure();
     const {user,logOut} = UserAuth()
     const [open, setOpen] = useState(false);
-    console.log(user)
-   
+    const { cartCount } = useCart();
 
   const showDrawer = () => {
     setOpen(true);
@@ -63,8 +56,6 @@ import style from "./navbar.module.css"
   const onClose = () => {
     setOpen(false);
   };
-  // console.log(user)
-  // console.log(useLocation())
 
   const handleLogOut = async ()=>{
     try{
@@ -74,9 +65,6 @@ import style from "./navbar.module.css"
       console.log(err)
     }
   }
-
-  
-  let cartData = JSON.parse(localStorage.getItem("CartZ-cart")) || [];
   
     return (
       <Box style={{position:"fixed",top:"0px",width:"100%",zIndex:"3"}}>
@@ -137,7 +125,7 @@ import style from "./navbar.module.css"
               }}
             >
             <CiShop  style={{fontSize:"22px",cursor:"pointer"}} _hover={{color:"rgb(255,111,97)"}}/>
-            <Badge count={cartData.length}><Link href={"/carts"}><CiShoppingCart  style={{fontSize:"22px", color: 'white', cursor:"pointer"}} _hover={{color:"rgb(255,111,97)"}}/></Link></Badge>
+            <Badge count={cartCount}><Link href={"/carts"}><CiShoppingCart  style={{fontSize:"22px", color: 'white', cursor:"pointer"}} _hover={{color:"rgb(255,111,97)"}}/></Link></Badge>
             {
               user?.displayName ? <div style={{
                 display:"flex",

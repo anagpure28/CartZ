@@ -1,0 +1,169 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
+.container {
+  /* min-height: 200vh; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #eee;
+}
+.container .card {
+  height: 290px;
+  width: 600px;
+  background-color: #fff;
+  position: fixed;
+  top: 30%;
+  right: -540px;
+  font-family: "Poppins", sans-serif;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s;
+  z-index: 100;
+}
+.widen {
+  right: 0 !important;
+}
+
+.container .card .form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+.container .card .left-side {
+  width: 10%;
+  height: 100%;
+  cursor: pointer;
+  position: relative;
+  word-spacing: 5px;
+  background-color: #535766;
+}
+/*left-side-start*/
+
+.left-side .flattext {
+  position: absolute;
+  bottom: 15px;
+  left: 10px;
+}
+.left-side h2 {
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+  transform: rotate(-180deg);
+  color: #fff;
+  font-weight: 900;
+}
+
+.left-side .triangle {
+  height: 35px;
+  width: 17px;
+  background-color: #fff;
+  position: absolute;
+  clip-path: polygon(100% 0, 0 50%, 100% 100%);
+  left: 20px;
+  top: 25px;
+  transition: all 0.3s;
+}
+.righttriangle {
+  height: 36px !important;
+  clip-path: polygon(100% 50%, 0 0, 0 100%) !important;
+}
+
+/*left-side-end*/
+.container .card .right-side {
+  width: 90%;
+  background-image: linear-gradient(to right, #fde4f2, #fef7e6);
+  height: 100%;
+}
+/*right-side-start*/
+.upper-content {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  position: relative;
+  color: #535766;
+}
+.upper-content .flat p {
+  font-size: 16px;
+  font-weight: 600;
+}
+.upper-content .flat h3 {
+  font-weight: 900;
+  font-size: 35px;
+}
+.upper-content .flat h4 {
+  font-size: 24px;
+  font-weight: 900;
+}
+.upper-content img {
+  width: 160px;
+  height: 120px;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+}
+.middle-content {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 30px;
+  position: relative;
+  color: #535766;
+}
+.middle-content h4 {
+  font-size: 15px;
+  font-weight: 800;
+}
+.middle-content h3 {
+  font-size: 20px;
+  font-weight: 800;
+  position: absolute;
+  top: 5px;
+  left: 145px;
+}
+.middle-content p {
+  font-size: 12px;
+  font-weight: 800;
+}
+.middle-content button {
+  height: 45px;
+  width: 130px;
+  border: 0;
+  background-color: #ff3f6c;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 13px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.5s;
+}
+.middle-content button:hover {
+  background-color: #cf3f6c;
+}
+hr {
+  border-top: 1px solid #ccc;
+}
+.last {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 20px;
+}
+
+.last .quality {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.last .quality img {
+  height: 25px;
+  width: 25px;
+  margin-right: 4px;
+  margin-top: -3px;
+}
+
+.last .quality p {
+  font-size: 13px;
+  color: #000 !important;
+  margin-bottom: 1px;
+}
+
+/*right-side-end*/

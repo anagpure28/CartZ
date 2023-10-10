@@ -4,15 +4,11 @@ import {
   Container,
   Stack,
   Text,
-  // Image,
-  Flex,
-  VStack,
   Button,
   Heading,
   SimpleGrid,
   StackDivider,
   useColorModeValue,
-  VisuallyHidden,
   List,
   ListItem,
 } from "@chakra-ui/react";
@@ -22,7 +18,7 @@ import { TbReplace, TbTruckDelivery } from "react-icons/tb";
 import { ImPriceTags } from "react-icons/im";
 import { RiSecurePaymentLine } from "react-icons/ri";
 import "./SingleProductPage.css";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import OffersCarousel from "../CarouselComponent/OffersCarousel";
 import vectorImage from "./Images/vectorOnSingleProductPage.png";
 import Ethinic from "./Images/Ethinic.gif";
@@ -35,6 +31,7 @@ import {Image} from "antd"
 import BestSellerBrands from "../HomeComponents/BestSellerBrands";
 import axios from "axios";
 import { message } from 'antd';
+import { useCart } from "../cartComponents/CartProvider";
 
 let url = "https://845wro.sse.codesandbox.io";
 
@@ -51,23 +48,24 @@ export default function Simple() {
   const [img, setImg] = useState(images[0]);
   const [singleProduct, setSingleProduct] = useState([]);
   const [messageApi, contextHolder] = message.useMessage();
+  const { addItemToCart } = useCart()
 
-  const hoverHandler = (image, i) => {
-    setImg(image);
-    refs.current[i].classList.add("active");
-    for (var j = 0; j < images.length; j++) {
-      if (i !== j) {
-        refs.current[j].classList.remove("active");
-      }
-    }
-  };
-  const refs = useRef([]);
-  refs.current = [];
-  const addRefs = (el) => {
-    if (el && !refs.current.includes(el)) {
-      refs.current.push(el);
-    }
-  };
+  // const hoverHandler = (image, i) => {
+  //   setImg(image);
+  //   refs.current[i].classList.add("active");
+  //   for (var j = 0; j < images.length; j++) {
+  //     if (i !== j) {
+  //       refs.current[j].classList.remove("active");
+  //     }
+  //   }
+  // };
+  // const refs = useRef([]);
+  // refs.current = [];
+  // const addRefs = (el) => {
+  //   if (el && !refs.current.includes(el)) {
+  //     refs.current.push(el);
+  //   }
+  // };
 
   const main = useRef(null);
 
@@ -84,6 +82,7 @@ export default function Simple() {
       return;
     }
     let newCard = [...cartData, {...singleProduct, quantity: 1}];
+    addItemToCart(newCard)
     localStorage.setItem("CartZ-cart", JSON.stringify(newCard))
     messageApi
       .open({
