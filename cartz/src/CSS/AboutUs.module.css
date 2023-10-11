@@ -1,0 +1,75 @@
+
+h1{
+    font-size: 35px;
+    font-weight: 700;
+}
+
+
+
+#main{
+    width: 100%;
+}
+#DevelopersList{
+    margin: 20px auto 50px auto;
+    height: 200px;
+    width: 70%;
+    /* background-color: rgb(195, 195, 195); */
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.DevelopersCard{
+    width: 40%;
+    height: 150px;
+    /* background-color: red; */
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    
+}
+.DevelopersCard>div:nth-child(1){
+    width: 40%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.DevelopersCard>div:nth-child(2){
+    width: 60%;
+    height: 50%;
+    text-align: start;
+}
+.DevelopersCard>div:nth-child(2)>h3{
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0px;
+}
+.DevelopersCard>div:nth-child(2)>p{
+    color: gray;
+    font-size: 12px;
+}
+.DevelopersCard>div:nth-child(1)>img{
+    width: 100px;
+    border: 3px solid rgb(255,111,97);
+    border-radius: 100%
+}
+.DevelopersCard>div:nth-child(2)>img{
+    width: 50px;
+    margin-top: 10px;
+}
+#MeetYourDevelopers{
+    margin-top: 50px;
+}
+#CompanyProfile{
+    margin: 50px auto;
+    height: auto;
+    width: 70%;
+    /* background-color: rgb(198, 198, 198); */
+}
+#CompanyProfile>div{
+    width: 90%;
+    height: auto;
+    margin:50px auto 100px auto;
+}
