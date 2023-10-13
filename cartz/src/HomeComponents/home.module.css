@@ -70,7 +70,7 @@
   align-items: flex-end;
 }
 .BestSeller>div:nth-child(3)>button{
-  background-color: rgb(255, 111, 97);
+  background-color: #2D6E7E;
   padding: 10px 20px;
   border-radius: 15px;
   font-weight: 500;

@@ -14,9 +14,9 @@ function UpcomingCategory(){
 
     return <div className={style.UpcomingCategory}>
          <div>
-            <div style={{width:"50px",border:"1px solid rgb(255, 111, 97)",margin:"20px"}}></div>
+            <div style={{width:"50px",border:"1px solid #2D6E7E",margin:"20px"}}></div>
             <p style={{fontSize:"30px",fontWeight:"600"}}>Upcoming Categories</p>
-            <div style={{width:"50px",border:"1px solid rgb(255, 111, 97)",margin:"20px"}}></div>
+            <div style={{width:"50px",border:"1px solid #2D6E7E",margin:"20px"}}></div>
         </div>
         <div>
             <Carousel data={data} name={"UpcomingCategory"}/>

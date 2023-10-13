@@ -35,7 +35,7 @@ export default function SimpleThreeColumns() {
             type="text" 
             placeholder='Enter your number' 
             style={{backgroundColor: "#f1f4f6", padding: "5px 10px", borderRadius: "5px", }}/>
-        <Button style={{backgroundColor: "#ff6f61", color: "white", width: "120px", margin: "0 10px"}}>SEND LINK</Button>
+        <Button style={{backgroundColor: "#2D6E7E", color: "white", width: "120px", margin: "0 10px"}}>SEND LINK</Button>
       </SimpleGrid>
     </Box>
   );
