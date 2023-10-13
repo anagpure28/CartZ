@@ -213,12 +213,12 @@ export default function LargeWithAppLinksAndSocial() {
               <Link href={"#"}>What daily dose of health?</Link>
               {
                 user?.displayName ? <div style={{width:"90%",display:"flex",alignItems:"center",gap:"10px"}}>
-                  <img style={{width:"35px",borderRadius:"50%",border:"3px solid rgb(255,111,97)",cursor:"pointer"}} src={user?.photoURL} onClick={showDrawer} />
+                  <img style={{width:"35px",borderRadius:"50%",border:"3px solid #2D6E7E",cursor:"pointer"}} src={user?.photoURL} onClick={showDrawer} />
                   <p style={{fontWeight:"500",fontSize:"19px"}}>{user?.displayName}</p>
                   <>
                   <Drawer title="User Detials" placement="right" onClose={onClose} open={open}>
                     <div style={{textAlign:"center"}}>
-                      <img src={user?.photoURL} style={{margin:"auto",border:"3px solid rgb(255,111,97)",borderRadius:"50%",width:"150px"}}/>
+                      <img src={user?.photoURL} style={{margin:"auto",border:"3px solid #2D6E7E",borderRadius:"50%",width:"150px"}}/>
                       <p style={{margin:"20px auto 0px 10px",fontWeight:"500",fontSize:"25px",display:"flex",alignItems:"center",justifyContent:"center",gap:"10px"}}>{user?.displayName} {user?.emailVerified ? <MdVerified style={{fontSize:"17px",marginTop:"6px",color:"green"}} /> : ""}</p>
                       <p style={{fontWeight:"500",fontSize:"10px"}}>{user?.email}</p>
                     </div>
@@ -238,7 +238,7 @@ export default function LargeWithAppLinksAndSocial() {
                       <Link style={{display:"flex",alignItems:"center",gap:"7px",fontSize:"16px",textDecoration:"none"}}><p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><MdOutlineSettings style={{marginRight:"7px"}}/>Settings</p></Link>
                       {/* <Link style={{display:"flex",alignItems:"center",gap:"7px",fontSize:"16px",textDecoration:"none"}}><p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><MdOutlineDeliveryDining style={{marginRight:"7px"}}/>My Orders</p></Link> */}
                       <div style={{display:"flex",justifyContent:'center',alignItems:"flex-end",height:"30%"}}>
-                          <Button   colorScheme='orange' variant='outline' style={{height:"35px",gap:"5px"}} onClick={handleLogOut}><MdPowerSettingsNew style={{marginTop:"2px",decoration:"none"}}/>Logout</Button>
+                          <Button   colorScheme='teal' variant='outline' style={{height:"35px",gap:"5px"}} onClick={handleLogOut}><MdPowerSettingsNew style={{marginTop:"2px",decoration:"none"}}/>Logout</Button>
                       </div>
                     </div>
                   </Drawer>

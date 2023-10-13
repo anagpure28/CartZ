@@ -4,7 +4,7 @@ import { GET_PRODUCT_SUCCESS, PRODUCT_FAILURE, PRODUCT_REQUEST } from "../action
 //Mens Product
 export const mensProduct = (data) => (dispatch) => {
     dispatch({type: PRODUCT_REQUEST})
-    axios.get(process.env.REACT_MEN_API, data).then((res)=> {
+    axios.get("https://845wro.sse.codesandbox.io/Men", data).then((res)=> {
         dispatch({type: GET_PRODUCT_SUCCESS, payload: res.data})
     }).catch((err)=> {
         dispatch({type: PRODUCT_FAILURE})
