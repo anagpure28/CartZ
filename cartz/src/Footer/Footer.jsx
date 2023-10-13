@@ -140,7 +140,7 @@ export default function LargeWithAppLinksAndSocial() {
           />
           <Button
             style={{
-              backgroundColor: "#ff6f61",
+              backgroundColor: "#2D6E7E",
               color: "white",
               width: "120px",
               margin: "0 10px",
@@ -222,14 +222,14 @@ export default function LargeWithAppLinksAndSocial() {
                       <p style={{margin:"20px auto 0px 10px",fontWeight:"500",fontSize:"25px",display:"flex",alignItems:"center",justifyContent:"center",gap:"10px"}}>{user?.displayName} {user?.emailVerified ? <MdVerified style={{fontSize:"17px",marginTop:"6px",color:"green"}} /> : ""}</p>
                       <p style={{fontWeight:"500",fontSize:"10px"}}>{user?.email}</p>
                     </div>
-                    <div style={{width:"100%",border:"1px solid rgb(255, 111, 97)",margin:"10px auto"}}></div>
+                    <div style={{width:"100%",border:"1px solid #2D6E7E",margin:"10px auto"}}></div>
                     <div style={{height:"200px",textAlign:"start",width:"95%",margin:"auto",paddingTop:"20px",lineHeight:"30px"}}>
                       <p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><MdOutlineEmail style={{marginRight:"7px"}}/>Email : {user?.email}</p>
                       <p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><MdOutlinePhoneInTalk style={{marginRight:"7px"}}/>Number : {user?.phoneNumber? "" : "Not Found"}</p>
                       <p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><MdOutlineDateRange style={{marginRight:"7px"}}/>DOB : dd/mm/yy</p>
                       <p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><MdOutlineHome style={{marginRight:"7px"}}/>Address : Not Found</p>
                     </div>
-                    <div style={{width:"100%",border:"1px solid rgb(255, 111, 97)",margin:"10px auto"}}></div>
+                    <div style={{width:"100%",border:"1px solid #2D6E7E",margin:"10px auto"}}></div>
                     <div style={{height:"221px",textAlign:"start",width:"95%",margin:"auto",lineHeight:"30px"}}>
                       <Link style={{display:"flex",alignItems:"center",gap:"7px",fontSize:"16px",textDecoration:"none"}}><p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><TbTruck style={{marginRight:"7px"}}/>My Orders</p></Link>
                       <Link colorScheme='orange' style={{display:"flex",alignItems:"center",gap:"7px",fontSize:"16px",textDecoration:"none"}}><p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><MdOutlineFavoriteBorder style={{marginRight:"7px"}}/>My Wishlist</p></Link>
@@ -245,7 +245,7 @@ export default function LargeWithAppLinksAndSocial() {
                 </>
                 </div> :
 
-                <Button onClick={()=>navigate("/signup")}  style={{ backgroundColor: "#ff6f61", color: "white" }}>
+                <Button onClick={()=>navigate("/signup")}  style={{ backgroundColor: "#2D6E7E", color: "white" }}>
                   SIGN UP
                 </Button>
               }

@@ -100,7 +100,7 @@ const ProductCard = ({
               style={{
                 fontWeight: "600",
                 fontSize: "12px",
-                color: "rgb(255,111,97)",
+                color: "#2D6E7E",
                 display: "flex",
                 alignItems: "center",
                 gap: "5px",
@@ -119,7 +119,7 @@ const ProductCard = ({
             </p>
           </div>
           <hr
-            style={{ border: "1px dashed rgb(255,111,97)", margin: "3px auto" }}
+            style={{ border: "1px dashed #2D6E7E", margin: "3px auto" }}
           />
           <p
             style={{
@@ -138,7 +138,7 @@ const ProductCard = ({
                 display: "flex",
                 alignItems: "center",
                 gap: "5px",
-                color: "rgb(255,111,97)",
+                color: "#2D6E7E",
               }}
             >
               <p style={{ fontWeight: "800", fontSize: "13px" }}>
@@ -148,7 +148,7 @@ const ProductCard = ({
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  marginTop: "-1px",
+                  marginTop: "-5px",
                   fontSize: "15px",
                 }}
               >
@@ -317,7 +317,7 @@ const ProductCard = ({
                 style={{
                   fontSize: "12px",
                   fontWeight: "600",
-                  backgroundColor: "rgb(255,111,97)",
+                  backgroundColor: "#2D6E7E",
                   color: "white",
                   borderRadius: "6px",
                   padding: "5px 8px",
@@ -333,7 +333,7 @@ const ProductCard = ({
                 style={{
                   fontSize: "12px",
                   fontWeight: "600",
-                  backgroundColor: "rgb(255,111,97)",
+                  backgroundColor: "#2D6E7E",
                   color: "white",
                   borderRadius: "6px",
                   padding: "5px 8px",
@@ -349,11 +349,14 @@ const ProductCard = ({
                 style={{
                   fontSize: "12px",
                   fontWeight: "600",
-                  backgroundColor: "rgb(255,111,97)",
-                  color: "white",
-                  borderRadius: "6px",
+                  color: "#2D6E7E",
+                  borderRadius: "8px",
                   padding: "5px 8px",
                   cursor: "pointer",
+                  border:"2px solid #2D6E7E",
+                  borderBottom:"3px solid",
+                  borderRight:"3px solid",
+                  marginTop:"-3px",
                 }}
                 onClick={cartButton}
               >

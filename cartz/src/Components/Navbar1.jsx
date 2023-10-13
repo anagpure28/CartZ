@@ -124,32 +124,32 @@ import { useCart } from '../cartComponents/CartProvider';
                 color:"white"
               }}
             >
-            <CiShop  style={{fontSize:"22px",cursor:"pointer"}} _hover={{color:"rgb(255,111,97)"}}/>
-            <Badge count={cartCount}><Link href={"/carts"}><CiShoppingCart  style={{fontSize:"22px", color: 'white', cursor:"pointer"}} _hover={{color:"rgb(255,111,97)"}}/></Link></Badge>
+            <CiShop  style={{fontSize:"22px",cursor:"pointer"}} _hover={{color:"#2D6E7E"}}/>
+            <Badge count={cartCount} style={{backgroundColor:"#2D6E7E"}}><Link href={"/carts"}><CiShoppingCart  style={{fontSize:"22px", color: 'white', cursor:"pointer"}} _hover={{color:"#2D6E7E"}}/></Link></Badge>
             {
               user?.displayName ? <div style={{
                 display:"flex",
                 alignItems:"center",
                 color:"white"
               }}>
-                {/* <CiUser  style={{fontSize:"22px",cursor:"pointer"}} _hover={{textDecoration: 'none', color: "rgb(255,111,97)",}}/> */}
-                <img src={user?.photoURL} width={"35px"}  style={{borderRadius:"50px",border:"2px solid rgb(255,111,97)",cursor:"pointer",padding:"1px"}} onClick={showDrawer}/>
+                {/* <CiUser  style={{fontSize:"22px",cursor:"pointer"}} _hover={{textDecoration: 'none', color: "#2D6E7E",}}/> */}
+                <img src={user?.photoURL} width={"35px"}  style={{borderRadius:"50px",border:"2px solid #2D6E7E",cursor:"pointer",padding:"1px"}} onClick={showDrawer}/>
                 <Text style={{fontSize:"15px",width:"180px",textAlign:"start",marginLeft:"20px"}}>👋 Hi {user?.displayName.split(" ")[0]}</Text>
                 <>
                   <Drawer title="User Detials" placement="right" onClose={onClose} open={open}>
                     <div style={{textAlign:"center"}}>
-                      <img src={user?.photoURL} style={{margin:"auto",border:"3px solid rgb(255,111,97)",borderRadius:"50%",width:"150px",padding:"2px"}}/>
+                      <img src={user?.photoURL} style={{margin:"auto",border:"3px solid #2D6E7E",borderRadius:"50%",width:"150px",padding:"2px"}}/>
                       <p style={{margin:"20px auto 0px 10px",fontWeight:"500",fontSize:"25px",display:"flex",alignItems:"center",justifyContent:"center",gap:"10px"}}>{user?.displayName} {user?.emailVerified ? <MdVerified style={{fontSize:"17px",marginTop:"6px",color:"green"}} /> : ""}</p>
                       <p style={{fontWeight:"500",fontSize:"10px"}}>{user?.email}</p>
                     </div>
-                    <div style={{width:"100%",border:"1px solid rgb(255, 111, 97)",margin:"10px auto"}}></div>
+                    <div style={{width:"100%",border:"1px solid #2D6E7E",margin:"10px auto"}}></div>
                     <div style={{height:"200px",textAlign:"start",width:"95%",margin:"auto",paddingTop:"20px",lineHeight:"30px"}}>
                       <p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><MdOutlineEmail style={{marginRight:"7px"}}/>Email : {(user?.email).substring(0,30)}{user?.email.length>30 ? "..." : ""}</p>
                       <p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><MdOutlinePhoneInTalk style={{marginRight:"7px"}}/>Number : {user?.phoneNumber? "" : "Not Found"}</p>
                       <p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><MdOutlineDateRange style={{marginRight:"7px"}}/>DOB : dd/mm/yy</p>
                       <p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><MdOutlineHome style={{marginRight:"7px"}}/>Address : Not Found</p>
                     </div>
-                    <div style={{width:"100%",border:"1px solid rgb(255, 111, 97)",margin:"10px auto"}}></div>
+                    <div style={{width:"100%",border:"1px solid #2D6E7E",margin:"10px auto"}}></div>
                     <div style={{height:"221px",textAlign:"start",width:"95%",margin:"auto",lineHeight:"30px"}}>
                       <Link style={{display:"flex",alignItems:"center",gap:"7px",fontSize:"16px",textDecoration:"none"}}><p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><TbTruck style={{marginRight:"7px"}}/>My Orders</p></Link>
                       <Link colorScheme='orange' style={{display:"flex",alignItems:"center",gap:"7px",fontSize:"16px",textDecoration:"none"}}><p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><MdOutlineFavoriteBorder style={{marginRight:"7px"}}/>My Wishlist</p></Link>
@@ -158,7 +158,7 @@ import { useCart } from '../cartComponents/CartProvider';
                       <Link style={{display:"flex",alignItems:"center",gap:"7px",fontSize:"16px",textDecoration:"none"}}><p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><MdOutlineSettings style={{marginRight:"7px"}}/>Settings</p></Link>
                       {/* <Link style={{display:"flex",alignItems:"center",gap:"7px",fontSize:"16px",textDecoration:"none"}}><p style={{fontWeight:"500",fontSize:"16px",display:"flex",alignItems:"center"}}><MdOutlineDeliveryDining style={{marginRight:"7px"}}/>My Orders</p></Link> */}
                       <div style={{display:"flex",justifyContent:'center',alignItems:"flex-end",height:"30%"}}>
-                          <Button   colorScheme='orange' variant='outline' style={{height:"35px",gap:"5px"}} onClick={handleLogOut}><MdPowerSettingsNew style={{marginTop:"2px",decoration:"none"}}/>Logout</Button>
+                          <Button   colorScheme='#2D6E7E' variant='outline' style={{height:"35px",gap:"5px"}} onClick={handleLogOut}><MdPowerSettingsNew style={{marginTop:"2px",decoration:"none"}}/>Logout</Button>
                       </div>
                     </div>
                   </Drawer>
@@ -192,7 +192,7 @@ import { useCart } from '../cartComponents/CartProvider';
     };
     const activeLinkStyle = {
       textDecoration: "none",
-      color: "rgb(255,111,97)",
+      color: "#2D6E7E",
       border:"0px",
       fontSize:"14px",
       letterSpacing:"1px",

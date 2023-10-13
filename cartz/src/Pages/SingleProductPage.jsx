@@ -421,7 +421,7 @@ export default function Simple() {
               mb={2}
               size={"lg"}
               py={"3"}
-              bg={"rgb(255,111,97)"}
+              bg={"#2D6E7E"}
               color={useColorModeValue("white", "gray.900")}
               textTransform={"uppercase"}
               _hover={{

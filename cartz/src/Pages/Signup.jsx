@@ -108,7 +108,7 @@ import { useState } from 'react';
               </Stack>
               <Stack pt={2}>
                 <Text align={'center'}>
-                  Already a user ?  <Link to="/login" style={{color: "rgb(255,111,97)"}}>Login</Link>
+                  Already a user ?  <Link to="/login" style={{color: "#008170"}}>Login</Link>
                 </Text>
               </Stack>
             </Stack>

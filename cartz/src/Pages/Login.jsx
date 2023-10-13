@@ -114,7 +114,7 @@ export default function Login() {
               </Button>
               <p style={{margin:"10px"}}>OR</p>
               <GoogleButton onClick={handleGoogleSignIn} style={{width:"90%",margin:"auto",backgroundColor:"white",color:"gray",fontWeight:"600",padding:"0px 55px",borderRadius:"10px"}}/>
-              <p style={{margin:"15px"}}>Don't Have an Account ?  <Link1 to="/signup" style={{color:"rgb(255,111,97)"}}> Register</Link1></p>
+              <p style={{margin:"15px"}}>Don't Have an Account ?  <Link1 to="/signup" style={{color:"#008170"}}> Register</Link1></p>
             </Stack>
           </Stack>
         </Box>

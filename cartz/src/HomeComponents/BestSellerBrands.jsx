@@ -7,7 +7,7 @@ function BestSellerBrands() {
         <div
           style={{
             width: "50px",
-            border: "1px solid rgb(255, 111, 97)",
+            border: "1px solid #2D6E7E",
             margin: "20px",
           }}
         ></div>
@@ -17,7 +17,7 @@ function BestSellerBrands() {
         <div
           style={{
             width: "50px",
-            border: "1px solid rgb(255, 111, 97)",
+            border: "1px solid #2D6E7E",
             margin: "20px",
           }}
         ></div>

@@ -48,9 +48,9 @@ function LimitedOffers(){
             }}
             className="heading"
         >
-            <div style={{width:"50px",border:"1px solid rgb(255, 111, 97)",margin:"20px"}}></div>
+            <div style={{width:"50px",border:"1px solid #2D6E7E",margin:"20px"}}></div>
             <p style={{fontSize:"30px",fontWeight:"600"}}>Limited Offer's</p>
-            <div style={{width:"50px",border:"1px solid rgb(255, 111, 97)",margin:"20px"}}></div>
+            <div style={{width:"50px",border:"1px solid #2D6E7E",margin:"20px"}}></div>
         </div>
         <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:"50px"}}>
             {data.map((e,i)=>
@@ -78,7 +78,7 @@ function LimitedOffers(){
                             margin:"4px"
                         }}>
                             <p style={{fontSize:"20px",fontWeight:"700"}}>{e.title}</p>
-                            <div style={{width:"70%",border:"1px solid rgb(255, 111, 97)",margin:"3px auto"}}></div>
+                            <div style={{width:"70%",border:"1px solid #2D6E7E",margin:"3px auto"}}></div>
                             <p style={{fontSize:"15px",fontWeight:"700"}}>{e.offer}</p>
 
                         </div>

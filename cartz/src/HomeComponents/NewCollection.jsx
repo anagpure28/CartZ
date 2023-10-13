@@ -20,9 +20,9 @@ function NewCollection ({data}){
 
     return <div className={style.newCollection}>
         <div>
-            <div style={{width:"50px",border:"1px solid rgb(255, 111, 97)",margin:"20px"}}></div>
+            <div style={{width:"50px",border:"1px solid #2D6E7E",margin:"20px"}}></div>
             <p style={{fontSize:"30px",fontWeight:"600"}}>New Collections</p>
-            <div style={{width:"50px",border:"1px solid rgb(255, 111, 97)",margin:"20px"}}></div>
+            <div style={{width:"50px",border:"1px solid #2D6E7E",margin:"20px"}}></div>
         </div>
         <div style={{backgroundImage:`url(${newCollection})`}}>
 
@@ -58,9 +58,9 @@ function NewCollection ({data}){
                         </div>
                         <div >
                             <div style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
-                                <div style={{width:"50px",border:"1px solid rgb(255, 111, 97)",margin:"20px"}}></div>
+                                <div style={{width:"50px",border:"1px solid #2D6E7E",margin:"20px"}}></div>
                                 <p style={{fontWeight:"600",color:"gray",fontSize:"13px"}}>{e.brand}</p>
-                                <div style={{width:"50px",border:"1px solid rgb(255, 111, 97)",margin:"20px"}}></div>                            
+                                <div style={{width:"50px",border:"1px solid #2D6E7E",margin:"20px"}}></div>                            
                             </div>
                             <p style={{fontSize:"18px",fontWeight:"600"}}>{e.product}</p>
                             <div style={{display:"flex",justifyContent:"space-evenly",alignItems:'center',width:"70%",margin:"auto"}}>
