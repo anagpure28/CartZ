@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import style from "../CSS/Cart.module.css";
 import CartProductCard from "../cartComponents/CartProductCard";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../cartComponents/CartProvider";
+import { Button, Result } from 'antd';
 
 const Cart = () => {
   const [cartData, setCartData] = useState([]);
@@ -10,7 +11,7 @@ const Cart = () => {
 
   useEffect(() => {
     // Load cart data from localStorage when the component mounts
-    const storedCartData = JSON.parse(localStorage.getItem('CartZ-cart')) || [];
+    const storedCartData = JSON.parse(localStorage.getItem("CartZ-cart")) || [];
     setCartData(storedCartData);
   }, []);
 
@@ -74,14 +75,16 @@ const Cart = () => {
   };
 
   const RemoveItem = (id, title) => {
-    const updatedCartData = cartData.filter((item) => item.id !== id || item.title !== title);
-    removeItemFromCart(id)
+    const updatedCartData = cartData.filter(
+      (item) => item.id !== id || item.title !== title
+    );
+    removeItemFromCart(id);
     setCartData(updatedCartData);
     updateLocalStorage(updatedCartData);
   };
 
   const updateLocalStorage = (data) => {
-    localStorage.setItem('CartZ-cart', JSON.stringify(data));
+    localStorage.setItem("CartZ-cart", JSON.stringify(data));
   };
 
   return (
@@ -99,7 +102,12 @@ const Cart = () => {
           ))
         ) : (
           <>
-            <p>No items in the cart</p>
+            <Result
+              status="404"
+              title="Your Cart is currently empty!!"
+              style={{fontWeight: "400"}}
+              extra={<Link to="/"><Button type="primary">Back Home</Button></Link>}
+            />
           </>
         )}
       </div>
