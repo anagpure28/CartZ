@@ -39,20 +39,34 @@ export default function OffersCarousel() {
 
   // These are the images used in the slide
   const cards = [
-    // pic1,
-    // pic2,
-    // pic3,
-    // pic4,
-    // pic5,
-    // pic6,
-    // pic7
+    {
+      "name": "Bank offer",
+      "offer": "Upto ₹300.00 discount on select Credit Cards, HDFC Bank Debit CardsUpto...",
+      "number" : 6
+    },
+    {
+      "name": "Partner offer",
+      "offer": "Receive 1 Free chain on this particular wear...",
+      "number" : 2
+    },
+    {
+      "name": "No Cost EMI",
+      "offer": "No Cost EMI available on CartZ Pay Later...",
+      "number" : 3
+    },
+    {
+      "name": "Bank offer",
+      "offer": "5% Cashback on CartZ Axis Bank Card",
+      "number" : 1
+    },
   ];
 
-  const Card = ({ heading, description, icon, href }) => {
+  const Card = ({ name, offer, number }) => {
     return (
       <Box
         maxW={{ base: 'full', md: '275px' }}
         w={'full'}
+        h={"150px"}
         borderWidth="1px"
         borderRadius="lg"
         overflow="hidden"
@@ -61,13 +75,13 @@ export default function OffersCarousel() {
         textAlign={"left"}>
         <Stack align={'start'}>
           <Box mt={2}>
-            <Heading size="md">Bank Offer</Heading>
+            <Heading size="md">{name}</Heading>
             <Text mt={1} fontSize={'sm'}>
-            Upto ₹300.00 discount on select Credit Cards, HDFC Bank Debit CardsUpto...
+              {offer}
             </Text>
           </Box>
           <Button variant={'link'} colorScheme={'blue'} size={'sm'} lineHeight={0}>
-            6 offers
+            {number} offers
           </Button>
         </Stack>
       </Box>
@@ -93,14 +107,13 @@ export default function OffersCarousel() {
         href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
       />
       <Slider {...settings} ref={(slider) => setSlider(slider)}>
-        {[1,2,3,4].map((url, index) => (
+        {cards?.map((el, index) => (
           <Card
           key={index}
           backgroundPosition="center"
-            heading={'Heading'}
-            description={
-              'Lorem ipsum dolor sit amet catetur, adipisicing elit.'
-            }
+            name={el?.name}
+            offer={el?.offer}
+            number={el?.number}
             href={'#'}
           />
         ))}

@@ -24,7 +24,7 @@ export const womensProduct = (data) => (dispatch) => {
 //Boys Product
 export const boysProduct = (data) => (dispatch) => {
     dispatch({type: PRODUCT_REQUEST})
-    axios.get("https://00ty7r-8080.csb.app/boys", data).then((res)=> {
+    axios.get("https://845wro.sse.codesandbox.io/Boys", data).then((res)=> {
         dispatch({type: GET_PRODUCT_SUCCESS, payload: res.data})
     }).catch((err)=> {
         dispatch({type: PRODUCT_FAILURE})
@@ -34,7 +34,7 @@ export const boysProduct = (data) => (dispatch) => {
 // Girls Product
 export const girlsProduct = (data) => (dispatch) => {
     dispatch({type: PRODUCT_REQUEST})
-    axios.get("https://00ty7r-8080.csb.app/girls", data).then((res)=> {
+    axios.get("https://845wro.sse.codesandbox.io/Girls", data).then((res)=> {
         dispatch({type: GET_PRODUCT_SUCCESS, payload: res.data})
     }).catch((err)=> {
         dispatch({type: PRODUCT_FAILURE})

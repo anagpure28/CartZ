@@ -338,14 +338,14 @@ import { useCart } from '../cartComponents/CartProvider';
       label: "WOMEN",
       href: "/women"
     },
-    // {
-    //   label: "KIDS",
-    //   href: '/kids',
-    // },
-    // {
-    //     label: "ALL-PRODUCTS",
-    //     href: '/all-products',
-    // },
+    {
+      label: "GIRLS",
+      href: '/girls',
+    },
+    {
+        label: "BOYS",
+        href: '/boys',
+    },
     {
       label: 'STUDIO',
       href: '/studio',

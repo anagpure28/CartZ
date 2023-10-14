@@ -13,6 +13,8 @@ import {Contact} from '../Pages/Contact';
 // import WomenProducts from "../Products/ProductPages/WomenProducts"
 // import CreditCard from '../Payment/CreditCard';
 // import Cart from '../Pages/Cart';
+// import GirlsProduct from '../Products/ProductPages/GirlsProduct';
+// import BoysProduct from '../Products/ProductPages/BoysProduct';
 
 import PrivateRoute from './PrivateRoute';
 
@@ -21,7 +23,8 @@ const Login = lazy(() => import('../Pages/Login'));
 const SingleProductPage = lazy(() => import('../Pages/SingleProductPage'));
 const NotFound = lazy(() => import('../Pages/NotFound'));
 const SignupCard = lazy(() => import('../Pages/Signup'));
-const KidProducts = lazy(() => import('../Products/ProductPages/KidProducts'));
+const GirlsProduct = lazy(() => import('../Products/ProductPages/GirlsProduct'));
+const BoysProduct = lazy(() => import('../Products/ProductPages/BoysProduct'));
 const MenProducts = lazy(() => import('../Products/ProductPages/MenProducts'));
 const WomenProducts = lazy(() => import('../Products/ProductPages/WomenProducts'));
 const CreditCard = lazy(() => import('../Payment/CreditCard'));
@@ -44,7 +47,8 @@ const AllRoutes = () => {
           <Route path="/men" element={<MenProducts/>}></Route>
           <Route path="/women" element={<WomenProducts />}></Route>
           <Route path="/studio" element={<Studio />}></Route>
-          <Route path="/kids" element={<KidProducts/>}></Route>
+          <Route path="/girls" element={<GirlsProduct/>}></Route>
+          <Route path="/boys" element={<BoysProduct/>}></Route>
           <Route path="/creditcard" element={<CreditCard/>}></Route>
           <Route
           path="/payment"
