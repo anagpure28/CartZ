@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styles from "../CSS/AboutUs.module.css"
 import AniketZadePhoto from "./Images/AniketZade.png"
 import AniketNagpurePhoto from "./Images/AniketNagpure.png"
@@ -101,6 +101,11 @@ const TestimonialAvatar = ({
 }
 
 const About = () => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div id={styles.main}>
         <Box bg={useColorModeValue('gray.100', 'gray.700')}>
