@@ -10,8 +10,14 @@ import FirstCarosel from "../HomeComponents/FirstCarosel";
 import couponImage from "../HomeComponents/images/PC_Coupon_stripe.gif";
 import buyonegetoneImage from "../HomeComponents/images/640x128-bxgy-revised_update.jpg";
 import Coupon from "../Components/Coupon";
+import { useEffect } from "react";
 
 const Home = () => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div style={{zIndex: -100}}>
       <Coupon />

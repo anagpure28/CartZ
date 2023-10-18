@@ -5,8 +5,14 @@ import shadi from "./Images/shadi.jpg";
 import travel from "./Images/travel.jpg";
 import customer from "./Images/customer.jpg";
 import Coupon from "../Components/Coupon";
+import { useEffect } from "react";
 
 function Studio() {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div>
       <div
@@ -17,6 +23,9 @@ function Studio() {
           backgroundSize: "cover",
           width: "100%",
         }}
+        class="animate__animated animate__heartBeat animate__delay-0.5s"
+        Isi 
+        isii sis 
       ></div>
       <Coupon />
       <div

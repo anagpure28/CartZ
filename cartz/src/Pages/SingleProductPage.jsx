@@ -101,8 +101,10 @@ export default function Simple() {
         console.log(res.data);
       })
       .catch((error) => console.log(error));
-    main.current.scrollTop = -100;
-    // console.log(main)
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
   }, []);
 
   return (
