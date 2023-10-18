@@ -15,6 +15,10 @@ const Cart = () => {
     setCartData(storedCartData);
   }, []);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const navigate = useNavigate();
 
   function totalMRP() {

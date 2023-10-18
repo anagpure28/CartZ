@@ -311,39 +311,6 @@ const ProductCard = ({
                 <p style={{ marginTop: "3px", fontSize: "15px" }}>₹{price}</p>
               </div>
             )}
-            {/* {isAdded ? (
-              <button
-                id={id}
-                style={{
-                  fontSize: "12px",
-                  fontWeight: "600",
-                  backgroundColor: "#2D6E7E",
-                  color: "white",
-                  borderRadius: "6px",
-                  padding: "5px 8px",
-                  cursor: "pointer",
-                }}
-                onClick={()=> handleRemoveFromCart(detail)}
-              >
-                Remove
-              </button>
-            ) : (
-              <button
-                id={id}
-                style={{
-                  fontSize: "12px",
-                  fontWeight: "600",
-                  backgroundColor: "#2D6E7E",
-                  color: "white",
-                  borderRadius: "6px",
-                  padding: "5px 8px",
-                  cursor: "pointer",
-                }}
-                onClick={()=> handleAddToCart(detail)}
-              >
-                Add To Cart
-              </button>
-            )} */}
             <button
                 id={id}
                 style={{

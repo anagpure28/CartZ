@@ -1,8 +1,14 @@
 import { Box, Heading, Text } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { Button, Result } from 'antd';
+import { useEffect } from 'react';
 
 export default function NotFound() {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div>
       <Box textAlign="center" py={70} px={6}>

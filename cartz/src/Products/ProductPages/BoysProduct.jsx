@@ -1,15 +1,15 @@
 import styled from "styled-components";
-import { MenSideBar } from "../../Components/MenSideBar";
 import { BoysProductList } from "../ProductList/BoysProductList";
+import { BoysSideBar } from "../../Components/BoysSideBar";
 
 const BoysProduct = () => {
   return (
     <DIV>
-      <div className="banner">
+      <div className="banner animate__animated animate__zoomInDown">
       </div>
       <div className="flex">
         <div className="sidebar" data-aos="zoom-out-right">
-          <MenSideBar />
+          <BoysSideBar />
         </div>
         <div className="allProductList" data-aos="zoom-out-left">
           <BoysProductList />

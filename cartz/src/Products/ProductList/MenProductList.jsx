@@ -2,10 +2,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { mensProduct } from "../../Redux/ProductReducer/action";
 import styled from "styled-components";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 import ProductCard from "../../Components/ProductCard";
 import { WarningTwoIcon } from "@chakra-ui/icons";
-import { Box, Heading, SkeletonText } from "@chakra-ui/react";
+import { Box, Button, Heading, SkeletonText } from "@chakra-ui/react";
 import { Pagination } from "../../Pages/Pagination";
 
 export const MenProductList = () => {
@@ -19,6 +19,7 @@ export const MenProductList = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const inputRef = useRef(null);
+  const end = Math.ceil(products.length / 12);
 
   let obj = {
     params: {
@@ -62,6 +63,10 @@ export const MenProductList = () => {
     }, 1000);
   }, [query]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <DIV>
       <div className="input">
@@ -99,20 +104,23 @@ export const MenProductList = () => {
         <div className="main">
           <div className="grid">
             {products.length > 0 &&
-              products.splice(0, 12).map((el, i) => {
+              products?.splice(0, 12)?.map((el, i) => {
                 return <ProductCard key={i} detail={el} {...el} />;
               })}
           </div>
           <Box>
-        <Pagination page={page} setPage={setPage} />
-      </Box>
+            <Pagination page={page} setPage={setPage} end={end} />
+          </Box>
         </div>
       ) : (
-        <Box textAlign="center" py={35} px={6}>
+        <Box textAlign="center" py={85} px={6}>
           <WarningTwoIcon boxSize={"50px"} color={"orange.300"} />
           <Heading as="h2" size="xl" mt={6} mb={2}>
             Sorry No Data Found
           </Heading>
+          <Box>
+            <Link to={"/men"}><Button style={{marginTop: '30px', backgroundColor: 'black', color: 'white'}}>Explore more</Button></Link>
+          </Box>
         </Box>
       )}
     </DIV>

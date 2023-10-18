@@ -15,7 +15,7 @@ import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import "./Sidebar.css";
 
-export const MenSideBar = () => {
+export const BoysSideBar = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const initialBrand = searchParams.getAll("brand");
   const [brand, setBrand] = useState(initialBrand || []);
@@ -23,6 +23,8 @@ export const MenSideBar = () => {
   const [category, setCategory] = useState(initialCategory || []);
   const initialOrder = searchParams.get("order");
   const [order, setOrder] = useState(initialOrder || "");
+
+//     'Kanvin', 'Lux Cottswool', 'YK Disney', 'HRX by Hrithik Roshan', 'KUCHIPOO', 'HELLCAT', 'Technosport', 'Pantaloons Baby', 'SPUNKIES', 'BONKIDS', 'Calvin Klein', 'YK Justice League']
 
   useEffect(() => {
     let params = {
@@ -87,11 +89,11 @@ export const MenSideBar = () => {
               <br />
               <input
                 type="checkbox"
-                value={"Allen Solly"}
+                value={"A.T.U.N."}
                 onChange={handleBrand}
-                checked={brand.includes("Allen Solly")}
+                checked={brand.includes("A.T.U.N.")}
               />
-              <label>Allen Solly</label>
+              <label>A.T.U.N.</label>
               <br />
               <input
                 type="checkbox"
@@ -103,19 +105,27 @@ export const MenSideBar = () => {
               <br />
               <input
                 type="checkbox"
-                value={"Polo"}
+                value={"YK"}
                 onChange={handleBrand}
-                checked={brand.includes("Polo")}
+                checked={brand.includes("YK" || "YK Disney" || "YK Justice League")}
               />
-              <label>Polo</label>
+              <label>YK</label>
               <br />
               <input
                 type="checkbox"
-                value={"HIGHLANDER"}
+                value={"max"}
                 onChange={handleBrand}
-                checked={brand.includes("HIGHLANDER")}
+                checked={brand.includes("max")}
               />
-              <label>Highlander</label>
+              <label>Max</label>
+              <br />
+              <input
+                type="checkbox"
+                value={"U.S. Polo Assn. Kids"}
+                onChange={handleBrand}
+                checked={brand.includes("U.S. Polo Assn. Kids")}
+              />
+              <label>U.S. Polo</label>
               <br />
               <input
                 type="checkbox"
@@ -127,109 +137,83 @@ export const MenSideBar = () => {
               <br />
               <input
                 type="checkbox"
-                value={"HIGHSTAR"}
+                value={"Marks & Spencer"}
                 onChange={handleBrand}
-                checked={brand.includes("HIGHSTAR")}
+                checked={brand.includes("Marks & Spencer")}
               />
-              <label>High Star</label>
+              <label>Marks & Spencer</label>
               <br />
               <input
                 type="checkbox"
-                value={"KETCH"}
+                value={"Pantaloons Junior"}
                 onChange={handleBrand}
-                checked={brand.includes("KETCH")}
+                checked={brand.includes("Pantaloons Junior")}
               />
-              <label>Ketch</label>
+              <label>Pantaloons Junior</label>
               <br />
               <input
                 type="checkbox"
-                value={"Puma"}
+                value={"CrayonFlakes"}
                 onChange={handleBrand}
-                checked={brand.includes("Puma")}
+                checked={brand.includes("CrayonFlakes")}
               />
-              <label>Puma</label>
+              <label>CrayonFlakes</label>
               <br />
               <input
                 type="checkbox"
-                value={"ADIDAS"}
+                value={"PLUM TREE"}
                 onChange={handleBrand}
-                checked={brand.includes("ADIDAS" || "Adidas")}
+                checked={brand.includes("PLUM TREE")}
               />
-              <label>Adidas</label>
+              <label>PLUM TREE</label>
               <br />
               <input
                 type="checkbox"
-                value={"Nike"}
+                value={"HRX by Hrithik Roshan"}
                 onChange={handleBrand}
-                checked={brand.includes("Nike")}
+                checked={brand.includes("HRX by Hrithik Roshan")}
               />
-              <label>Nike</label>
+              <label>HRX</label>
               <br />
               <input
                 type="checkbox"
-                value={"GANT"}
+                value={"jockey"}
                 onChange={handleBrand}
-                checked={brand.includes("GANT")}
+                checked={brand.includes("jockey")}
               />
-              <label>Gant</label>
-            </Container>
-          </AccordionPanel>
-        </AccordionItem>
-      </Accordion>
-      <Accordion defaultIndex={[0]} allowMultiple>
-        <AccordionItem
-          bg={useColorModeValue('#a8a8a8')}
-          borderRadius={"5px"}
-          color={"black"}
-          mb={3}
-        >
-            <AccordionButton>
-              <Box as="span" flex="1" textAlign="left">
-                <Text fontWeight={"bold"} pl={"2"}>CATEGORY</Text>
-              </Box>
-              <AccordionIcon />
-            </AccordionButton>
-          <AccordionPanel pb={4} textAlign={"left"} fontWeight={100}>
-            <Container>
-              <input
-                type="checkbox"
-                value={"jackets"}
-                onChange={handleCategory}
-                checked={category.includes("jackets")}
-              />
-              <label>Jackets</label>
+              <label>Jockey</label>
               <br />
               <input
                 type="checkbox"
-                value={"tshirts"}
-                onChange={handleCategory}
-                checked={category.includes("tshirts")}
+                value={"Charm n Cherish"}
+                onChange={handleBrand}
+                checked={brand.includes("Charm n Cherish")}
               />
-              <label>T-shirts</label>
+              <label>Charm n Cherish</label>
               <br />
               <input
                 type="checkbox"
-                value={"shirts"}
-                onChange={handleCategory}
-                checked={category.includes("shirts")}
+                value={"Kanvin"}
+                onChange={handleBrand}
+                checked={brand.includes("Kanvin")}
               />
-              <label>Shirts</label>
+              <label>Kanvin</label>
               <br />
               <input
                 type="checkbox"
-                value={"sweatshirt"}
-                onChange={handleCategory}
-                checked={category.includes("sweatshirt")}
+                value={"HELLCAT"}
+                onChange={handleBrand}
+                checked={brand.includes("HELLCAT")}
               />
-              <label>SweatShirts</label>
+              <label>HELLCAT</label>
               <br />
               <input
                 type="checkbox"
-                value={"sweaters"}
-                onChange={handleCategory}
-                checked={category.includes("sweaters")}
+                value={"Lux Cottswool"}
+                onChange={handleBrand}
+                checked={brand.includes("Lux Cottswool")}
               />
-              <label>Sweaters</label>
+              <label>Lux Cottswool</label>
             </Container>
           </AccordionPanel>
         </AccordionItem>

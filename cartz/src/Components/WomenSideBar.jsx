@@ -107,7 +107,7 @@ export const WomenSideBar = () => {
                 type="checkbox"
                 value={"DILLINGER"}
                 onChange={handleBrand}
-                checked={brand.includes("DILLINGER")}
+                checked={brand.includes("DILLINGER" || "Dillinger")}
               />
               <label>Dillinger</label>
               <br />
@@ -118,6 +118,14 @@ export const WomenSideBar = () => {
                 checked={brand.includes("H&M")}
               />
               <label>H&M</label>
+              <br />
+              <input
+                type="checkbox"
+                value={"HERE&NOW"}
+                onChange={handleBrand}
+                checked={brand.includes("HERE&NOW")}
+              />
+              <label>HERE&NOW</label>
               <br />
               <input
                 type="checkbox"
@@ -142,6 +150,14 @@ export const WomenSideBar = () => {
                 checked={brand.includes("Libas")}
               />
               <label>Libas</label>
+              <br />
+              <input
+                type="checkbox"
+                value={"Nike"}
+                onChange={handleBrand}
+                checked={brand.includes("Nike")}
+              />
+              <label>Nike</label>
             </Container>
           </AccordionPanel>
         </AccordionItem>

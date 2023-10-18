@@ -1,7 +1,13 @@
 import React from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
 
-export const Pagination = ({page,setPage}) => {
+export const Pagination = ({page,setPage,end}) => {
+
+  // useEffect(()=> {
+  //   window.scrollTo(0, 0);
+  // },[page])
+
   return (
     <DIV>
       <div
@@ -19,7 +25,7 @@ export const Pagination = ({page,setPage}) => {
         <button
           id="btn2"
           onClick={() => setPage(page + 1)}
-          disabled={page === 9}
+          disabled={page === end}
         >
           Next
         </button>

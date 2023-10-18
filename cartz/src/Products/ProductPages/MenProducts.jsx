@@ -5,7 +5,7 @@ import { MenProductList } from "../ProductList/MenProductList";
 const MenProducts = () => {
   return (
     <DIV>
-      <div className="banner">
+      <div className="banner animate__animated animate__zoomInDown">
       </div>
       <div className="flex">
         <div className="sidebar" data-aos="zoom-out-right">
