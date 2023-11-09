@@ -23,10 +23,14 @@ import { Link as Link1, useNavigate, useLocation } from "react-router-dom";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { userLogin, userLogout } from "../Redux/authReducer/action";
 
-export default function Login() {
+function Login() {
   const toast = useToast();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+
   const dispatch = useDispatch();
   const { googleSignIn, user } = UserAuth();
   const [showPassword, setShowPassword] = useState(false);
@@ -98,43 +102,46 @@ export default function Login() {
   //   }
   // };
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    const userData = { email, password };
-  
-    if (email === '' || password === '') {
-      toast({
-        title: 'Please fill in both email and password',
-        status: 'error',
-        duration: 2000,
-        isClosable: true,
-      });
-    } else {
-      try {
-        // Assuming your userLogin action dispatches the LOGIN_SUCCESS action
-        dispatch(userLogin(userData));
-  
-        toast({
-          title: 'Logged In 👍',
-          description: 'Login Successfully!',
-          status: 'success',
-          duration: 2000,
-          isClosable: true,
-        });
-        setEmail('');
-        setPassword('');
-        navigate(location.state ? location.state : '/', { replace: true });
-      } catch (err) {
-        toast({
-          title: 'Login Failed 🙏',
-          description: 'Invalid email and password',
-          status: 'error',
-          duration: 2000,
-          isClosable: true,
-        });
-      }
-    }
-  };
+  // const handleLogin = (e) => {
+  //   e.preventDefault();
+  //   const userData = { email, password };
+  //   console.log(userData)
+
+  //   if (email === '' || password === '') {
+  //     toast({
+  //       title: 'Please fill in both email and password',
+  //       status: 'error',
+  //       duration: 2000,
+  //       isClosable: true,
+  //     });
+  //   } else {
+  //     try {
+  //       // Assuming your userLogin action dispatches the LOGIN_SUCCESS action
+
+  //      if(userData){
+  //       dispatch(userLogin(userData))
+  //       toast({
+  //         title: 'Login Successfull!! 🙏',
+  //         // description: 'Invalid email and password',
+  //         status: 'success',
+  //         duration: 2000,
+  //         isClosable: true,
+  //       });
+  //       setEmail('');
+  //       setPassword('');
+  //       navigate('/');
+  //      }
+  //     } catch (err) {
+  //       toast({
+  //         title: 'Login Failed 🙏',
+  //         description: 'Invalid email and password',
+  //         status: 'error',
+  //         duration: 2000,
+  //         isClosable: true,
+  //       });
+  //     }
+  //   }
+  // };
 
   // const handleLogout = () => {
   //   // Ensure the user data (email and password) is available in the Redux store
@@ -147,7 +154,74 @@ export default function Login() {
   //     console.error('User data not available for logout');
   //   }
   // };
-  
+
+  const handleLogin = (e) => {
+    const payload = { email, password };
+
+    // Error Handling
+    {
+      !email ? setEmailError(true) : setEmailError(false);
+    }
+    {
+      !password ? setPasswordError(true) : setPasswordError(false);
+    }
+
+    if (!email || !password) {
+      return false;
+    }
+
+    // Login post request
+    fetch(`https://cartz-new-backend.onrender.com/users/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log(data);
+        if (data.token) {
+          localStorage.setItem("userAccessToken", data.token);
+          toast({
+            title: "Logged In 👍.",
+            description: "Login Successfully!",
+            status: "success",
+            duration: 2000,
+            isClosable: true,
+          });
+          navigate("/");
+        } else {
+          if (email !== data.email) {
+            toast({
+              title: data.msg,
+              status: "warning",
+              position: "top",
+              duration: 5000,
+              isClosable: true,
+            });
+          } else if (password !== data.password) {
+            toast({
+              title: data.msg,
+              status: "warning",
+              position: "top",
+              duration: 5000,
+              isClosable: true,
+            });
+          }
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        toast({
+          title: err,
+          status: "error",
+          position: "top",
+          duration: 5000,
+          isClosable: true,
+        });
+      });
+  };
 
   const handleGoogleSignIn = async () => {
     try {
@@ -196,6 +270,11 @@ export default function Login() {
                 onChange={(e) => setEmail(e.target.value)}
                 style={{ textAlign: "start" }}
               />
+              {emailError ? (
+                <Text style={{ color: "red", textAlign: "left" }}>
+                  Email is Required
+                </Text>
+              ) : null}
             </FormControl>
             <FormControl id="password">
               <FormLabel>Password</FormLabel>
@@ -217,6 +296,11 @@ export default function Login() {
                   </Button>
                 </InputRightElement>
               </InputGroup>
+              {passwordError ? (
+                <Text style={{ color: "red", textAlign: "left" }}>
+                  Password is Required
+                </Text>
+              ) : null}
             </FormControl>
             <Stack spacing={10}>
               <Stack
@@ -264,3 +348,5 @@ export default function Login() {
     </Flex>
   );
 }
+
+export default Login;

@@ -44,9 +44,9 @@ import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, USER_SUCCESS, USER_FAILURE
 export const userLogin = (userData) => (dispatch) => {
     dispatch({ type: LOGIN_REQUEST });
     return axios
-      .post(`https://json-server-deploy-7au4.onrender.com/Login`, userData)
+      .post(`https://cartz-new-backend.onrender.com/users/login`, userData)
       .then((res) => {
-        dispatch({ type: LOGIN_SUCCESS, payload: res.data });
+        dispatch({ type: LOGIN_SUCCESS, payload: res.data.token });
         console.log(res);
       })
       .catch(() => {
@@ -57,10 +57,10 @@ export const userLogin = (userData) => (dispatch) => {
 export const CreateUser = (data) => (dispatch) => {
     dispatch({ type: USER_REQUEST });
     return axios
-      .post(`https://json-server-deploy-7au4.onrender.com/Signup`, data)
+      .post(`https://cartz-new-backend.onrender.com/users/register`, data)
       .then((res) => {
         // console.log(res);
-        dispatch({ type: USER_SUCCESS });
+        dispatch({ type: USER_SUCCESS, payload: res.data });
       })
       .catch(() => {
         dispatch({ type: USER_FAILURE });
@@ -70,7 +70,7 @@ export const CreateUser = (data) => (dispatch) => {
   export const userLogout = (userData) => async (dispatch) => {
     try {
       // Include email and password in the request to delete the user's data
-      await axios.delete('https://json-server-deploy-7au4.onrender.com/Login', { data: userData });
+      await axios.get('https://cartz-new-backend.onrender.com/users/logout', { data: userData });
   
       // Dispatch a Redux action to indicate that the user has logged out
       dispatch({ type: USER_LOGOUT });
