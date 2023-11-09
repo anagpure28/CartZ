@@ -42,9 +42,10 @@
 /*left-side-start*/
 
 .left-side .flattext {
+  font-size: 18px;
   position: absolute;
   bottom: 15px;
-  left: 10px;
+  left: 18px;
 }
 .left-side h2 {
   writing-mode: vertical-lr;

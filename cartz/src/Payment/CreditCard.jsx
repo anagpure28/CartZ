@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import "../Payment/CreditCard.css"
 import { message } from 'antd';
+import { useNavigate } from "react-router-dom";
 
 const CreditCard = () => {
   const [messageApi, contextHolder] = message.useMessage();
@@ -19,6 +20,8 @@ const CreditCard = () => {
 
   // flip the ATM when CVV get focused
   const [flip, setFlip] = useState(true);
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -65,6 +68,9 @@ const CreditCard = () => {
 
   const handleConfirm = (e) => {
     e.preventDefault();
+    setTimeout(() => {
+      localStorage.removeItem('CartZ-cart');
+    }, 200);
 
     if (
       data.cardNumber.length === 16 &&
@@ -75,7 +81,8 @@ const CreditCard = () => {
       !isNaN(data.cvv)
     ) {
       Submit();
-      success()
+      success();
+      navigate("/")
     } else {
       Invalid()
     }

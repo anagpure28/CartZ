@@ -19,7 +19,7 @@ export const reducer = (state = initialState, { type, payload }) => {
     case USER_REQUEST:
       return { ...state, isLoading: true };
     case USER_SUCCESS:
-      return { ...state, isLoading: false, token: payload, users: payload, isAuth: true };
+      return { ...state, isLoading: false, users: payload, isAuth: true };
     case USER_FAILURE:
       return { ...state, isLoading: false, isError: true };
     default:

@@ -11,6 +11,7 @@ import couponImage from "../HomeComponents/images/PC_Coupon_stripe.gif";
 import buyonegetoneImage from "../HomeComponents/images/640x128-bxgy-revised_update.jpg";
 import Coupon from "../Components/Coupon";
 import { useEffect } from "react";
+import CountUpNumber from "../HomeComponents/CountUpNumber";
 
 const Home = () => {
 
@@ -26,6 +27,7 @@ const Home = () => {
         className={style.cashback}
         style={{ backgroundImage: `url(${couponImage})` }}
       ></div>
+      <CountUpNumber />
       <LimitedOffers />
       <div
         className={style.buy1get1}

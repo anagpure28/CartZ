@@ -15,7 +15,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import GoogleButton from "react-google-button";
 import { UserAuth } from "../Context/AuthContext";
 import { useState } from "react";
@@ -23,20 +23,18 @@ import { CreateUser } from "../Redux/authReducer/action";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
-const initialState = {
-  firstname: "",
-  lastname: "",
-  email: "",
-  password: "",
-};
-
-export default function SignupCard() {
+function SignupCard() {
   const toast = useToast();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setlastName] = useState("");
+  const [email, setLoginEmail] = useState("");
+  const [password, setLoginPasword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+
   const { googleSignIn, logOut } = UserAuth();
-  const [formState, setFormState] = useState(initialState);
-  const isAuth = useSelector((store)=> store.authReducer.isAuth)
+  // const isAuth = useSelector((store) => store.authReducer.isAuth);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleGoogleSignIn = async () => {
     try {
@@ -46,80 +44,76 @@ export default function SignupCard() {
     }
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormState({ ...formState, [name]: value });
-  };
+  const [firstNameError, setFirstNameError] = useState(false);
+  const [lastNameError, setlastNameError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
 
   const handleUser = (e) => {
-    e.preventDefault();
-    if (formState.firstname == "") {
-      toast({
-        title: "Please fill the firstname",
-        status: "error",
-        duration: 2000,
-        isClosable: true,
-      });
-    } else if (formState.lastname == "") {
-      toast({
-        title: "Please fill the lastname",
-        status: "error",
-        duration: 2000,
-        isClosable: true,
-      });
-    } else if (formState.email == "") {
-      toast({
-        title: "Please fill the email",
-        status: "error",
-        duration: 2000,
-        isClosable: true,
-      });
-    } else if (formState.password == "") {
-      toast({
-        title: "Please fill the password",
-        status: "error",
-        duration: 2000,
-        isClosable: true,
-      });
-    } else {
-      dispatch(CreateUser(formState))
-        .then(() => {
-          toast({
-            title: "Account Created 👍.",
-            description: "We created Account for you!",
-            status: "success",
-            duration: 2000,
-            isClosable: true,
-          });
-        })
-        .catch(() => {
-          toast({
-            title: "Account Not Created.",
-            description: "Failed to Create Account!",
-            status: "error",
-            duration: 2000,
-            isClosable: true,
-          });
-        });
-      setFormState(initialState);
+    const payload = { firstName, lastName, email, password };
+
+    {
+      !firstName ? setFirstNameError(true) : setFirstNameError(false);
     }
+    {
+      !lastName ? setlastNameError(true) : setlastNameError(false);
+    }
+    {
+      !email ? setEmailError(true) : setEmailError(false);
+    }
+    {
+      !password ? setPasswordError(true) : setPasswordError(false);
+    }
+
+    if (!firstName || !email || !password || !lastName) {
+      return false;
+    }
+
+    fetch(`https://cartz-new-backend.onrender.com/users/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.msg === "User already exists") {
+          toast({
+            title: data.msg,
+            status: "warning",
+            position: "top",
+            duration: 5000,
+            isClosable: true,
+          });
+          return;
+        } else {
+          toast({
+            title: data.msg,
+            position: "top",
+            status: "success",
+            duration: 5000,
+            isClosable: true,
+          });
+          navigate("/login");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  if (isAuth) {
-    return <Navigate to={"/login"} />;
-  }
+  // if (isAuth) {
+  //   return <Navigate to={"/login"} />;
+  // }
 
   return (
-    <Flex
-      minH={"60vh"}
-      align={"center"}
-      justify={"center"}
-      bg={"gray.50"}
-    >
+    <Flex minH={"60vh"} align={"center"} justify={"center"} bg={"gray.50"}>
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Stack align={"center"}>
           <Heading fontSize={"4xl"} textAlign={"center"}>
@@ -129,13 +123,7 @@ export default function SignupCard() {
             to enjoy all of our cool features ✌️
           </Text>
         </Stack>
-        <Box
-          rounded={"lg"}
-          bg={"white"}
-          boxShadow={"lg"}
-          p={8}
-          h={540}
-        >
+        <Box rounded={"lg"} bg={"white"} boxShadow={"lg"} p={8} h={540}>
           <Stack spacing={4}>
             <HStack>
               <Box>
@@ -144,10 +132,11 @@ export default function SignupCard() {
                   <Input
                     type="text"
                     textAlign={"start"}
-                    value={formState.firstname}
+                    value={firstName}
                     name={"firstname"}
-                    onChange={handleChange}
+                    onChange={(e) => setFirstName(e.target.value)}
                   />
+                  {firstNameError ? <Text style={{color: 'red', textAlign: 'left'}}>FirstName is Required</Text> : null}
                 </FormControl>
               </Box>
               <Box>
@@ -156,10 +145,11 @@ export default function SignupCard() {
                   <Input
                     type="text"
                     textAlign={"start"}
-                    value={formState.lastname}
+                    value={lastName}
                     name={"lastname"}
-                    onChange={handleChange}
+                    onChange={(e) => setlastName(e.target.value)}
                   />
+                  {lastNameError ? <Text style={{color: 'red', textAlign: 'left'}}>LastName is Required</Text> : null}
                 </FormControl>
               </Box>
             </HStack>
@@ -168,10 +158,11 @@ export default function SignupCard() {
               <Input
                 type="email"
                 textAlign={"start"}
-                value={formState.email}
+                value={email}
                 name={"email"}
-                onChange={handleChange}
+                onChange={(e) => setLoginEmail(e.target.value)}
               />
+              {emailError ? <Text style={{color: 'red', textAlign: 'left'}}>Email is Required</Text> : null}
             </FormControl>
             <FormControl id="password" isRequired>
               <FormLabel>Password</FormLabel>
@@ -179,9 +170,9 @@ export default function SignupCard() {
                 <Input
                   type={showPassword ? "text" : "password"}
                   textAlign={"start"}
-                  value={formState.password}
+                  value={password}
                   name={"password"}
-                  onChange={handleChange}
+                  onChange={(e) => setLoginPasword(e.target.value)}
                 />
                 <InputRightElement h={"full"}>
                   <Button
@@ -194,6 +185,7 @@ export default function SignupCard() {
                   </Button>
                 </InputRightElement>
               </InputGroup>
+            {passwordError ? <Text style={{color: 'red', textAlign: 'left'}}>Password is Required</Text> : null}
             </FormControl>
             <Stack spacing={10} pt={5}>
               <Button
@@ -238,3 +230,5 @@ export default function SignupCard() {
     </Flex>
   );
 }
+
+export default SignupCard;
