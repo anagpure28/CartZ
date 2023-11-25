@@ -222,12 +222,11 @@ export const BoysSideBar = () => {
         <AccordionItem
           bg={useColorModeValue('#a8a8a8')}
           borderRadius={"5px"}
-          color={"black"}
           mb={3}
         >
           <AccordionButton>
             <Box as="span" flex="1" textAlign="left">
-              <Text fontWeight={"bold"} pl={"2"}>
+              <Text fontWeight={"bold"} color={"white"} pl={"2"}>
                 SORT
               </Text>
             </Box>

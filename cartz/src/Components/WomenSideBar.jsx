@@ -8,6 +8,7 @@ import {
   AccordionIcon,
   AccordionPanel,
   Container,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -64,14 +65,13 @@ export const WomenSideBar = () => {
     <DIV>
       <Accordion defaultIndex={[0]} allowMultiple>
         <AccordionItem
-          bg={"#f1f4f6"}
+          bg={useColorModeValue('#a8a8a8')}
           borderRadius={"5px"}
-          color={"black"}
           mb={3}
         >
           <AccordionButton>
             <Box as="span" flex="1" textAlign="left">
-              <Text fontWeight={"bold"} pl={"2"}>
+              <Text fontWeight={"bold"} color={"white"} pl={"2"}>
                 BRAND
               </Text>
             </Box>
@@ -164,14 +164,13 @@ export const WomenSideBar = () => {
       </Accordion>
       <Accordion defaultIndex={[0]} allowMultiple>
         <AccordionItem
-          bg={"#f1f4f6"}
+          bg={useColorModeValue('#a8a8a8')}
           borderRadius={"5px"}
-          color={"black"}
           mb={3}
         >
           <AccordionButton>
             <Box as="span" flex="1" textAlign="left">
-              <Text fontWeight={"bold"} pl={"2"}>
+              <Text fontWeight={"bold"} color={"white"} pl={"2"}>
                 CATEGORY
               </Text>
             </Box>
@@ -216,14 +215,13 @@ export const WomenSideBar = () => {
       </Accordion>
       <Accordion defaultIndex={[0]} allowMultiple>
         <AccordionItem
-          bg={"#f1f4f6"}
+          bg={useColorModeValue('#a8a8a8')}
           borderRadius={"5px"}
-          color={"black"}
           mb={3}
         >
           <AccordionButton>
             <Box as="span" flex="1" textAlign="left">
-              <Text fontWeight={"bold"} pl={"2"}>
+              <Text fontWeight={"bold"} color={"white"} pl={"2"}>
                 SORT
               </Text>
             </Box>

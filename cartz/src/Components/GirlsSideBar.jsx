@@ -161,7 +161,7 @@ export const GirlsSideBar = () => {
         >
           <AccordionButton>
             <Box as="span" flex="1" textAlign="left">
-              <Text fontWeight={"bold"} pl={"2"}>
+              <Text fontWeight={"bold"} color={"white"} pl={"2"}>
                 SORT
               </Text>
             </Box>

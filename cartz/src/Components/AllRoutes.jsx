@@ -16,6 +16,7 @@ const MenProducts = lazy(() => import("../Products/ProductPages/MenProducts"));
 const WomenProducts = lazy(() => import("../Products/ProductPages/WomenProducts"));
 const CreditCard = lazy(() => import("../Payment/CreditCard"));
 const Cart = lazy(() => import("../Pages/Cart"));
+const PaymentSuccess = lazy(() => import("../Payment/PaymentSuccess"));
 
 const AllRoutes = () => {
   return (
@@ -55,6 +56,7 @@ const AllRoutes = () => {
           <Route path="/girls" element={<GirlsProduct />}></Route>
           <Route path="/boys" element={<BoysProduct />}></Route>
           <Route path="/creditcard" element={<CreditCard />}></Route>
+          <Route path="/paymentsuccess" element={<PaymentSuccess />}></Route>
           <Route
             path="/payment"
             element={

@@ -82,7 +82,7 @@ const CreditCard = () => {
     ) {
       Submit();
       success();
-      navigate("/")
+      navigate("/paymentsuccess")
     } else {
       Invalid()
     }
