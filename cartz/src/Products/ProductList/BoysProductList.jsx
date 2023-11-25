@@ -158,14 +158,32 @@ const DIV = styled.div`
       gap: 15px;
     }
   }
-  @media screen and (min-width: 710px) and (max-width: 1075px) {
+  @media screen and (min-width: 794px) and (max-width: 1075px) {
+    .search{
+      width: 40%;
+      margin-left: 20px;
+    }
     .grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 15px;
     }
   }
-  @media screen and (max-width: 710px) {
+  @media screen and (min-width: 550px) and (max-width: 794px) {
+    .search{
+      width: 80%;
+      margin: 0 0 20px 20px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 15px;
+    }
+  }
+  @media screen and (min-width: 220px) and (max-width: 549px){
+    .search{
+      width: 100%;
+    }
     .grid {
       display: grid;
       grid-template-columns: repeat(1, 1fr);

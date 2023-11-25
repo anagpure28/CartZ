@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
+import PaymentSuccess from "../Payment/PaymentSuccess";
 
 const Home = lazy(() => import("../Pages/Home"));
 const Login = lazy(() => import("../Pages/Login"));
@@ -55,6 +56,7 @@ const AllRoutes = () => {
           <Route path="/girls" element={<GirlsProduct />}></Route>
           <Route path="/boys" element={<BoysProduct />}></Route>
           <Route path="/creditcard" element={<CreditCard />}></Route>
+          <Route path="/paymentsuccess" element={<PaymentSuccess />}></Route>
           <Route
             path="/payment"
             element={
