@@ -1,7 +1,6 @@
 import React, { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
-import PaymentSuccess from "../Payment/PaymentSuccess";
 
 const Home = lazy(() => import("../Pages/Home"));
 const Login = lazy(() => import("../Pages/Login"));
@@ -17,6 +16,7 @@ const MenProducts = lazy(() => import("../Products/ProductPages/MenProducts"));
 const WomenProducts = lazy(() => import("../Products/ProductPages/WomenProducts"));
 const CreditCard = lazy(() => import("../Payment/CreditCard"));
 const Cart = lazy(() => import("../Pages/Cart"));
+const PaymentSuccess = lazy(() => import("../Payment/PaymentSuccess"));
 
 const AllRoutes = () => {
   return (
