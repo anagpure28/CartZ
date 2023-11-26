@@ -20,6 +20,7 @@ const PaymentSuccess = () => {
         justifyContent: "center",
       }}
     >
+      <img src={Payment} alt="payment" style={{width: "60%", height: "60%", marginTop: "10px"}} />
       <button
         onClick={HandleClick}
         style={{
@@ -29,12 +30,11 @@ const PaymentSuccess = () => {
           fontSize: "1.1rem",
           fontWeight: "600",
           color: "#656565",
-          marginTop: "25px"
+          margin: "0px auto 25px"
         }}
       >
         Home Page
       </button>
-      <img src="https://leafy-pony-afdfed.netlify.app/Images/payment.gif" alt="payment" style={{width: "60%", height: "60%", marginTop: "0px"}} />
     </div>
   );
 };
