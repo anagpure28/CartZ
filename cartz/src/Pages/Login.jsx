@@ -43,106 +43,6 @@ function Login() {
     };
   });
 
-  // const handleLogin = async (e) => {
-  //   // e.preventDefault();
-  //   // dispatch(userLogin(userData,user,googleSignIn))
-  //   const userData = { email, password };
-  //   if (email == "") {
-  //     toast({
-  //       title: "Please fill the email",
-  //       status: "error",
-  //       duration: 2000,
-  //       isClosable: true,
-  //     });
-  //   } else if (password == "") {
-  //     toast({
-  //       title: "Please fill the password",
-  //       status: "error",
-  //       duration: 2000,
-  //       isClosable: true,
-  //     });
-  //   } else {
-  //     const res = await fetch(
-  //       "https://json-server-deploy-7au4.onrender.com/Signup"
-  //     );
-  //     const data = await res.json();
-  //     try {
-  //       if (
-  //         data.email === userData.email &&
-  //         data.password === userData.password
-  //       ) {
-  //         dispatch(userLogin(userData));
-  //         toast({
-  //           title: "Logged In 👍.",
-  //           description: "Login Successfully!",
-  //           status: "success",
-  //           duration: 2000,
-  //           isClosable: true,
-  //         });
-  //         setEmail("");
-  //         setPassword("");
-  //         navigate(location.state ? location.state : "/", { replace: true });
-  //       } else {
-  //         toast({
-  //           title: "Login Failed 🙏.",
-  //           description: "Invalid email and password!",
-  //           status: "error",
-  //           duration: 2000,
-  //           isClosable: true,
-  //         });
-  //       }
-  //     } catch (err) {
-  //       toast({
-  //         title: "Login Failed 🙏.",
-  //         status: "error",
-  //         duration: 2000,
-  //         isClosable: true,
-  //       });
-  //     }
-  //   }
-  // };
-
-  // const handleLogin = (e) => {
-  //   e.preventDefault();
-  //   const userData = { email, password };
-  //   console.log(userData)
-
-  //   if (email === '' || password === '') {
-  //     toast({
-  //       title: 'Please fill in both email and password',
-  //       status: 'error',
-  //       duration: 2000,
-  //       isClosable: true,
-  //     });
-  //   } else {
-  //     try {
-  //       // Assuming your userLogin action dispatches the LOGIN_SUCCESS action
-
-  //      if(userData){
-  //       dispatch(userLogin(userData))
-  //       toast({
-  //         title: 'Login Successfull!! 🙏',
-  //         // description: 'Invalid email and password',
-  //         status: 'success',
-  //         duration: 2000,
-  //         isClosable: true,
-  //       });
-  //       setEmail('');
-  //       setPassword('');
-  //       navigate('/');
-  //      }
-  //     } catch (err) {
-  //       toast({
-  //         title: 'Login Failed 🙏',
-  //         description: 'Invalid email and password',
-  //         status: 'error',
-  //         duration: 2000,
-  //         isClosable: true,
-  //       });
-  //     }
-  //   }
-  // };
-
   // const handleLogout = () => {
   //   // Ensure the user data (email and password) is available in the Redux store
   //   if (users && users.email && users.password) {
@@ -170,57 +70,86 @@ function Login() {
       return false;
     }
 
-    // Login post request
-    fetch(`https://cartz-new-backend.onrender.com/users/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        // console.log(data);
-        if (data.token) {
-          localStorage.setItem("userAccessToken", data.token);
-          toast({
-            title: "Logged In 👍.",
-            description: "Login Successfully!",
-            status: "success",
-            duration: 2000,
-            isClosable: true,
-          });
-          navigate("/");
-        } else {
-          if (email !== data.email) {
-            toast({
-              title: data.msg,
-              status: "warning",
-              position: "top",
-              duration: 5000,
-              isClosable: true,
-            });
-          } else if (password !== data.password) {
-            toast({
-              title: data.msg,
-              status: "warning",
-              position: "top",
-              duration: 5000,
-              isClosable: true,
-            });
-          }
-        }
-      })
-      .catch((err) => {
-        console.log(err);
+    dispatch(userLogin(payload)).then(() => {
+      if (location.state) {
+        // localStorage.setItem("userAccessToken", data.token);
         toast({
-          title: err,
-          status: "error",
-          position: "top",
-          duration: 5000,
+          title: "Logged In 👍.",
+          description: "Login Successfully!",
+          status: "success",
+          duration: 2000,
+          position: 'top',
           isClosable: true,
         });
-      });
+        setTimeout(() => {
+          navigate(location.state);
+        }, 2000);
+      } else {
+        toast({
+          title: "Logged In 👍.",
+          description: "Login Successfully!",
+          status: "success",
+          duration: 2000,
+          position: 'top',
+          isClosable: true,
+        });
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
+      }
+    });
+
+    // Login post request
+    // fetch(`https://cartz-new-backend.onrender.com/users/login`, {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(payload),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     // console.log(data);
+    //     if (data.token) {
+    //       localStorage.setItem("userAccessToken", data.token);
+    //       toast({
+    //         title: "Logged In 👍.",
+    //         description: "Login Successfully!",
+    //         status: "success",
+    //         duration: 2000,
+    //         isClosable: true,
+    //       });
+    //       navigate("/");
+    //     } else {
+    //       if (email !== data.email) {
+    //         toast({
+    //           title: data.msg,
+    //           status: "warning",
+    //           position: "top",
+    //           duration: 5000,
+    //           isClosable: true,
+    //         });
+    //       } else if (password !== data.password) {
+    //         toast({
+    //           title: data.msg,
+    //           status: "warning",
+    //           position: "top",
+    //           duration: 5000,
+    //           isClosable: true,
+    //         });
+    //       }
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //     toast({
+    //       title: err,
+    //       status: "error",
+    //       position: "top",
+    //       duration: 5000,
+    //       isClosable: true,
+    //     });
+    //   });
   };
 
   const handleGoogleSignIn = async () => {

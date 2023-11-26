@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import style from "../CSS/Cart.module.css";
 import CartProductCard from "../cartComponents/CartProductCard";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useCart } from "../cartComponents/CartProvider";
 import { Button, Result } from 'antd';
 
 const Cart = () => {
   const [cartData, setCartData] = useState([]);
   const { removeItemFromCart } = useCart();
+  const location = useLocation();
+  // console.log(location)
 
   useEffect(() => {
     // Load cart data from localStorage when the component mounts
