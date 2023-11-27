@@ -1,3 +1,11 @@
+## TASK APPLICATION FRONTEND
+
+    Deployed link - https://cartz-r71jgzdsu-anagpure28.vercel.app/
+
+## TASK APPLICATION BACKEND
+
+    Deployed link - https://cartz-new-backend.onrender.com/
+
 # CartZ
 
 Welcome to our clothing website, your ultimate destination for all things fashion and style. We offer a diverse range of clothing that caters to every individual's unique tastes, preferences, and occasions.
