@@ -1,8 +1,8 @@
-## TASK APPLICATION FRONTEND
+## CARTZ FRONTEND
 
     Deployed link - https://cart-z.vercel.app/
 
-## TASK APPLICATION BACKEND
+## CARTZ BACKEND
 
     Deployed link - https://cartz-new-backend.onrender.com/
 
