@@ -1,6 +1,6 @@
 ## TASK APPLICATION FRONTEND
 
-    Deployed link - https://cartz-r71jgzdsu-anagpure28.vercel.app/
+    Deployed link - https://cart-z.vercel.app/
 
 ## TASK APPLICATION BACKEND
 
