@@ -6,7 +6,7 @@
 
     Deployed link - https://cartz-new-backend.onrender.com/
 
-# CartZ
+# CartZ - No. 1 Brand
 
 Welcome to our clothing website, your ultimate destination for all things fashion and style. We offer a diverse range of clothing that caters to every individual's unique tastes, preferences, and occasions.
 
