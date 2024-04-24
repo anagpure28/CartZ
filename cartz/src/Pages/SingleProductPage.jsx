@@ -33,7 +33,7 @@ import axios from "axios";
 import { message } from 'antd';
 import { useCart } from "../cartComponents/CartProvider";
 
-let url = "https://845wro.sse.codesandbox.io";
+let url = "https://mock-server-app-2-46w4.onrender.com";
 
 const images = [
   "https://img.faballey.com/images/Product/DRS03635Z/d3.jpg",
